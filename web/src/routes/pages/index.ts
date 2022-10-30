@@ -1,0 +1,6 @@
+export { commonRoutes } from './common.routes'
+export { organizationsRoutes } from './organizations.routes'
+export { productsRoutes } from './products.routes'
+export { projectsRoutes } from './projects.routes'
+export { researchCenterRoutes } from './research-center.routes'
+export { standRoutes } from './stand.routes'

@@ -1,26 +1,49 @@
 {
   "compilerOptions": {
-    "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
-    "allowJs": true,
-    "skipLibCheck": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "noFallthroughCasesInSwitch": true,
+    "outDir": "build/",
+    "baseUrl": "src/",
+    "target": "es6",
     "module": "esnext",
     "moduleResolution": "node",
+    "noLib": false,
+    "lib": [
+      "es6",
+      "dom",
+      "dom.iterable",
+      "es2020",
+      "ESNext"
+    ],
+    "jsx": "react-jsx",
+    "downlevelIteration": true,
+    "sourceMap": true,
+    "esModuleInterop": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "pretty": true,
+    "allowUnreachableCode": true,
+    "allowUnusedLabels": true,
+    "listEmittedFiles": true,
+    "noEmitOnError": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitThis": true,
+    "noImplicitReturns": false,
+    "noImplicitUseStrict": false,
+    "noImplicitAny": false,
+    "noUnusedParameters": false,
+    "listFiles": false,
+    "noEmitHelpers": false,
+    "allowJs": true,
+    "skipLibCheck": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
     "resolveJsonModule": true,
-    "isolatedModules": true,
-    "noEmit": true,
-    "jsx": "react-jsx"
+    "isolatedModules": true
   },
+  "compileOnSave": false,
   "include": [
-    "src"
+    "src/**/*"
+  ],
+  "exclude": [
+    "node_modules"
   ]
 }
