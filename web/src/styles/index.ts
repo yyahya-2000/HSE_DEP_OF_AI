@@ -1,12 +1,16 @@
-import { createTheme } from '@mui/material'
+import { createTheme, colors } from '@mui/material'
 
 export const globalBaseStyles = createTheme({
   palette: {
     primary: {
-      main: '#2196f3'
+      light: '#EDEDFA',
+      main: '#4E51EB',
+      dark: '#5F52FA'
     },
     secondary: {
-      main: '#F44336'
+      light: colors.pink[50],
+      main: colors.pink['A400'],
+      dark: colors.pink['A700']
     }
   }
 })

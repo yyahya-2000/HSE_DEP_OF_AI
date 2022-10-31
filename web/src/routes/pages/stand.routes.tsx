@@ -1,8 +1,8 @@
-import { Fragment } from 'react';
+import Stand from 'views/Stand'
 
 export const standRoutes = {
   path: 'stand',
   children: [
-    { path: '', element: <Fragment>Stand</Fragment> }
+    { path: '', element: <Stand /> }
   ]
 }
