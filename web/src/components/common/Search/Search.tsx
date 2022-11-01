@@ -1,7 +1,7 @@
 import { FC, ChangeEvent, KeyboardEvent, useState } from 'react'
 import { TextField, InputAdornment, FormControl } from '@mui/material'
 import { Search as SearchIcon, Close } from '@mui/icons-material'
-import IconButton from 'components/Buttons/IconButton/IconButton'
+import { IconButton } from '../Buttons'
 import { SearchProps } from './Search.types'
 
 const Search: FC<SearchProps> = ({

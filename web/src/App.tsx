@@ -1,10 +1,6 @@
 import { FC } from 'react'
 import { AppRoutes } from './routes'
 
-const App: FC = () => (
-  <div className="App">
-    <AppRoutes />
-  </div>
-)
+const App: FC = () => <AppRoutes />
 
 export default App

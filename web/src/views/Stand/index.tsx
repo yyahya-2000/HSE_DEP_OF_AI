@@ -1,18 +1,6 @@
-import { FC, Fragment } from 'react'
-import { MoreButton, Search } from 'components'
+import { FC } from 'react'
+import { Stand } from 'components/Stand'
 
-const Stand: FC = () => {
-  const handleMoreClick = () => { console.log('Подробнее') }
+const StandView: FC = () => <Stand />
 
-  const handleFindeClick = (value: string) => { console.log('Ищем: ', value) }
-
-  return (
-    <Fragment>
-      <MoreButton onClick={handleMoreClick}/>
-      <Search onFind={handleFindeClick} clear />
-    </Fragment>
-    
-  )
-}
-
-export default Stand
+export default StandView
