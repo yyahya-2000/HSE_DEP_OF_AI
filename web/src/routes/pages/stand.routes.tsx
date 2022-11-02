@@ -1,8 +1,8 @@
-import Stand from 'views/Stand'
+import StandView from 'views/Stand'
 
 export const standRoutes = {
   path: 'stand',
   children: [
-    { path: '', element: <Stand /> }
+    { path: '', element: <StandView /> }
   ]
 }
