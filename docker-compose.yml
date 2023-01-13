@@ -1,0 +1,116 @@
+version: '3.4'
+services:
+  nginx:
+    container_name: hse_portal_nginx
+    build:
+      context: .
+      dockerfile: ./nginx/Dockerfile
+      args:
+        WEB_DOMAIN: ${WEB_DOMAIN}
+        SSL_CERTIFICATE: ${SSL_CERTIFICATE}
+        SSL_KEY: ${SSL_KEY}
+        SUPERSET_DOMAIN: ${SUPERSET_DOMAIN}
+        SUPERSET_SSL_CERTIFICATE: ${SUPERSET_SSL_CERTIFICATE}
+        SUPERSET_SSL_KEY: ${SUPERSET_SSL_KEY}
+    depends_on:
+      - php
+    logging:
+      driver: syslog
+      options:
+        tag: "{{.DaemonName}}(image={{.ImageName}};name={{.Name}};id={{.ID}})"
+    networks:
+      - frontend
+    ports:
+      - '88:88'
+      - '443:443'
+    restart: unless-stopped
+    volumes:
+      - ./nginx/logs:/var/log/nginx
+      - ./storage/public:/var/www/html/sites/default/files
+      - ./drupal:/var/www/html
+
+  php:
+    container_name: hse_portal_php
+    build:
+      context: .
+      dockerfile: ./php/Dockerfile
+    depends_on:
+#      - mariadb
+      - ai_hse_db
+    environment:
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      DRUPAL_TRUSTED_HOST: ${DRUPAL_TRUSTED_HOST}
+    logging:
+      driver: syslog
+      options:
+        tag: "{{.DaemonName}}(image={{.ImageName}};name={{.Name}};id={{.ID}})"
+    networks:
+      - frontend
+      - backend
+    restart: unless-stopped
+    volumes:
+      - ./storage/public:/var/www/html/sites/default/files:rw
+      - ./storage/private:/private:rw
+      - ./drupal:/var/www/html
+
+#  mariadb:
+#    container_name: hse_portal_mariadb
+#    image: mariadb:10.6
+#      #ports:
+#    #- '3306:3306'
+#    environment:
+#      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+#      MYSQL_DATABASE: ${MYSQL_DATABASE}
+#      MYSQL_USER: ${MYSQL_USER}
+#      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+#    logging:
+#      driver: syslog
+#      options:
+#        tag: "{{.DaemonName}}(image={{.ImageName}};name={{.Name}};id={{.ID}})"
+#    networks:
+#      - backend
+#    restart: unless-stopped
+#    volumes:
+#      - ./mariadb/data:/var/lib/mysql
+#      - ./mariadb/logs:/var/log/mysql
+#      - ./mariadb/conf:/etc/mysql/conf.d:ro
+  ai_hse_db:
+    image: postgres:14-alpine
+    networks:
+      - backend
+    logging:
+      driver: syslog
+      options:
+        tag: "{{.DaemonName}}(image={{.ImageName}};name={{.Name}};id={{.ID}})"
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=${POSTGRES_DB}
+    ports:
+      - "5432:5432"
+    restart: unless-stopped
+    volumes:
+      - ./storage/pgdata:/var/lib/postgresql/data
+#  superset:
+#    build:
+#      context: ./superset
+#      dockerfile: ./Dockerfile
+#    ports:
+#      - "8088:8088"
+#    logging:
+#      driver: syslog
+#      options:
+#        tag: "{{.DaemonName}}(image={{.ImageName}};name={{.Name}};id={{.ID}})"
+#    networks:
+#      - frontend
+#      - backend
+#    restart: unless-stopped
+#    volumes:
+#      - ./storage/ssdata:/app/superset_home
+networks:
+  frontend:
+    driver: bridge
+  backend:
+    driver: bridge
