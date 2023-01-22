@@ -1,7 +1,7 @@
 version: '3.4'
 services:
   nginx:
-    container_name: hse_portal_nginx
+    container_name: ai_hse_nginx
     build:
       context: .
       dockerfile: ./nginx/Dockerfile
@@ -21,26 +21,24 @@ services:
     networks:
       - frontend
     ports:
-      - '88:88'
-      - '443:443'
+      - '${HTTP_PORT}:80'
+      - '${HTTP_PORTS}:443'
     restart: unless-stopped
     volumes:
       - ./nginx/logs:/var/log/nginx
       - ./storage/public:/var/www/html/sites/default/files
-      - ./drupal:/var/www/html
 
   php:
-    container_name: hse_portal_php
+    container_name: ai_hse_php
     build:
       context: .
       dockerfile: ./php/Dockerfile
     depends_on:
-#      - mariadb
-      - ai_hse_db
+      - db
     environment:
-      MYSQL_DATABASE: ${MYSQL_DATABASE}
-      MYSQL_USER: ${MYSQL_USER}
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       DRUPAL_TRUSTED_HOST: ${DRUPAL_TRUSTED_HOST}
     logging:
       driver: syslog
@@ -51,32 +49,12 @@ services:
       - backend
     restart: unless-stopped
     volumes:
+      #- ./drupal:/var/www/html
       - ./storage/public:/var/www/html/sites/default/files:rw
       - ./storage/private:/private:rw
-      - ./drupal:/var/www/html
 
-#  mariadb:
-#    container_name: hse_portal_mariadb
-#    image: mariadb:10.6
-#      #ports:
-#    #- '3306:3306'
-#    environment:
-#      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-#      MYSQL_DATABASE: ${MYSQL_DATABASE}
-#      MYSQL_USER: ${MYSQL_USER}
-#      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
-#    logging:
-#      driver: syslog
-#      options:
-#        tag: "{{.DaemonName}}(image={{.ImageName}};name={{.Name}};id={{.ID}})"
-#    networks:
-#      - backend
-#    restart: unless-stopped
-#    volumes:
-#      - ./mariadb/data:/var/lib/mysql
-#      - ./mariadb/logs:/var/log/mysql
-#      - ./mariadb/conf:/etc/mysql/conf.d:ro
-  ai_hse_db:
+  db:
+    container_name: ai_hse_db
     image: postgres:14-alpine
     networks:
       - backend

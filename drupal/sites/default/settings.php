@@ -730,6 +730,10 @@ $settings['container_yamls'][] = $app_root . '/' . $site_path . '/services.yml';
  * @see https://www.drupal.org/docs/installing-drupal/trusted-host-settings
  */
 
+  $settings['trusted_host_patterns'] = [
+     '^'.getenv('DRUPAL_TRUSTED_HOST').'$',
+  ];
+
 /**
  * The default list of directories that will be ignored by Drupal's file API.
  *
@@ -796,22 +800,9 @@ $settings['migrate_node_migrate_type_classic'] = FALSE;
 # }
 
 $databases['default']['default'] = array (
-    'database' => getenv('MYSQL_DATABASE'),
-    'username' => getenv('MYSQL_USER'),
-    'password' => getenv('MYSQL_PASSWORD'),
-    'prefix' => 'd9_',
-    'host' => 'ai_hse_db',
-    'port' => '5432',
-    'namespace' => 'Drupal\\Core\\Database\\Driver\\pgsql',
-    'driver' => 'pgsql',
-);
-error_reporting(E_ALL);
-ini_set('display_errors', TRUE);
-ini_set('display_startup_errors', TRUE);
-$databases['default']['default'] = array (
-  'database' => 'drupal',
-  'username' => 'drupal_database_user',
-  'password' => 'drupal_database_password',
+  'database' => getenv('POSTGRES_DB'),
+  'username' => getenv('POSTGRES_USER'),
+  'password' => getenv('POSTGRES_PASSWORD'),
   'prefix' => 'd9_',
   'host' => 'ai_hse_db',
   'port' => '5432',
@@ -820,3 +811,7 @@ $databases['default']['default'] = array (
   'autoload' => 'core/modules/pgsql/src/Driver/Database/pgsql/',
 );
 $settings['config_sync_directory'] = 'sites/default/files/config_6_DWMmPLvaK7q3Xf6cfTmPIYhriOmJB55oRzivsCv4O7ntMeWgqQlWzLmnDFC5SQr3hvGZdezg/sync';
+
+error_reporting(E_ALL);
+ini_set('display_errors', TRUE);
+ini_set('display_startup_errors', TRUE);
