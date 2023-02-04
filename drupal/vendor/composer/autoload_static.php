@@ -115,6 +115,8 @@ class ComposerStaticInitdefd8e83b18a891fd46c31ed66182f21
             'Drupal\\Composer\\Plugin\\Scaffold\\' => 32,
             'Drupal\\Composer\\Plugin\\ProjectMessage\\' => 38,
             'Drupal\\Component\\' => 17,
+            'Doctrine\\Persistence\\' => 21,
+            'Doctrine\\Deprecations\\' => 22,
             'Doctrine\\Common\\Lexer\\' => 22,
             'Doctrine\\Common\\Annotations\\' => 28,
             'Doctrine\\Common\\' => 16,
@@ -261,8 +263,8 @@ class ComposerStaticInitdefd8e83b18a891fd46c31ed66182f21
         ),
         'Psr\\Http\\Message\\' => 
         array (
-            0 => __DIR__ . '/..' . '/psr/http-message/src',
-            1 => __DIR__ . '/..' . '/psr/http-factory/src',
+            0 => __DIR__ . '/..' . '/psr/http-factory/src',
+            1 => __DIR__ . '/..' . '/psr/http-message/src',
         ),
         'Psr\\Container\\' => 
         array (
@@ -332,6 +334,14 @@ class ComposerStaticInitdefd8e83b18a891fd46c31ed66182f21
         array (
             0 => __DIR__ . '/../..' . '/core/lib/Drupal/Component',
         ),
+        'Doctrine\\Persistence\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/doctrine/persistence/src/Persistence',
+        ),
+        'Doctrine\\Deprecations\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/doctrine/deprecations/lib/Doctrine/Deprecations',
+        ),
         'Doctrine\\Common\\Lexer\\' => 
         array (
             0 => __DIR__ . '/..' . '/doctrine/lexer/lib/Doctrine/Common/Lexer',
@@ -342,7 +352,9 @@ class ComposerStaticInitdefd8e83b18a891fd46c31ed66182f21
         ),
         'Doctrine\\Common\\' => 
         array (
-            0 => __DIR__ . '/..' . '/doctrine/reflection/lib/Doctrine/Common',
+            0 => __DIR__ . '/..' . '/doctrine/common/src',
+            1 => __DIR__ . '/..' . '/doctrine/event-manager/src',
+            2 => __DIR__ . '/..' . '/doctrine/reflection/lib/Doctrine/Common',
         ),
         'Composer\\Semver\\' => 
         array (
