@@ -1,0 +1,6 @@
+name: HSE AI API
+description: HSE AI API module
+type: module
+core_version_requirement: ^9
+package: Custom
+project: 'ai_hse_api'

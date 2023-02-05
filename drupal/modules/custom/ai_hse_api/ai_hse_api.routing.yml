@@ -1,0 +1,89 @@
+# This file brings everything together. Very nifty!
+
+# Route name can be used in several places; e.g. links, redirects, and local
+# actions.
+
+ai_hse_api.api.organization:
+  path: '/api/organization'
+  methods: [GET]
+  defaults:
+    _controller: '\Drupal\ai_hse_api\controller\APIController::organization'
+    _title: ''
+  requirements:
+    _access: 'TRUE'
+
+ai_hse_api.api.research_center:
+      path: '/api/research_center'
+      methods: [ GET ]
+      defaults:
+        _controller: '\Drupal\ai_hse_api\controller\APIController::researchCenter'
+        _title: ''
+      requirements:
+        _access: 'TRUE'
+
+ai_hse_api.api.product:
+  path: '/api/product'
+  methods: [ GET ]
+  defaults:
+    _controller: '\Drupal\ai_hse_api\controller\APIController::product'
+    _title: ''
+  requirements:
+    _access: 'TRUE'
+
+ai_hse_api.api.project:
+  path: '/api/project'
+  methods: [ GET ]
+  defaults:
+    _controller: '\Drupal\ai_hse_api\controller\APIController::project'
+    _title: ''
+  requirements:
+    _access: 'TRUE'
+
+ai_hse_api.api.use_case:
+  path: '/api/use_case'
+  methods: [ GET ]
+  defaults:
+    _controller: '\Drupal\ai_hse_api\controller\APIController::useCase'
+    _title: ''
+  requirements:
+    _access: 'TRUE'
+
+ai_hse_api.api.report:
+  path: '/api/report'
+  methods: [ GET ]
+  defaults:
+    _controller: '\Drupal\ai_hse_api\controller\APIController::report'
+    _title: ''
+  requirements:
+    _access: 'TRUE'
+
+ai_hse_api.api.publication:
+  path: '/api/publication'
+  methods: [ GET ]
+  defaults:
+    _controller: '\Drupal\ai_hse_api\controller\APIController::publication'
+    _title: ''
+  requirements:
+    _access: 'TRUE'
+
+ai_hse_api.api.person:
+  path: '/api/person'
+  methods: [ GET ]
+  defaults:
+    _controller: '\Drupal\ai_hse_api\controller\APIController::person'
+    _title: ''
+  requirements:
+    _access: 'TRUE'
+
+ai_hse_api.api.patent:
+  path: '/api/patent'
+  methods: [ GET ]
+  defaults:
+    _controller: '\Drupal\ai_hse_api\controller\APIController::patent'
+    _title: ''
+  requirements:
+    _access: 'TRUE'
+
+
+
+
