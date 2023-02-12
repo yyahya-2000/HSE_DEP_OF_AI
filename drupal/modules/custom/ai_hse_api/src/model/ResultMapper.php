@@ -10,7 +10,9 @@ class ResultMapper
 {
     private const unneededFieldIds = ["uid", "uuid", "vid", "langcode", "type", "revision_timestamp", "revision_uid",
         "revision_log", "status", "promote", "sticky", "default_langcode", "revision_default",
-        "revision_translation_affected", "path", "content_translation_source", "content_translation_outdated", "body"];
+        "revision_translation_affected", "path", "content_translation_source", "content_translation_outdated", "body",
+        "revision_id", "revision_created", "revision_user", "revision_log_message", "weight", "parent", "changed",
+        "content_translation_uid", "content_translation_created"];
     private const unneededParagraphFieldIds = ["uuid", "revision_id", "langcode", "type", "status", "created",
         "parent_id", "parent_type", "parent_field_name", "behavior_settings", "default_langcode", "revision_default",
         "revision_translation_affected"];
@@ -76,7 +78,6 @@ class ResultMapper
                     $values[] = self::mapFileField($fieldEntity->get($i));
                     break;
                 case 'entity_reference':
-                    //var_dump($fieldEntity->getFieldDefinition()->get('settings')['handler'] == 'default:node');
                     if ($fieldEntity->getFieldDefinition()->getSettings()['handler'] == 'default:taxonomy_term') {
                         $values[] = self::mapTerm($fieldEntity->referencedEntities()[$i],
                             $lang);

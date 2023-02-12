@@ -84,6 +84,214 @@ ai_hse_api.api.patent:
   requirements:
     _access: 'TRUE'
 
+ai_hse_api.api.tools_ai:
+  path: '/api/tools_ai'
+  methods: [ GET ]
+  defaults:
+    _controller: '\Drupal\ai_hse_api\controller\APIController::aiTools'
+    _title: ''
+  requirements:
+    _access: 'TRUE'
 
+ai_hse_api.api.stakeholders:
+  path: '/api/stakeholders'
+  methods: [ GET ]
+  defaults:
+    _controller: '\Drupal\ai_hse_api\controller\APIController::stakeholders'
+    _title: ''
+  requirements:
+    _access: 'TRUE'
 
+ai_hse_api.api.method_ai:
+  path: '/api/method_ai'
+  methods: [ GET ]
+  defaults:
+    _controller: '\Drupal\ai_hse_api\controller\APIController::aiMethod'
+    _title: ''
+  requirements:
+    _access: 'TRUE'
 
+ai_hse_api.api.domain_ai:
+  path: '/api/domain_ai'
+  methods: [ GET ]
+  defaults:
+    _controller: '\Drupal\ai_hse_api\controller\APIController::aiDomain'
+    _title: ''
+  requirements:
+    _access: 'TRUE'
+
+ai_hse_api.api.financing_sources:
+  path: '/api/financing_sources'
+  methods: [ GET ]
+  defaults:
+    _controller: '\Drupal\ai_hse_api\controller\APIController::financingSources'
+    _title: ''
+  requirements:
+    _access: 'TRUE'
+
+ai_hse_api.api.business_processes_categories:
+  path: '/api/business_processes_categories'
+  methods: [ GET ]
+  defaults:
+    _controller: '\Drupal\ai_hse_api\controller\APIController::businessProcessesCategories'
+    _title: ''
+  requirements:
+    _access: 'TRUE'
+
+ai_hse_api.api.product_category:
+  path: '/api/product_category'
+  methods: [ GET ]
+  defaults:
+    _controller: '\Drupal\ai_hse_api\controller\APIController::productCategory'
+    _title: ''
+  requirements:
+    _access: 'TRUE'
+
+ai_hse_api.api.locations:
+  path: '/api/locations'
+  methods: [ GET ]
+  defaults:
+    _controller: '\Drupal\ai_hse_api\controller\APIController::locations'
+    _title: ''
+  requirements:
+    _access: 'TRUE'
+
+ai_hse_api.api.national_goals:
+  path: '/api/national_goals'
+  methods: [ GET ]
+  defaults:
+    _controller: '\Drupal\ai_hse_api\controller\APIController::nationalGoals'
+    _title: ''
+  requirements:
+    _access: 'TRUE'
+
+ai_hse_api.api.application_area:
+  path: '/api/application_area'
+  methods: [ GET ]
+  defaults:
+    _controller: '\Drupal\ai_hse_api\controller\APIController::applicationArea'
+    _title: ''
+  requirements:
+    _access: 'TRUE'
+
+ai_hse_api.api.barriers:
+  path: '/api/barriers'
+  methods: [ GET ]
+  defaults:
+    _controller: '\Drupal\ai_hse_api\controller\APIController::barriers'
+    _title: ''
+  requirements:
+    _access: 'TRUE'
+
+ai_hse_api.api.org_size:
+  path: '/api/org_size'
+  methods: [ GET ]
+  defaults:
+    _controller: '\Drupal\ai_hse_api\controller\APIController::orgSize'
+    _title: ''
+  requirements:
+    _access: 'TRUE'
+
+ai_hse_api.api.person_roles:
+  path: '/api/person_roles'
+  methods: [ GET ]
+  defaults:
+    _controller: '\Drupal\ai_hse_api\controller\APIController::personRoles'
+    _title: ''
+  requirements:
+    _access: 'TRUE'
+
+ai_hse_api.api.org_role:
+  path: '/api/org_role'
+  methods: [ GET ]
+  defaults:
+    _controller: '\Drupal\ai_hse_api\controller\APIController::orgRole'
+    _title: ''
+  requirements:
+    _access: 'TRUE'
+
+ai_hse_api.api.linked_tech:
+  path: '/api/linked_tech'
+  methods: [ GET ]
+  defaults:
+    _controller: '\Drupal\ai_hse_api\controller\APIController::linkedTech'
+    _title: ''
+  requirements:
+    _access: 'TRUE'
+
+ai_hse_api.api.usage_model:
+  path: '/api/usage_model'
+  methods: [ GET ]
+  defaults:
+    _controller: '\Drupal\ai_hse_api\controller\APIController::usageModel'
+    _title: ''
+  requirements:
+    _access: 'TRUE'
+
+ai_hse_api.api.org_func_statuse:
+  path: '/api/org_func_statuse'
+  methods: [ GET ]
+  defaults:
+    _controller: '\Drupal\ai_hse_api\controller\APIController::orgFuncStatuse'
+    _title: ''
+  requirements:
+    _access: 'TRUE'
+# Стадия
+ai_hse_api.api.stage:
+  path: '/api/stage'
+  methods: [ GET ]
+  defaults:
+    _controller: '\Drupal\ai_hse_api\controller\APIController::stage'
+    _title: ''
+  requirements:
+    _access: 'TRUE'
+
+# Уровни готовности интеграции
+ai_hse_api.api.irl:
+  path: '/api/irl'
+  methods: [ GET ]
+  defaults:
+    _controller: '\Drupal\ai_hse_api\controller\APIController::irl'
+    _title: ''
+  requirements:
+    _access: 'TRUE'
+
+# Уровни готовности производства
+ai_hse_api.api.mrl:
+  path: '/api/mrl'
+  methods: [ GET ]
+  defaults:
+    _controller: '\Drupal\ai_hse_api\controller\APIController::mrl'
+    _title: ''
+  requirements:
+    _access: 'TRUE'
+
+# Уровни готовности технологий
+ai_hse_api.api.trl:
+  path: '/api/trl'
+  methods: [ GET ]
+  defaults:
+    _controller: '\Drupal\ai_hse_api\controller\APIController::trl'
+    _title: ''
+  requirements:
+    _access: 'TRUE'
+
+# Уровни рыночной готовности
+ai_hse_api.api.crl:
+  path: '/api/crl'
+  methods: [ GET ]
+  defaults:
+    _controller: '\Drupal\ai_hse_api\controller\APIController::crl'
+    _title: ''
+  requirements:
+    _access: 'TRUE'
+
+# Эффекты
+ai_hse_api.api.effects:
+  path: '/api/effects'
+  methods: [ GET ]
+  defaults:
+    _controller: '\Drupal\ai_hse_api\controller\APIController::effects'
+    _title: ''
+  requirements:
+    _access: 'TRUE'
