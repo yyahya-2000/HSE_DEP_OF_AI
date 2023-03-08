@@ -8,11 +8,6 @@ use Drupal\Component\Utility\UrlHelper;
 
 class ResultMapper
 {
-    private const unneededFieldIds = ["uid", "uuid", "vid", "langcode", "type", "revision_timestamp", "revision_uid",
-        "revision_log", "status", "promote", "sticky", "default_langcode", "revision_default",
-        "revision_translation_affected", "path", "content_translation_source", "content_translation_outdated", "body",
-        "revision_id", "revision_created", "revision_user", "revision_log_message", "weight", "parent", "changed",
-        "content_translation_uid", "content_translation_created"];
     private const unneededParagraphFieldIds = ["uuid", "revision_id", "langcode", "type", "status", "created",
         "parent_id", "parent_type", "parent_field_name", "behavior_settings", "default_langcode", "revision_default",
         "revision_translation_affected"];
@@ -131,16 +126,16 @@ class ResultMapper
             if (self::isNumber($fieldType) && $suffix = $fieldEntity->getFieldDefinition()->getSettings()['suffix'])
                 $mappedItem[$key]['suffix'] = $suffix;
             $mappedItem[$key]['value'] = self::mapFieldByType($fieldEntity, $fieldType, $fieldCount, $lang);
-
+            $mappedItem[$key]['type'] = $fieldEntity->getFieldDefinition()->getType();
         }
         return $mappedItem;
     }
 
-    public static function mapList($list, string $entityType, string $bundle, string $lang = 'ru'): array
+    public static function mapList($list, string $entityType, string $bundle, string $lang, string $viewMode): array
     {
-        $entityFieldManager = \Drupal::service('entity_field.manager');
-        $fields = array_keys($entityFieldManager->getFieldDefinitions($entityType, $bundle));
-        $fields = array_diff($fields, self::unneededFieldIds);
+        $fields = array_keys(\Drupal::service('entity_display.repository')
+            ->getViewDisplay($entityType, $bundle, $viewMode)->get('content'));
+        array_unshift($fields, $entityType == 'node' ? 'nid' : 'tid');
         $mappedList = [];
         foreach ($list as $item) {
             $mappedList[] = self::mapItem($item, $fields, $lang);

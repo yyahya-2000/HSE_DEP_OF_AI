@@ -54,6 +54,7 @@ class APIController extends ControllerBase
     private int $total = 0;
     private array $data = [];
     private array $filterParams = [];
+    private string $viewMode = 'default';
 
     private function setBasicProp(Request $request)
     {
@@ -61,6 +62,9 @@ class APIController extends ControllerBase
         $this->lang = $request->get('lang') == 'en' ? 'en' : 'ru';
         $this->page = intval($request->get('page'));
         $this->filterParams = array_diff_key($request->query->all(), array_flip(['lang', 'page', 'psize']));
+        if (!key_exists('nid', $this->filterParams) && !key_exists('tid', $this->filterParams)) {
+            $this->viewMode = 'teaser';
+        }
         if ($this->page < 0) $this->page = 0;
         $this->psize = intval($request->get('psize'));
         if ($this->psize <= 0) $this->psize = 10;
@@ -73,7 +77,7 @@ class APIController extends ControllerBase
                 page: $this->page, items_per_page: $this->psize, entityTypeId: $etityType);
             $this->total = $items['total'];
             $this->data = ResultMapper::mapList($items['data'], $etityType,
-                $bundle, $this->lang);
+                $bundle, $this->lang, $this->viewMode);
             if (count($this->data)) $this->status = APIController::RES_STATUS_OK;
         } catch (Exception) {
             $this->data = [];
