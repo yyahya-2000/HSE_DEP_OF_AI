@@ -1,12 +1,13 @@
 import { FC } from 'react'
 import { useRoutes } from 'react-router-dom'
 import {
-commonRoutes,
-organizationsRoutes,
-productsRoutes,
-projectsRoutes,
-standRoutes,
-researchCenterRoutes
+  commonRoutes,
+  organizationsRoutes,
+  productsRoutes,
+  projectsRoutes,
+  standRoutes,
+  researchCenterRoutes,
+  usecasesRoutes
 } from './pages'
 
 const AppRoutes: FC = () => {
@@ -16,7 +17,8 @@ const AppRoutes: FC = () => {
     productsRoutes,
     projectsRoutes,
     standRoutes,
-    researchCenterRoutes
+    researchCenterRoutes,
+    usecasesRoutes
   ])
   return routes
 }

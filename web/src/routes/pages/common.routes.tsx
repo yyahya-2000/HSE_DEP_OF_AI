@@ -1,6 +1,7 @@
-import { Fragment } from 'react'
+import { HomePage } from 'components/Home'
+import { routers } from 'routers'
 
 export const commonRoutes = {
-  path: '/',
-  element: <Fragment>Welcome to AI-Radar</Fragment>
+  path: routers.home,
+  element: <HomePage />
 }

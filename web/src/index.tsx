@@ -6,7 +6,10 @@ import reportWebVitals from './reportWebVitals'
 import { globalBaseStyles } from 'styles'
 import { CssBaseline, ThemeProvider as MUIThemeProvider } from '@mui/material'
 import { ThemeProvider } from 'styled-components'
-import { HashRouter as Router} from 'react-router-dom'
+import { BrowserRouter as Router } from 'react-router-dom'
+import TranslationProvider from 'context/Translation/TranslationProvider'
+import MenuProvider from 'context/MenuState/MenuProvider'
+import "./index.css";
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -17,7 +20,11 @@ root.render(
       <MUIThemeProvider theme={globalBaseStyles}>
         <Router>
           <CssBaseline />
-          <App />
+          <TranslationProvider>
+            <MenuProvider>
+              <App />
+            </MenuProvider>
+          </TranslationProvider>
         </Router>
       </MUIThemeProvider>
     </ThemeProvider>

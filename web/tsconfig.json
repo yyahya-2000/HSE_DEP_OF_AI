@@ -37,7 +37,9 @@
     "allowSyntheticDefaultImports": true,
     "strict": true,
     "resolveJsonModule": true,
-    "isolatedModules": true
+    "isolatedModules": true,
+    // "forceConsistentCasingInFileNames": true,
+     "noEmit": true
   },
   "compileOnSave": false,
   "include": [

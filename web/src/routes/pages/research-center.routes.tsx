@@ -1,9 +1,10 @@
-import { Fragment } from 'react'
+import { ResearchCenterPage, ResearchCentersPage } from 'components'
+import { routers } from 'routers'
 
 export const researchCenterRoutes = {
-  path: 'research-center',
+  path: routers.researchCenter,
   children: [
-    { path: '', element: <Fragment>projects</Fragment> },
-    { path: ':id', element: <Fragment>project</Fragment> }
+    { path: '', element: <ResearchCentersPage /> },
+    { path: ':id', element: <ResearchCenterPage /> }
   ]
 }
