@@ -1,11 +1,10 @@
-import { Fragment } from 'react'
+import { OrganizationPage, OrganizationsPage } from 'components'
+import { routers } from 'routers'
 
 export const organizationsRoutes = {
-  path: 'organizations',
+  path: routers.organizations,
   children: [
-    {
-      path: '',
-      element: <Fragment>organizations</Fragment>
-    }
+    { path: '', element: <OrganizationsPage /> },
+    { path: ':id', element: <OrganizationPage /> }
   ]
 }

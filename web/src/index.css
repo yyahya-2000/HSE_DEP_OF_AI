@@ -1,0 +1,155 @@
+:root {
+  --secondary-main-color: #f50057;
+}
+
+@font-face {
+  font-family: NotoSans; /* Имя шрифта */
+  src: url(assets/fonts/NotoSans-Regular.ttf); /* Путь к файлу со шрифтом */
+}
+
+body {
+  margin: 0;
+  font-family: NotoSans !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* background-image: url(assets/image/defaultFone.png), url(assets/image/background.png); */
+  background-repeat: no-repeat, no-repeat;
+  background-position: top, bottom;
+  background-color: #fff !important;
+  background-size: 100% 1000px;
+}
+
+@media only screen and (max-width: 1024px) {
+  body {
+    background-size: 1279px 900px !important;
+  }
+}
+
+@media only screen and (max-width: 319px) {
+  body {
+    background-image: none;
+  }
+}
+
+code,
+div,
+a,
+p,
+span {
+  font-family: NotoSans;
+  margin: 0px;
+  padding: 0px;
+}
+
+a {
+  text-decoration: none;
+}
+
+.link-hover-center a {
+  display: inline-block;
+  color: #fff;
+  /* line-height: 1; */
+  font-family: NotoSans;
+  font-size: 18px;
+  text-decoration: none;
+  cursor: pointer;
+  position: relative;
+}
+
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .link-hover-center-ru a {
+    font-size: 14px !important;
+  }
+}
+
+.link-hover-center a:after {
+  display: block;
+  content: '';
+  background-color:  var(--secondary-main-color);
+  height: 3px;
+  width: 0%;
+  left: 50%;
+  position: absolute;
+  -webkit-transition: width 0.3s ease-in-out;
+  -moz--transition: width 0.3s ease-in-out;
+  transition: width 0.3s ease-in-out;
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  transform: translateX(-50%);
+}
+.link-hover-center a:hover:after,
+.link-hover-center a:focus:after {
+  width: 100%;
+}
+
+.active-link a {
+  display: block;
+  color: #fff;
+  /* line-height: 1; */
+  font-family: NotoSans;
+  font-size: 18px;
+  text-decoration: none;
+  cursor: pointer;
+  position: relative;
+}
+
+.active-link a:after {
+  display: block;
+  content: '';
+  background-color: var(--secondary-main-color);
+  height: 3px;
+  width: 100%;
+  position: absolute;
+}
+
+.link-hover-center div {
+  display: inline-block;
+  color: #fff;
+  font-family: NotoSans;
+  font-size: 18px;
+  text-decoration: none;
+  cursor: pointer;
+  position: relative;
+}
+.link-hover-center div:after {
+  display: block;
+  content: '';
+  background-color: var(--secondary-main-color);
+  height: 3px;
+  width: 0%;
+  left: 50%;
+  position: absolute;
+  -webkit-transition: width 0.3s ease-in-out;
+  -moz--transition: width 0.3s ease-in-out;
+  transition: width 0.3s ease-in-out;
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  transform: translateX(-50%);
+}
+.link-hover-center div:hover:after,
+.link-hover-center div:focus:after {
+  width: 100%;
+}
+
+.crop-height {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow-y: hidden;
+  margin-top: 10px;
+}
+
+.max-lines-4, .max-lines-2 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.max-lines-4 {
+  -webkit-line-clamp: 4;
+}
+
+.max-lines-2 {
+  -webkit-line-clamp: 2;
+}

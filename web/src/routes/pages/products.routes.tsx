@@ -1,9 +1,10 @@
-import { Fragment } from 'react'
+import { ProductPage, ProductsPage } from 'components'
+import { routers } from 'routers'
 
 export const productsRoutes = {
-  path: 'products',
+  path: routers.products,
   children: [
-    { path: '', element: <Fragment>products</Fragment> },
-    { path: ':id', element: <Fragment>product</Fragment> }
+    { path: '', element: <ProductsPage /> },
+    { path: ':id', element: <ProductPage /> }
   ]
 }

@@ -1,0 +1,1 @@
+export { default as UsecasePage } from './UsecasePage'

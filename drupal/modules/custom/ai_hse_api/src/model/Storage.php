@@ -9,7 +9,7 @@ use Drupal\Core\Entity\Query\QueryInterface;
 class Storage
 {
     private const DATE_FORMAT = 'Y-m-d';
-    private const dontEditThoseKeys = ['nid', 'tid', 'title', 'changed', 'created', 'name', 'description'];
+    private const dontEditThoseKeys = ['nid', 'tid', 'title', 'changed', 'created', 'name'];
 
 
     /**
