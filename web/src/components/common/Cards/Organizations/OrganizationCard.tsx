@@ -5,14 +5,51 @@ import { routers } from "routers";
 import useOrganizationCardStyle from "./OrganizationCard.styles";
 import { Card, Grid } from "@mui/material";
 import { EntityItemProps, DictionaryItemProps } from "types";
+import {OrganizationCardProps} from "./OrganizationCard.types";
 
-const OrganizationCard: FC<EntityItemProps> = ({ item }) => {
+const OrganizationCard: FC<EntityItemProps> = ({ item }, props: OrganizationCardProps) => {
     const { classes } = useOrganizationCardStyle();
 
     const fields = item.map((field) => {
         let val = ''
         for (let index in field.value) {
             if (field.type !== 'entity_reference') {
+                switch (field.id) {
+                    case "nid":
+                        props.nid = Number(field.value[index])
+                        break
+                    case "common_org_name":
+                        props.common_org_name = field.value[index].toString()
+                        break
+                    case "mail_address":
+                        props.mail_address = field.value[index].toString()
+                        break
+                    case "org_date":
+                        props.org_date = field.value[index].toString()
+                        break
+                    case "org_desc":
+                        props.org_desc = field.value[index].toString()
+                        break
+                    case "org_email":
+                        props.org_email = field.value[index].toString()
+                        break
+                    case "org_form":
+                        props.org_form = field.value[index].toString()
+                        break
+                    case "org_head":
+                        props.org_head = field.value[index].toString()
+                        break
+                    case "org_head_cont":
+                        props.org_head_cont = field.value[index].toString()
+                        break
+                    case "org_inn":
+                        props.org_inn = BigInt(Number(field.value[index]))
+                        break
+                    case "org_location":
+                        props.org_location = field.value[index].toString()
+
+
+                }
                 val += field.value[index] + ', '
             }
             else {
