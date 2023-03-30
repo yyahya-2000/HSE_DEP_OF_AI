@@ -1,4 +1,4 @@
-import { Grid } from '@mui/material';
+import {Accordion, AccordionDetails, AccordionSummary, Grid, Typography} from '@mui/material';
 import { Breadcrumb, Container, Footer, Spinner } from 'components/common';
 import Header from 'components/common/Header';
 import { useLanguage } from 'context/Translation';
@@ -7,9 +7,11 @@ import { FC, useEffect } from 'react'
 import { projectService } from 'services/projects';
 import { DictionaryItemProps, LinkProps } from 'types';
 import { getUrlAdress } from 'utils';
+import useProjectStyle from "./ProjectPage.style";
 
 const ProjectPage: FC = () => {
     const { language } = useLanguage();
+    const { classes } = useProjectStyle();
     const url = getUrlAdress(window.location.pathname);
     const id = url[url.length - 1].name;
     const { detail, lang, loading } = projectService;
@@ -55,14 +57,182 @@ const ProjectPage: FC = () => {
     return <>
 
         {
-            loading ? (
+            loading || !detail.item.length ? (
                 <Spinner />
             ) : (
                 <>
                     <Header />
                     <Breadcrumb />
                     <Container>
-                        {fields}
+                        <Typography
+                            className={classes.title}>{detail.item.filter(x => x.id === 'title')[0].value[0] as string}</Typography>
+                        {detail.item.filter(x => x.id === 'project_common_title')[0].value.length === 0 ?
+                            <Typography className={classes.title}>{" "}
+                            </Typography> :
+                            <Typography className={'max-lines-2'} style={{fontFamily: "Inter",
+                                fontStyle: "normal",
+                                fontWeight: 700,
+                                fontSize: "20px",
+                                lineHeight: "24px",
+                                textTransform: "uppercase",
+                                color: "#4A4646",
+                                marginBottom: "10px"}}> {detail.item.filter(x => x.id === 'project_common_title')[0].value[0] as string}
+                            </Typography>}
+                        <div className={classes.textcols}>
+                            <div className={classes.textcolsLeft}>
+                                {detail.item.filter(x => x.id === 'project_application_area')[0].value.length === 0 ?
+                                    <Typography style={{
+                                        fontFamily: "Inter",
+                                        fontStyle: "normal",
+                                        fontWeight: 400,
+                                        fontSize: "16px",
+                                        lineHeight: "25px",
+                                        textAlign: "justify",
+                                        color: "#4A4646",
+                                    }}><p style={{
+                                        fontFamily: "Inter",
+                                        fontStyle: "normal",
+                                        fontWeight: 400,
+                                        fontSize: "14px",
+                                        lineHeight: "25px",
+                                        textTransform: "uppercase",
+                                        color: "#5F52FA",
+                                    }}>{detail.item.filter(x => x.id === 'project_application_area')[0].label as string}</p>
+                                        <hr className={classes.line}/>
+                                        {" "}
+                                    </Typography> :
+                                    <Typography style={{
+                                        fontFamily: "Inter",
+                                        fontStyle: "normal",
+                                        fontWeight: 400,
+                                        fontSize: "16px",
+                                        lineHeight: "25px",
+                                        textAlign: "justify",
+                                        color: "#4A4646",
+                                    }}><p style={{
+                                        fontFamily: "Inter",
+                                        fontStyle: "normal",
+                                        fontWeight: 400,
+                                        fontSize: "14px",
+                                        lineHeight: "25px",
+                                        textTransform: "uppercase",
+                                        color: "#5F52FA",
+                                    }}>{detail.item.filter(x => x.id === 'project_application_area')[0].label as string}</p> {(detail.item.filter(x => x.id === 'project_application_area')[0].value as DictionaryItemProps[]).map(value => value.name as string).join('\n')}
+                                    </Typography>}
+                            </div>
+                            <div className={classes.textcolsRight}>
+                                {detail.item.filter(x => x.id === 'domain_ai')[0].value.length === 0 ?
+                                    <Typography style={{
+                                        fontFamily: "Inter",
+                                        fontStyle: "normal",
+                                        fontWeight: 400,
+                                        fontSize: "16px",
+                                        lineHeight: "25px",
+                                        textAlign: "justify",
+                                        color: "#4A4646",
+                                    }}><p style={{
+                                        fontFamily: "Inter",
+                                        fontStyle: "normal",
+                                        fontWeight: 400,
+                                        fontSize: "14px",
+                                        lineHeight: "25px",
+                                        textTransform: "uppercase",
+                                        color: "#5F52FA",
+                                    }}>{detail.item.filter(x => x.id === 'domain_ai')[0].label as string}</p>
+                                        <hr className={classes.line}/>
+                                        {" "}
+                                    </Typography> :
+                                    <Typography style={{
+                                        fontFamily: "Inter",
+                                        fontStyle: "normal",
+                                        fontWeight: 400,
+                                        fontSize: "16px",
+                                        lineHeight: "25px",
+                                        textAlign: "justify",
+                                        color: "#4A4646",
+                                    }}><p style={{
+                                        fontFamily: "Inter",
+                                        fontStyle: "normal",
+                                        fontWeight: 400,
+                                        fontSize: "14px",
+                                        lineHeight: "25px",
+                                        textTransform: "uppercase",
+                                        color: "#5F52FA",
+                                    }}>{detail.item.filter(x => x.id === 'domain_ai')[0].label as string}</p> {(detail.item.filter(x => x.id === 'domain_ai')[0].value as DictionaryItemProps[]).map(value => value.name as string).join('\n')}
+                                    </Typography>}
+                            </div>
+                        </div>
+                        <Accordion defaultExpanded={true}>
+                            <AccordionSummary expandIcon={'>'}>
+                                <div id="home-organization">
+                                    <div className='organization__Head'>
+                                        <div className='organization__Head__text'>
+                                            {'описание'.toUpperCase()}
+                                        </div>
+                                    </div>
+                                </div>
+                            </AccordionSummary>
+                            <AccordionDetails>
+                                {detail.item.filter(x => x.id === 'project_desc')[0].value.length === 0 ?
+                                    <Typography style={{
+                                        fontFamily: "Inter",
+                                        fontStyle: "normal",
+                                        fontWeight: 400,
+                                        fontSize: "14px",
+                                        lineHeight: "25px",
+                                        textAlign: "justify",
+                                        color: "#4A4646",
+                                        wordWrap: "break-word",
+                                    }}>{" "}</Typography> :
+                                    <Typography style={{
+                                        fontFamily: "Inter",
+                                        fontStyle: "normal",
+                                        fontWeight: 400,
+                                        fontSize: "14px",
+                                        lineHeight: "25px",
+                                        textAlign: "justify",
+                                        color: "#4A4646",
+                                        wordWrap: "break-word",
+                                    }}>{detail.item.filter(x => x.id === 'project_desc')[0].value[0] as string}</Typography>}
+
+                            </AccordionDetails>
+                        </Accordion>
+                        {detail.item.filter(x => x.id === 'project_subject')[0].value.length === 0 ?
+                            <Typography className={'max-lines-1'}>
+                                <p className={classes.text} style={{display: "inline"}}>
+                                    {detail.item.filter(x => x.id === 'project_subject')[0].label as string}&nbsp;&nbsp;&nbsp;&nbsp;
+                                </p>
+                                <p style={{
+                                    display: "inline",
+                                    fontFamily: "Inter",
+                                    fontStyle: "normal",
+                                    fontWeight: 400,
+                                    fontSize: "14px",
+                                    lineHeight: "25px",
+                                    textAlign: "justify",
+                                    color: "#4A4646",
+                                }}>
+                                    {" "}&nbsp;&nbsp;&nbsp;&nbsp;
+                                </p>
+                            </Typography> :
+                            <Typography className={'max-lines-2'}>
+                                <p className={classes.text} style={{display: "inline"}}>
+                                    {detail.item.filter(x => x.id === 'project_subject')[0].label as string}&nbsp;&nbsp;&nbsp;&nbsp;
+                                </p>
+                                <p style={{
+                                    display: "inline",
+                                    fontFamily: "Inter",
+                                    fontStyle: "normal",
+                                    fontWeight: 400,
+                                    fontSize: "14px",
+                                    lineHeight: "25px",
+                                    textAlign: "justify",
+                                    color: "#4A4646",
+                                }}>
+                                    {detail.item.filter(x => x.id === 'project_subject')[0].value[0] as string}&nbsp;&nbsp;&nbsp;&nbsp;
+                                </p>
+                            </Typography>
+                        }
                     </Container>
                     <Footer />
                 </>
