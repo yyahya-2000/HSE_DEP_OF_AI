@@ -1,75 +1,201 @@
-import { FC } from "react";
-import { Link } from "react-router-dom";
-import { scrollTopPage } from "utils";
-import { routers } from "routers";
+import {FC} from "react";
+import {Link} from "react-router-dom";
+import {scrollTopPage} from "utils";
+import {routers} from "routers";
 import useOrganizationCardStyle from "./OrganizationCard.styles";
-import { Card, Grid } from "@mui/material";
-import { EntityItemProps, DictionaryItemProps } from "types";
-import {OrganizationCardProps} from "./OrganizationCard.types";
+import {Card, Container, Typography} from "@mui/material";
+import {EntityItemProps, DictionaryItemProps, LinkProps} from "types";
+import {PinkButton} from "../../Buttons";
 
-const OrganizationCard: FC<EntityItemProps> = ({ item }, props: OrganizationCardProps) => {
-    const { classes } = useOrganizationCardStyle();
-
-    const fields = item.map((field) => {
-        let val = ''
-        for (let index in field.value) {
-            if (field.type !== 'entity_reference') {
-                switch (field.id) {
-                    case "nid":
-                        props.nid = Number(field.value[index])
-                        break
-                    case "common_org_name":
-                        props.common_org_name = field.value[index].toString()
-                        break
-                    case "mail_address":
-                        props.mail_address = field.value[index].toString()
-                        break
-                    case "org_date":
-                        props.org_date = field.value[index].toString()
-                        break
-                    case "org_desc":
-                        props.org_desc = field.value[index].toString()
-                        break
-                    case "org_email":
-                        props.org_email = field.value[index].toString()
-                        break
-                    case "org_form":
-                        props.org_form = field.value[index].toString()
-                        break
-                    case "org_head":
-                        props.org_head = field.value[index].toString()
-                        break
-                    case "org_head_cont":
-                        props.org_head_cont = field.value[index].toString()
-                        break
-                    case "org_inn":
-                        props.org_inn = BigInt(Number(field.value[index]))
-                        break
-                    case "org_location":
-                        props.org_location = field.value[index].toString()
-
-
-                }
-                val += field.value[index] + ', '
-            }
-            else {
-                const dic = field.value[index] as DictionaryItemProps
-                val += `[ ID: ${dic.id}, Name:  ${dic.name}, Bundle: ${dic.bundle}, Description: ${dic.description}], `
-            }
-        }
-        return (
-            <Grid key={field.id} className={'max-lines-2'} overflow={'hidden'} textOverflow={'ellipsis'}>
-                {`${field.id} => Type: ${field.type}, Label:${field.label}, Value: ${val}`}
-            </Grid>
-        )
-    })
+const OrganizationCard: FC<EntityItemProps> = ({item}) => {
+    const {classes} = useOrganizationCardStyle();
 
     return (
-        <Link to={`${routers.organizations}/${item.filter(x => x.id == 'nid')[0].value}`} onClick={scrollTopPage}>
-            <Card >
-                {fields}
-            </Card>
-        </Link>
+
+        <Card>
+            <Container>
+
+                <Typography
+                    className={classes.title}>{item.filter(x => x.id === 'title')[0].value[0] as string}</Typography>
+
+                <Typography className={'max-lines-2'} style={{
+                    marginLeft: "30%",
+                    width: "650px",
+                    fontFamily: "Inter",
+                    fontStyle: "normal",
+                    fontWeight: 600,
+                    fontSize: "20px",
+                    lineHeight: "24px",
+                    textTransform: "uppercase",
+                    color: "#4A4646",
+                    wordWrap: "break-word",
+                }} overflow={'hidden'}
+                            textOverflow={'ellipsis'}>{item.filter(x => x.id === 'common_org_name')[0].value[0] as string}</Typography>
+                <div className={classes.textcols}>
+                    <div className={classes.textcolsLeft}>
+
+                        <hr className={classes.line}/>
+
+                        <Typography className={'max-lines-3'} style={{
+                            fontFamily: "Inter",
+                            fontStyle: "normal",
+                            fontWeight: 400,
+                            fontSize: "16px",
+                            lineHeight: "25px",
+                            textAlign: "justify",
+                            color: "#4A4646",
+                            wordWrap: "break-word",
+                        }} overflow={'hidden'} textOverflow={'ellipsis'}><p style={{
+                            fontFamily: "Inter",
+                            fontStyle: "normal",
+                            fontWeight: 400,
+                            fontSize: "16px",
+                            lineHeight: "25px",
+                            color: "#5F52FA",
+                            textTransform: "uppercase",
+                        }}>{item.filter(x => x.id === 'org_okved')[0].label as string}</p>{item.filter(x => x.id === 'org_okved')[0].value[0] as string}
+                        </Typography>
+
+                        <hr className={classes.line}/>
+
+                        <Typography className={'max-lines-3'} style={{
+                            fontFamily: "Inter",
+                            fontStyle: "normal",
+                            fontWeight: 400,
+                            fontSize: "16px",
+                            lineHeight: "25px",
+                            textAlign: "justify",
+                            color: "#4A4646",
+                        }} overflow={'hidden'}
+                                    textOverflow={'ellipsis'}>{item.filter(x => x.id === 'org_desc')[0].value[0] as string}</Typography>
+
+
+                        <hr className={classes.line}/>
+
+                        <Typography className={'max-lines-2'} style={{
+                            fontFamily: "Inter",
+                            fontStyle: "normal",
+                            fontWeight: 400,
+                            fontSize: "16px",
+                            lineHeight: "25px",
+                            color: "#4A4646",
+                            wordWrap: "break-word",
+                        }} overflow={'hidden'} textOverflow={'ellipsis'}><p style={{
+                            fontFamily: "Inter",
+                            fontStyle: "normal",
+                            fontWeight: 400,
+                            fontSize: "16px",
+                            lineHeight: "25px",
+                            color: "#4A4646",
+                        }}>{item.filter(x => x.id === 'org_head')[0].label as string}: </p>{item.filter(x => x.id === 'org_head')[0].value[0] as string}
+                        </Typography>
+
+                        <Typography
+                            className={classes.website}>{(item.filter(x => x.id === 'org_website')[0].value[0] as LinkProps).url as string}</Typography>
+
+                        <Typography className={'max-lines-1'} style={{
+                            fontFamily: "Inter",
+                            fontStyle: "normal",
+                            fontWeight: 400,
+                            fontSize: "14px",
+                            lineHeight: "25px",
+                            color: "#4A4646",
+                            wordWrap: "break-word",
+                        }} overflow={'hidden'}
+                                    textOverflow={'ellipsis'}> {item.filter(x => x.id === 'mail_address')[0].value[0] as string}</Typography>
+                    </div>
+                    <div className={classes.textcolsRight}>
+                        <Typography className={classes.status}><p style={{
+                            display: "inline",
+                            fontFamily: "Inter",
+                            fontStyle: "normal",
+                            fontWeight: 400,
+                            fontSize: "14px",
+                            lineHeight: "25px",
+                            textTransform: "uppercase",
+                            color: "#5F52FA",
+                        }}>{item.filter(x => x.id === 'org_status')[0].label as string}&nbsp;&nbsp;&nbsp;&nbsp;</p>{(item.filter(x => x.id === 'org_status')[0].value[0] as DictionaryItemProps).name as string}
+                        </Typography>
+
+                        <Typography className={'max-lines-1'} style={{
+                            fontFamily: "Inter",
+                            fontStyle: "normal",
+                            fontWeight: 400,
+                            fontSize: "14px",
+                            lineHeight: "30px",
+                            color: "#4A4646"
+                        }} overflow={'hidden'} textOverflow={'ellipsis'}><p style={{
+                            display: "inline",
+                            fontFamily: "Inter",
+                            fontStyle: "normal",
+                            fontWeight: 400,
+                            fontSize: "14px",
+                            lineHeight: "25px",
+                            textTransform: "uppercase",
+                            color: "#5F52FA",
+                        }}>{item.filter(x => x.id === 'org_subject')[0].label as string}&nbsp;&nbsp;&nbsp;&nbsp;</p>{item.filter(x => x.id === 'org_subject')[0].value[0] as string}
+                        </Typography>
+
+                        <Typography className={classes.competence}><p style={{
+                            display: "inline",
+                            fontFamily: "Inter",
+                            fontStyle: "normal",
+                            fontWeight: 400,
+                            fontSize: "14px",
+                            lineHeight: "25px",
+                            textTransform: "uppercase",
+                            color: "#5F52FA",
+                        }}>{item.filter(x => x.id === 'org_competence_ai')[0].label as string}&nbsp;&nbsp;&nbsp;&nbsp;</p>{(item.filter(x => x.id === 'org_competence_ai')[0].value[0] as DictionaryItemProps).name as string}
+                        </Typography>
+
+                        <Typography className={'max-lines-1'} style={{
+                            fontFamily: "Inter",
+                            fontStyle: "normal",
+                            fontWeight: 400,
+                            fontSize: "14px",
+                            lineHeight: "30px",
+                            color: "#4A4646"
+                        }} overflow={'hidden'} textOverflow={'ellipsis'}><p style={{
+                            display: "inline",
+                            fontFamily: "Inter",
+                            fontStyle: "normal",
+                            fontWeight: 400,
+                            fontSize: "14px",
+                            lineHeight: "25px",
+                            textTransform: "uppercase",
+                            color: "#5F52FA",
+                        }}>{item.filter(x => x.id === 'org_method_ai')[0].label as string}&nbsp;&nbsp;&nbsp;&nbsp;</p>{(item.filter(x => x.id === 'org_method_ai')[0].value[0] as DictionaryItemProps).name as string}
+                        </Typography>
+                        <Typography className={'max-lines-1'} style={{
+                            fontFamily: "Inter",
+                            fontStyle: "normal",
+                            fontWeight: 400,
+                            fontSize: "14px",
+                            lineHeight: "30px",
+                            color: "#4A4646"
+                        }} overflow={'hidden'} textOverflow={'ellipsis'}><p style={{
+                            display: "inline",
+                            fontFamily: "Inter",
+                            fontStyle: "normal",
+                            fontWeight: 400,
+                            fontSize: "14px",
+                            lineHeight: "25px",
+                            textTransform: "uppercase",
+                            color: "#5F52FA",
+                        }}>{item.filter(x => x.id === 'org_tools_ai')[0].label as string}&nbsp;&nbsp;&nbsp;&nbsp;</p>{(item.filter(x => x.id === 'org_tools_ai')[0].value[0] as DictionaryItemProps).name as string}
+                        </Typography>
+                        <Container style={{marginLeft: "78%", marginTop: "24%"}}>
+                            <Link to={`${routers.organizations}/${item.filter(x => x.id === 'nid')[0].value}`}
+                                  onClick={scrollTopPage}>
+                                <PinkButton title={'ПОДРОБНЕЕ'}></PinkButton>
+                            </Link>
+                        </Container>
+
+                    </div>
+                </div>
+            </Container>
+        </Card>
+
     );
 };
 
