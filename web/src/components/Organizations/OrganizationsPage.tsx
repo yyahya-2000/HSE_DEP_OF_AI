@@ -12,10 +12,12 @@ import Paging from 'components/common/Paging'
 
 const OrganizationsPage: FC = () => {
     const { language } = useLanguage();
-    const { organizations, paging, loading } = organizationService;
+    const { organizations, filterFields, paging, loading } = organizationService;
     useEffect(() => {
         organizationService.fetchPagingOrganizations(0, language);
+        organizationService.fetchFilterElements(language)
     }, [language]);
+   
     const handlePageChange = (page: number) => {
         organizationService.fetchPagingOrganizations(page, language);
         scrollTopPage();
@@ -24,7 +26,7 @@ const OrganizationsPage: FC = () => {
         organizationService.fetchOrganizationsFilter(language, filterParams);
     };
     return <>
-        {loading ? (
+        {loading || !filterFields.length ? (
             <Spinner />
         ) : (<>
             <Header />
@@ -32,7 +34,7 @@ const OrganizationsPage: FC = () => {
             <Breadcrumb />
             <FilterAndListContainer
                 filter={
-                    <Filter id={'organizations'} onFind={handleFindClick} />
+                    <Filter onFind={handleFindClick} filterElements={filterFields} filterParams={organizationService.getFilterValues()} />
                 }
                 list={
                     <Box >

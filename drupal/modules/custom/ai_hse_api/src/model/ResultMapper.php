@@ -87,6 +87,10 @@ class ResultMapper
                             $lang);
                     }
                     break;
+                    case 'image':
+                        $imgUri = $fieldEntity->get(0)->entity->getFileUri();
+                        $values[] = ImageStyle::load('slider_photo')->buildUrl($imgUri);
+                    break;
                 case 'bigint':
                 case 'integer':
                 case 'boolean':
@@ -133,13 +137,35 @@ class ResultMapper
 
     public static function mapList($list, string $entityType, string $bundle, string $lang, string $viewMode): array
     {
-        $fields = array_keys(\Drupal::service('entity_display.repository')
-            ->getViewDisplay($entityType, $bundle, $viewMode)->get('content'));
+        $fieldsContent = \Drupal::service('entity_display.repository')
+            ->getViewDisplay($entityType, $bundle, $viewMode)->get('content');
+        $fieldsContent = array_combine(array_keys($fieldsContent), array_column($fieldsContent, 'weight'));
+        unset($fieldsContent['uid']);
+        unset($fieldsContent['created']);
+        asort($fieldsContent);
+        $fields = array_keys($fieldsContent);
         array_unshift($fields, $entityType == 'node' ? 'nid' : 'tid');
         $mappedList = [];
         foreach ($list as $item) {
             $mappedList[] = self::mapItem($item, $fields, $lang);
         }
         return $mappedList;
+    }
+
+    public static function mapFilterOptions($list, string $lang): array
+    {
+        $mappedList = [];
+        foreach ($list as $item) {
+            $mappedList[] = self::mapFilterOption($item, $lang);
+        }
+        return $mappedList;
+    }
+
+    private static function mapFilterOption($item, string $lang)
+    {
+        if ($item->hasTranslation($lang)) {
+            $item = $item->getTranslation($lang);
+        }
+        return ['id' => intval($item->id()), 'label' => $item->getName()];
     }
 }

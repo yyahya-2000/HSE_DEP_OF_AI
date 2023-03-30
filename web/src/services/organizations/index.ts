@@ -1,12 +1,17 @@
 import { makeAutoObservable, runInAction } from 'mobx'
 import axios from 'axios'
-import { getOrigin } from 'utils'
+import { getOrigin, parseFilterValues } from 'utils'
 import { format } from 'date-fns'
 import { navigation } from 'enums/navigation'
 import { returnIds } from 'utils'
 import { routers } from 'routers'
-import { defaultPaging } from 'enums'
-import { EntityFieldProps, EntityItemProps, EntityListProps } from 'types'
+import { defaultPaging, urlFilterFields } from 'enums'
+import {
+  EntityFieldProps,
+  EntityItemProps,
+  EntityListProps,
+  FilterProps
+} from 'types'
 
 const urlOrganizations = getOrigin() + 'api/organization'
 
@@ -15,6 +20,8 @@ class OrganizationService {
   public paging = defaultPaging
   public detail: EntityItemProps = { item: [] }
   private filter = {}
+  private filterValues = {}
+  public filterFields: FilterProps = []
   public lang = ''
   public loading = false
   public totalOrganization = 0
@@ -120,10 +127,10 @@ class OrganizationService {
     }
   }
 
-  async fetchOrganizationsFilter(language: string, filterParams) {
+  async fetchOrganizationsFilter(language: string, filterValues) {
     try {
       runInAction(() => (this.loading = true))
-      const tempFilterParams = this.parseFilterparams(filterParams)
+      const tempFilterParams = parseFilterValues(filterValues)
       const params = {
         lang: language,
         page: defaultPaging.page,
@@ -154,6 +161,7 @@ class OrganizationService {
         })
         this.lang = language
         this.filter = tempFilterParams
+        this.filterValues = filterValues
         this.paging = {
           ...defaultPaging,
           count: Math.ceil(total / defaultPaging.psize)
@@ -166,20 +174,30 @@ class OrganizationService {
     }
   }
 
-  private parseFilterparams = (filters) => {
-    const typeIds = filters.type ? returnIds(filters.type) : null
-    return {
-      type: typeIds,
-      title: filters.title.length ? filters.title : null,
-      text: filters.text.length ? filters.text : null,
-      date_start: filters.period.start
-        ? format(filters.period.start, 'yyyy-MM-dd')
-        : null,
-      date_end: filters.period.end
-        ? format(filters.period.end, 'yyyy-MM-dd')
-        : null
+  async fetchFilterElements(language: string) {
+    try {
+      runInAction(() => (this.loading = true))
+      const params = {
+        lang: language,
+        bundle: 'organization'
+      }
+
+      const result = await axios.get(urlFilterFields, { params })
+      if (result.status !== 200) {
+        return console.log('result', result)
+      }
+      runInAction(() => {
+        this.filterFields = result.data
+        this.lang = language
+      })
+    } catch (error) {
+      console.log(error)
+    } finally {
+      runInAction(() => (this.loading = false))
     }
   }
+
+  public getFilterValues = () => this.filterValues
 
   public cleanPage = () => {
     this.organizations = []

@@ -11,9 +11,10 @@ import { scrollTopPage } from 'utils';
 
 const ProjectsPage: FC = () => {
     const { language } = useLanguage();
-    const { projects, paging, loading } = projectService;
+    const { projects, paging, filterFields, loading } = projectService;
     useEffect(() => {
         projectService.fetchPagingProjects(0, language);
+        projectService.fetchFilterElements(language)
     }, [language]);
     const handlePageChange = (page: number) => {
         projectService.fetchPagingProjects(page, language);
@@ -25,7 +26,7 @@ const ProjectsPage: FC = () => {
 
     return <>
         {
-            loading ? (
+            loading || !filterFields.length ? (
                 <Spinner />
             ) : (
                 <>
@@ -34,7 +35,7 @@ const ProjectsPage: FC = () => {
                     <Breadcrumb />
                     <FilterAndListContainer
                         filter={
-                            <Filter id={'projects'} onFind={handleFindClick} />
+                            <Filter onFind={handleFindClick} filterElements={filterFields} filterParams={projectService.getFilterValues()} />
                         }
                         list={
                             <Box >

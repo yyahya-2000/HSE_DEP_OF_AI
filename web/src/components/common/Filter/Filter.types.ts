@@ -1,4 +1,7 @@
+import { FilterProps } from 'types'
+
 export type FilterCompProps = {
-  id: string
   onFind: (filterParams: any) => void
+  filterElements: FilterProps
+  filterParams: {}
 }

@@ -9,8 +9,8 @@ const FilterAndListContainer: FC<FilterAndListContainerProps> = ({ filter, list 
     return (
         <Container>
             <Grid container>
-                <Grid item width={'20%'} className={classes.root}>{filter}</Grid>
-                <Grid item width={'80%'} className={classes.root}>{list}</Grid>
+                <Grid item width={'25%'} className={classes.root}>{filter}</Grid>
+                <Grid item width={'75%'} className={classes.root}>{list}</Grid>
             </Grid>
         </Container>
     );

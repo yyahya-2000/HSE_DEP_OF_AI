@@ -295,3 +295,21 @@ ai_hse_api.api.effects:
     _title: ''
   requirements:
     _access: 'TRUE'
+
+ai_hse_api.api.slider:
+  path: '/api/slider'
+  methods: [ GET ]
+  defaults:
+    _controller: '\Drupal\ai_hse_api\controller\APIController::slider'
+    _title: ''
+  requirements:
+    _access: 'TRUE'
+
+ai_hse_api.api.filter_fields:
+  path: '/api/filter_fields'
+  methods: [ GET ]
+  defaults:
+    _controller: '\Drupal\ai_hse_api\controller\APIController::filterFields'
+    _title: ''
+  requirements:
+    _access: 'TRUE'

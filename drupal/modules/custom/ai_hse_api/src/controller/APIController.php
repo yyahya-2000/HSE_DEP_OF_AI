@@ -46,6 +46,7 @@ class APIController extends ControllerBase
     private const CRL_TAX_ID = 'crl';
     private const EFFECTS_TAX_ID = 'effects';
     private const ORG_ROLE_TAX_ID = 'org_role';
+    private const SLIDER_ID = 'slider';
 
     private int $page = 0;
     private int $psize = 10;
@@ -468,5 +469,80 @@ class APIController extends ControllerBase
             'data' => $this->data,
             'total' => $this->total
         ]);
+    }
+
+    public function slider(Request $request): JsonResponse
+    {
+        $this->setBasicProp($request);
+        $this->setAnswerParams(self::SLIDER_ID);
+
+        return new JsonResponse([
+            'status' => $this->status,
+            'data' => $this->data,
+            'total' => $this->total
+        ]);
+    }
+
+    public function filterFields(Request $request): JsonResponse
+    {
+        $this->lang = $request->get('lang') == 'en' ? 'en' : 'ru';
+        $bundle = $request->get('bundle');
+
+        $fieldsContent = \Drupal::service('entity_display.repository')
+            ->getViewDisplay('node', $bundle, 'filter')->get('content');
+        $fieldsContent = array_combine(array_keys($fieldsContent), array_column($fieldsContent, 'weight'));
+        unset($fieldsContent['uid']);
+        unset($fieldsContent['created']);
+
+        asort($fieldsContent);
+        $my_node = \Drupal::service('entity_field.manager')->getFieldDefinitions('node', $bundle);
+
+        $answer = array();
+        foreach (array_keys($fieldsContent) as $field_name) {
+            $fieldInfo = $my_node[$field_name]->toArray();
+            $id = str_replace('field_', '', $field_name);
+            $type = '';
+            $options = [];
+            switch ($fieldInfo['field_type']) {
+                case 'string':
+                case 'text_long':
+                case 'email':
+                    $type = 'text';
+                    break;
+                case 'datetime':
+                    $type = 'date';
+                    break;
+                case 'entity_reference':
+                    if ($fieldInfo['settings']['handler'] === 'default:node')
+                        break;
+                    $type = 'multi-select';
+                    try {
+                        $entityBundle = reset($fieldInfo['settings']['handler_settings']['target_bundles']);
+                        $items = Storage::queryData(bundle: $entityBundle, filterParams: $this->filterParams,
+                            lang: $this->lang, items_per_page: 50, entityTypeId: 'taxonomy_term');
+                        $options = ResultMapper::mapFilterOptions($items['data'], $this->lang);
+                    } catch (Exception) {
+                        $this->data = [];
+                        $this->status = APIController::RES_STATUS_ERROR;
+                    }
+                    break;
+                case 'boolean':
+                    $type = 'switch';
+                    break;
+                case 'decimal':
+                case 'integer':
+                case 'bigint':
+                    $type = 'number';
+                    break;
+
+            }
+            if ($type === '')
+                continue;
+            if (!empty($options))
+                $answer[] = ['id' => $id, 'label' => $fieldInfo['label'], 'type' => $type, 'options' => $options];
+            else
+                $answer[] = ['id' => $id, 'label' => $fieldInfo['label'], 'type' => $type];
+        }
+        return new JsonResponse($answer);
     }
 }
