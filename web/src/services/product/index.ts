@@ -161,7 +161,6 @@ class ProductService {
         return console.log('result', result)
       }
       runInAction(() => {
-        console.log(result.data)
         this.filterFields = result.data
         this.lang = language
       })

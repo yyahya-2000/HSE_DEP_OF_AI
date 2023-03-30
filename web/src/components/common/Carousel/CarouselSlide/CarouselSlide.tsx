@@ -20,10 +20,7 @@ const CarouselSlide: FC<CarouselSlideProps> = ({ title, desc, link, img }) => {
                         {desc}
                     </Box>
                     <Box className={classes.btnContianer}>
-                        <Button className={classes.btn} variant="contained"
-                            onClick={() => {
-                                navigate(link);
-                            }}>
+                        <Button className={classes.btn} variant="contained" href={link}>
                             {t("Подробнее")}
                         </Button>
                     </Box>
