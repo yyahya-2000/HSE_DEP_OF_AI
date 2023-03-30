@@ -12,9 +12,11 @@ import { scrollTopPage } from 'utils';
 
 const ResearchCentersPage: FC = () => {
     const { language } = useLanguage();
-    const { ResearchCenters, paging, loading } = researchCenterService;
+    const { ResearchCenters, paging, filterFields, loading } = researchCenterService;
     useEffect(() => {
         researchCenterService.fetchPagingResearchCenters(0, language);
+        researchCenterService.fetchFilterElements(language)
+
     }, [language]);
     const handlePageChange = (page: number) => {
         researchCenterService.fetchPagingResearchCenters(page, language);
@@ -26,7 +28,7 @@ const ResearchCentersPage: FC = () => {
 
     return <>
         {
-            loading ? (
+            loading || !filterFields.length ? (
                 <Spinner />
             ) : (
                 <>
@@ -35,7 +37,7 @@ const ResearchCentersPage: FC = () => {
                     <Breadcrumb />
                     <FilterAndListContainer
                         filter={
-                            <Filter id={'research-centers'} onFind={handleFindClick} />
+                            <Filter onFind={handleFindClick} filterElements={filterFields} filterParams={researchCenterService.getFilterValues()}/>
                         }
                         list={
                             <Box >

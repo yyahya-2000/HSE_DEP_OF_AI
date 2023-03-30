@@ -23,7 +23,7 @@ export type UrlBreadcrumd = {
 
 export type OptionProps = {
   id: number
-  lable: string
+  label: string
 }
 
 export type PagingItem = {
@@ -35,7 +35,7 @@ export type PagingItem = {
 export type FilterItemProps = {
   id: string
   label: string
-  type: 'text' | 'multi-select' | 'switch' | 'date'
+  type: 'text' | 'multi-select' | 'switch' | 'date' | 'number'
   options?: OptionProps[]
   isDateStrat?: boolean
   isDateEnd?: boolean

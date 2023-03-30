@@ -12,9 +12,10 @@ import { scrollTopPage } from 'utils'
 
 const ProductsPage: FC = () => {
     const { language } = useLanguage();
-    const { products, paging, loading } = productService;
+    const { products, filterFields, paging, loading } = productService;
     useEffect(() => {
         productService.fetchPagingProducts(0, language);
+        productService.fetchFilterElements(language);
     }, [language]);
     const handlePageChange = (page: number) => {
         productService.fetchPagingProducts(page, language);
@@ -26,7 +27,7 @@ const ProductsPage: FC = () => {
     
     return <>
         {
-            loading ? (
+            loading || !filterFields.length ? (
                 <Spinner />
             ) : (
                 <>
@@ -35,7 +36,7 @@ const ProductsPage: FC = () => {
                     <Breadcrumb />
                     <FilterAndListContainer
                         filter={
-                            <Filter id={'products'} onFind={handleFindClick} />
+                            <Filter onFind={handleFindClick}  filterElements={filterFields} filterParams={productService.getFilterValues()}/>
                         }
                         list={
                             <Box >
