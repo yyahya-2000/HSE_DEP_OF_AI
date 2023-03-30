@@ -6,6 +6,7 @@ import useOrganizationCardStyle from "./OrganizationCard.styles";
 import {Card, Container, Typography} from "@mui/material";
 import {EntityItemProps, DictionaryItemProps, LinkProps} from "types";
 import {PinkButton} from "../../Buttons";
+import {observer} from "mobx-react-lite";
 
 const OrganizationCard: FC<EntityItemProps> = ({item}) => {
     const {classes} = useOrganizationCardStyle();
@@ -19,7 +20,6 @@ const OrganizationCard: FC<EntityItemProps> = ({item}) => {
                     className={classes.title}>{item.filter(x => x.id === 'title')[0].value[0] as string}</Typography>
 
                 <Typography className={'max-lines-2'} style={{
-                    marginLeft: "30%",
                     width: "650px",
                     fontFamily: "Inter",
                     fontStyle: "normal",
@@ -29,6 +29,7 @@ const OrganizationCard: FC<EntityItemProps> = ({item}) => {
                     textTransform: "uppercase",
                     color: "#4A4646",
                     wordWrap: "break-word",
+                    marginBottom: "10px",
                 }} overflow={'hidden'}
                             textOverflow={'ellipsis'}>{item.filter(x => x.id === 'common_org_name')[0].value[0] as string}</Typography>
                 <div className={classes.textcols}>
@@ -199,4 +200,4 @@ const OrganizationCard: FC<EntityItemProps> = ({item}) => {
     );
 };
 
-export default OrganizationCard;
+export default observer(OrganizationCard);

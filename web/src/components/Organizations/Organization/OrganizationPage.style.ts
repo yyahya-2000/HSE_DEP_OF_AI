@@ -2,14 +2,14 @@ import { makeStyles } from 'tss-react/mui'
 
 export const useOrganizationStyle = makeStyles()((theme) => ({
     title:{
-        marginLeft: "30%",
         fontFamily: "Inter",
         fontStyle: "normal",
         fontWeight: 700,
         fontSize: "20px",
         lineHeight: "24px",
         textTransform: "uppercase",
-        color: "#4A4646"
+        color: "#4A4646",
+        marginBottom: "10px"
     },
     textcols:{
         overflow: "hidden"

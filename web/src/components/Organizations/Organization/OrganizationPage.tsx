@@ -1,5 +1,5 @@
-import {Accordion, AccordionDetails, AccordionSummary, Card, Grid, Typography} from '@mui/material';
-import { Breadcrumb, Container, Spinner } from 'components/common';
+import {Accordion, AccordionDetails, AccordionSummary, Card, Grid, Typography, Container} from '@mui/material';
+import { Breadcrumb, Spinner } from 'components/common';
 import { Footer } from 'components/common';
 import Header from 'components/common/Header';
 import { useLanguage } from 'context/Translation';
@@ -34,21 +34,20 @@ const OrganizationPage: FC = () => {
             organizationService.cleanDetail();
         };
     }, []);
-
+    console.log(detail.item.length)
     return <>
 
         {
-            loading ? (
+            loading || !detail.item.length ? (
                 <Spinner />
             ) : (
                 <>
                     <Header />
                     <Breadcrumb />
-                    <Container>
+                    <Container >
                         <Typography
                             className={classes.title}>{detail.item.filter(x => x.id === 'title')[0].value[0] as string}</Typography>
                         <Typography className={'max-lines-4'} style={{
-                            marginLeft: "30%",
                             width: "650px",
                             fontFamily: "Inter",
                             fontStyle: "normal",
@@ -58,33 +57,34 @@ const OrganizationPage: FC = () => {
                             textTransform: "uppercase",
                             color: "#4A4646",
                             wordWrap: "break-word",
+                            marginBottom: "10px",
                         }} overflow={'hidden'}
-                                    textOverflow={'ellipsis'}>{detail.item.filter(x => x.id === 'common_org_name')[0].value[0] as string}</Typography>
+                                    textOverflow={'ellipsis'}>{ detail.item.length &&detail.item.filter(x => x.id === 'common_org_name')[0].value[0] as string}</Typography>
                         {/*<Typography><p>{detail.item.filter(x => x.id === 'uid')[0].label as string}</p><p>{detail.item.filter(x => x.id === 'uid')[0].value[0] as string}</p></Typography>*/}
                         <Typography>
                             <p className={classes.text} style={{display: "inline"}}>
-                                {detail.item.filter(x => x.id === 'org_ogrn')[0].label as string}&nbsp;&nbsp;&nbsp;&nbsp;
+                                { detail.item.length &&detail.item.filter(x => x.id === 'org_ogrn')[0].label as string}&nbsp;&nbsp;&nbsp;&nbsp;
                             </p>
                             <p className={classes.value} style={{display: "inline"}}>
-                                {detail.item.filter(x => x.id === 'org_ogrn')[0].value[0] as string}&nbsp;&nbsp;&nbsp;&nbsp;
+                                { detail.item.length && detail.item.filter(x => x.id === 'org_ogrn')[0].value[0] as string}&nbsp;&nbsp;&nbsp;&nbsp;
                             </p>
                             <p className={classes.text} style={{display: "inline"}}>
-                                {detail.item.filter(x => x.id === 'org_inn')[0].label as string}&nbsp;&nbsp;&nbsp;&nbsp;
+                                {detail.item.length && detail.item.filter(x => x.id === 'org_inn')[0].label as string}&nbsp;&nbsp;&nbsp;&nbsp;
                             </p>
                             <p className={classes.value} style={{display: "inline"}}>
-                                {detail.item.filter(x => x.id === 'org_inn')[0].value[0] as string}&nbsp;&nbsp;&nbsp;&nbsp;
+                                {detail.item.length && detail.item.filter(x => x.id === 'org_inn')[0].value[0] as string}&nbsp;&nbsp;&nbsp;&nbsp;
                             </p>
                             <p className={classes.text} style={{display: "inline"}}>
-                                {detail.item.filter(x => x.id === 'org_date')[0].label as string}&nbsp;&nbsp;&nbsp;&nbsp;
+                                {detail.item.length && detail.item.filter(x => x.id === 'org_date')[0].label as string}&nbsp;&nbsp;&nbsp;&nbsp;
                             </p>
                             <p className={classes.value} style={{display: "inline"}}>
-                                {detail.item.filter(x => x.id === 'org_date')[0].value[0] as string}&nbsp;&nbsp;&nbsp;&nbsp;
+                                {detail.item.length && detail.item.filter(x => x.id === 'org_date')[0].value[0] as string}&nbsp;&nbsp;&nbsp;&nbsp;
                             </p>
                             <p className={classes.text} style={{display: "inline"}}>
-                                {detail.item.filter(x => x.id === 'org_status')[0].label as string}&nbsp;&nbsp;&nbsp;&nbsp;
+                                {detail.item.length && detail.item.filter(x => x.id === 'org_status')[0].label as string}&nbsp;&nbsp;&nbsp;&nbsp;
                             </p>
                             <p className={classes.value} style={{display: "inline"}}>
-                                {(detail.item.filter(x => x.id === 'org_status')[0].value[0] as DictionaryItemProps).name as string}&nbsp;&nbsp;&nbsp;&nbsp;
+                                { detail.item.length && (detail.item.filter(x => x.id === 'org_status')[0].value[0] as DictionaryItemProps).name as string}&nbsp;&nbsp;&nbsp;&nbsp;
                             </p>
                         </Typography>
                         <Typography>
@@ -111,7 +111,7 @@ const OrganizationPage: FC = () => {
                                 {(detail.item.filter(x => x.id === 'org_size')[0].value[0] as DictionaryItemProps).name as string}&nbsp;&nbsp;&nbsp;&nbsp;
                             </p>
                         </Typography>
-                        <Accordion>
+                        <Accordion defaultExpanded={true}>
                             <AccordionSummary expandIcon={'>'}>
                                 <div id="home-organization">
                                     <div className='organization__Head'>
@@ -216,7 +216,7 @@ const OrganizationPage: FC = () => {
                                 </div>
                             </AccordionDetails>
                         </Accordion>
-                        <Accordion>
+                        <Accordion defaultExpanded={true}>
                             <AccordionSummary expandIcon={'>'}>
                                 <div id="home-organization">
                                     <div className='organization__Head'>
@@ -241,7 +241,7 @@ const OrganizationPage: FC = () => {
                             </AccordionDetails>
                         </Accordion>
 
-                        <Accordion>
+                        <Accordion defaultExpanded={true}>
                             <AccordionSummary expandIcon={'>'}>
                                 <div id="home-organization">
                                     <div className='organization__Head'>
@@ -286,7 +286,7 @@ const OrganizationPage: FC = () => {
                                         {(detail.item.filter(x => x.id === 'org_app_domain')[0].value as DictionaryItemProps[]).map(value => value.name as string).join(', ')}&nbsp;&nbsp;&nbsp;&nbsp;
                                     </p>
                                 </Typography>
-                                <Accordion>
+                                <Accordion defaultExpanded={true}>
                                     <AccordionSummary expandIcon={'>'}>
                                         <Typography className={classes.text}>{detail.item.filter(x => x.id === 'org_okved_add')[0].label as string}</Typography>
                                     </AccordionSummary>
@@ -296,7 +296,7 @@ const OrganizationPage: FC = () => {
                                 </Accordion>
                             </AccordionDetails>
                         </Accordion>
-                        <Accordion>
+                        <Accordion defaultExpanded={true}>
                             <AccordionSummary expandIcon={'>'}>
                                 <div id="home-organization">
                                     <div className='organization__Head'>
