@@ -87,6 +87,10 @@ class ResultMapper
                             $lang);
                     }
                     break;
+                    case 'image':
+                        $imgUri = $fieldEntity->get(0)->entity->getFileUri();
+                        $values[] = ImageStyle::load('slider_photo')->buildUrl($imgUri);
+                    break;
                 case 'bigint':
                 case 'integer':
                 case 'boolean':
