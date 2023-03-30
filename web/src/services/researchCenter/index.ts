@@ -17,8 +17,26 @@ class ResearchCenterService {
   public filterFields: FilterProps = []
   public lang = ''
   public loading = false
+  public totalResearchCenter = 0
   constructor() {
     makeAutoObservable(this)
+  }
+
+  async fetchTotal(){
+    runInAction(() => (this.loading = true))
+    const result = await axios.get(urlResearchCenters + '?psize=1')
+    if (result.status !== 200) {
+      return console.log('result', result)
+    }
+    runInAction(() => {
+          const { status, data, total } = result.data
+          if(status === 2){
+            return console.log('Error from server')
+          }
+          this.totalResearchCenter = total
+        }
+    )
+    runInAction(() => (this.loading = false))
   }
 
   async fetchPagingResearchCenters(newPage: number, language: string) {
@@ -59,6 +77,7 @@ class ResearchCenterService {
           page: newPage,
           count: Math.ceil(total / defaultPaging.psize)
         }
+        this.totalResearchCenter = total
       })
     } catch (error) {
       console.log(error)

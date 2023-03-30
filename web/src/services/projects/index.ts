@@ -22,8 +22,24 @@ class ProjectService {
   public filterFields: FilterProps = []
   public lang = ''
   public loading = false
+  public totalProject =0
   constructor() {
     makeAutoObservable(this)
+  }
+
+  async fetchTotal(){
+    const result = await axios.get(urlProjects + '?psize=1')
+    if (result.status !== 200) {
+      return console.log('result', result)
+    }
+    runInAction(() => {
+          const { status, data, total } = result.data
+          if(status === 2){
+            return console.log('Error from server')
+          }
+          this.totalProject = total
+        }
+    )
   }
 
   async fetchPagingProjects(newPage: number, language: string) {
@@ -64,6 +80,7 @@ class ProjectService {
           page: newPage,
           count: Math.ceil(total / defaultPaging.psize)
         }
+        this.totalProject = total
       })
     } catch (error) {
       console.log(error)

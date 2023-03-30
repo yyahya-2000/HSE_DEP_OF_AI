@@ -24,8 +24,26 @@ class OrganizationService {
   public filterFields: FilterProps = []
   public lang = ''
   public loading = false
+  public totalOrganization = 0
   constructor() {
     makeAutoObservable(this)
+  }
+
+  async fetchTotal(){
+    runInAction(() => (this.loading = true))
+    const result = await axios.get(urlOrganizations + '?psize=1')
+    if (result.status !== 200) {
+      return console.log('result', result)
+    }
+    runInAction(() => {
+      const { status, data, total } = result.data
+      if(status === 2){
+        return console.log('Error from server')
+      }
+      this.totalOrganization = total
+    }
+    )
+    runInAction(() => (this.loading = false))
   }
 
   async fetchPagingOrganizations(newPage: number, language: string) {
@@ -37,6 +55,7 @@ class OrganizationService {
         psize: this.paging.psize,
         page: newPage
       }
+
 
       const result = await axios.get(urlOrganizations, { params })
       if (result.status !== 200) {
@@ -66,6 +85,7 @@ class OrganizationService {
           page: newPage,
           count: Math.ceil(total / defaultPaging.psize)
         }
+        this.totalOrganization = total
       })
     } catch (error) {
       console.log(error)

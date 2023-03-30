@@ -17,8 +17,25 @@ class ProductService {
   public filterFields: FilterProps = []
   public lang = ''
   public loading = false
+
+  public totalProduct = 0
   constructor() {
     makeAutoObservable(this)
+  }
+
+  async fetchTotal(){
+    const result = await axios.get(urlProducts + '?psize=1')
+    if (result.status !== 200) {
+      return console.log('result', result)
+    }
+    runInAction(() => {
+          const { status, data, total } = result.data
+          if(status === 2){
+            return console.log('Error from server')
+          }
+          this.totalProduct = total
+        }
+    )
   }
 
   async fetchPagingProducts(newPage: number, language: string) {
@@ -59,6 +76,7 @@ class ProductService {
           page: newPage,
           count: Math.ceil(total / defaultPaging.psize)
         }
+        this.totalProduct = total
       })
     } catch (error) {
       console.log(error)
