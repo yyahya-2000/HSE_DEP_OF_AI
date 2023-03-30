@@ -80,6 +80,7 @@ class ProjectService {
           page: newPage,
           count: Math.ceil(total / defaultPaging.psize)
         }
+        this.totalProject = total
       })
     } catch (error) {
       console.log(error)

@@ -68,8 +68,6 @@ const ProductPage: FC = () => {
                             className={classes.title}>{detail.item.filter(x => x.id === 'title')[0].value[0] as string}</Typography>
                         {detail.item.filter(x => x.id === 'product_type')[0].value.length === 0 ?
                             <Typography style={{
-                                fontFamily: "Inter",
-                                fontStyle: "normal",
                                 fontWeight: 400,
                                 fontSize: "16px",
                                 lineHeight: "25px",
@@ -78,29 +76,29 @@ const ProductPage: FC = () => {
                             }}>{" "}
                             </Typography> :
                             <Typography style={{
-                                fontFamily: "Inter",
-                                fontStyle: "normal",
                                 fontWeight: 400,
                                 fontSize: "16px",
                                 lineHeight: "25px",
                                 textAlign: "justify",
                                 color: "#4A4646",
-                            }}> {(detail.item.filter(x => x.id === 'product_type')[0].value[0] as DictionaryItemProps).name}
+                            }}><p style={{
+                                fontWeight: 400,
+                                fontSize: "14px",
+                                lineHeight: "25px",
+                                textTransform: "uppercase",
+                                color: "#5F52FA",
+                            }}>{detail.item.filter(x => x.id === 'product_type')[0].label as string}</p> {(detail.item.filter(x => x.id === 'product_type')[0].value[0] as DictionaryItemProps).name}
                             </Typography>}
                         <div className={classes.textcols}>
                             <div className={classes.textcolsLeft}>
                                 {detail.item.filter(x => x.id === 'application_area')[0].value.length === 0 ?
                                     <Typography style={{
-                                        fontFamily: "Inter",
-                                        fontStyle: "normal",
                                         fontWeight: 400,
                                         fontSize: "16px",
                                         lineHeight: "25px",
                                         textAlign: "justify",
                                         color: "#4A4646",
                                     }}><p style={{
-                                        fontFamily: "Inter",
-                                        fontStyle: "normal",
                                         fontWeight: 400,
                                         fontSize: "14px",
                                         lineHeight: "25px",
@@ -111,16 +109,12 @@ const ProductPage: FC = () => {
                                         {" "}
                                     </Typography> :
                                     <Typography style={{
-                                        fontFamily: "Inter",
-                                        fontStyle: "normal",
                                         fontWeight: 400,
                                         fontSize: "16px",
                                         lineHeight: "25px",
                                         textAlign: "justify",
                                         color: "#4A4646",
                                     }}><p style={{
-                                        fontFamily: "Inter",
-                                        fontStyle: "normal",
                                         fontWeight: 400,
                                         fontSize: "14px",
                                         lineHeight: "25px",
@@ -132,16 +126,12 @@ const ProductPage: FC = () => {
                             <div className={classes.textcolsRight}>
                                 {detail.item.filter(x => x.id === 'domain_ai')[0].value.length === 0 ?
                                     <Typography style={{
-                                        fontFamily: "Inter",
-                                        fontStyle: "normal",
                                         fontWeight: 400,
                                         fontSize: "16px",
                                         lineHeight: "25px",
                                         textAlign: "justify",
                                         color: "#4A4646",
                                     }}><p style={{
-                                        fontFamily: "Inter",
-                                        fontStyle: "normal",
                                         fontWeight: 400,
                                         fontSize: "14px",
                                         lineHeight: "25px",
@@ -152,16 +142,12 @@ const ProductPage: FC = () => {
                                         {" "}
                                     </Typography> :
                                     <Typography style={{
-                                        fontFamily: "Inter",
-                                        fontStyle: "normal",
                                         fontWeight: 400,
                                         fontSize: "16px",
                                         lineHeight: "25px",
                                         textAlign: "justify",
                                         color: "#4A4646",
                                     }}><p style={{
-                                        fontFamily: "Inter",
-                                        fontStyle: "normal",
                                         fontWeight: 400,
                                         fontSize: "14px",
                                         lineHeight: "25px",
@@ -173,9 +159,9 @@ const ProductPage: FC = () => {
                         </div>
                         <Accordion defaultExpanded={true}>
                             <AccordionSummary expandIcon={'>'}>
-                                <div id="home-organization">
-                                    <div className='organization__Head'>
-                                        <div className='organization__Head__text'>
+                                <div id="home-carousel">
+                                    <div className='carousel__Head'>
+                                        <div className='carousel__Head__text'>
                                             {'описание'.toUpperCase()}
                                         </div>
                                     </div>
@@ -184,8 +170,6 @@ const ProductPage: FC = () => {
                             <AccordionDetails>
                                 {detail.item.filter(x => x.id === 'description')[0].value.length === 0 ?
                                     <Typography style={{
-                                        fontFamily: "Inter",
-                                        fontStyle: "normal",
                                         fontWeight: 400,
                                         fontSize: "14px",
                                         lineHeight: "25px",
@@ -194,8 +178,6 @@ const ProductPage: FC = () => {
                                         wordWrap: "break-word",
                                     }}>{" "}</Typography> :
                                     <Typography style={{
-                                        fontFamily: "Inter",
-                                        fontStyle: "normal",
                                         fontWeight: 400,
                                         fontSize: "14px",
                                         lineHeight: "25px",
@@ -207,14 +189,12 @@ const ProductPage: FC = () => {
                             </AccordionDetails>
                         </Accordion>
                         {detail.item.filter(x => x.id === 'subject')[0].value.length === 0 ?
-                            <Typography className={'max-lines-1'}>
+                            <Grid className={'max-lines-1'}>
                                 <p className={classes.text} style={{display: "inline"}}>
                                     {detail.item.filter(x => x.id === 'subject')[0].label as string}&nbsp;&nbsp;&nbsp;&nbsp;
                                 </p>
                                 <p style={{
                                     display: "inline",
-                                    fontFamily: "Inter",
-                                    fontStyle: "normal",
                                     fontWeight: 400,
                                     fontSize: "14px",
                                     lineHeight: "25px",
@@ -223,15 +203,13 @@ const ProductPage: FC = () => {
                                 }}>
                                     {" "}&nbsp;&nbsp;&nbsp;&nbsp;
                                 </p>
-                            </Typography> :
-                            <Typography className={'max-lines-2'}>
+                            </Grid> :
+                            <Grid className={'max-lines-2'}>
                                 <p className={classes.text} style={{display: "inline"}}>
                                     {detail.item.filter(x => x.id === 'subject')[0].label as string}&nbsp;&nbsp;&nbsp;&nbsp;
                                 </p>
                                 <p style={{
                                     display: "inline",
-                                    fontFamily: "Inter",
-                                    fontStyle: "normal",
                                     fontWeight: 400,
                                     fontSize: "14px",
                                     lineHeight: "25px",
@@ -240,17 +218,15 @@ const ProductPage: FC = () => {
                                 }}>
                                     {detail.item.filter(x => x.id === 'subject')[0].value[0] as string}&nbsp;&nbsp;&nbsp;&nbsp;
                                 </p>
-                            </Typography>
+                            </Grid>
                         }
                         {detail.item.filter(x => x.id === 'product_russian')[0].value.length === 0 ?
-                            <Typography className={'max-lines-1'}>
+                            <Grid className={'max-lines-1'}>
                                 <p className={classes.text} style={{display: "inline"}}>
                                     {detail.item.filter(x => x.id === 'product_russian')[0].label as string}&nbsp;&nbsp;&nbsp;&nbsp;
                                 </p>
                                 <p style={{
                                     display: "inline",
-                                    fontFamily: "Inter",
-                                    fontStyle: "normal",
                                     fontWeight: 400,
                                     fontSize: "14px",
                                     lineHeight: "25px",
@@ -259,15 +235,13 @@ const ProductPage: FC = () => {
                                 }}>
                                     {" "}&nbsp;&nbsp;&nbsp;&nbsp;
                                 </p>
-                            </Typography> :
-                            <Typography className={'max-lines-2'}>
+                            </Grid> :
+                            <Grid className={'max-lines-2'}>
                                 <p className={classes.text} style={{display: "inline"}}>
                                     {detail.item.filter(x => x.id === 'product_russian')[0].label as string}&nbsp;&nbsp;&nbsp;&nbsp;
                                 </p>
                                 <p style={{
                                     display: "inline",
-                                    fontFamily: "Inter",
-                                    fontStyle: "normal",
                                     fontWeight: 400,
                                     fontSize: "14px",
                                     lineHeight: "25px",
@@ -276,7 +250,7 @@ const ProductPage: FC = () => {
                                 }}>
                                     {detail.item.filter(x => x.id === 'product_russian')[0].value[0] as string}&nbsp;&nbsp;&nbsp;&nbsp;
                                 </p>
-                            </Typography>
+                            </Grid>
                         }
                     </Container>
                     <Footer/>

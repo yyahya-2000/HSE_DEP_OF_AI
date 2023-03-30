@@ -2,8 +2,6 @@ import { makeStyles } from 'tss-react/mui'
 
 export const useProjectCardStyle = makeStyles()((theme) => ({
     title:{
-        fontFamily: "Inter",
-        fontStyle: "normal",
         fontWeight: 600,
         fontSize: "20px",
         lineHeight: "24px",

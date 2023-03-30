@@ -37,8 +37,6 @@ const ResearchCenterCard: FC<EntityItemProps> = ({ item }) => {
 
                 <Typography className={'max-lines-2'} style={{
                     width: "650px",
-                    fontFamily: "Inter",
-                    fontStyle: "normal",
                     fontWeight: 600,
                     fontSize: "20px",
                     lineHeight: "24px",
@@ -54,8 +52,6 @@ const ResearchCenterCard: FC<EntityItemProps> = ({ item }) => {
                         <hr className={classes.line}/>
 
                         <Typography className={'max-lines-3'} style={{
-                            fontFamily: "Inter",
-                            fontStyle: "normal",
                             fontWeight: 400,
                             fontSize: "16px",
                             lineHeight: "25px",
@@ -63,8 +59,6 @@ const ResearchCenterCard: FC<EntityItemProps> = ({ item }) => {
                             color: "#4A4646",
                             wordWrap: "break-word",
                         }} overflow={'hidden'} textOverflow={'ellipsis'}><p style={{
-                            fontFamily: "Inter",
-                            fontStyle: "normal",
                             fontWeight: 400,
                             fontSize: "16px",
                             lineHeight: "25px",
@@ -76,8 +70,6 @@ const ResearchCenterCard: FC<EntityItemProps> = ({ item }) => {
                         <hr className={classes.line}/>
 
                         <Typography className={'max-lines-3'} style={{
-                            fontFamily: "Inter",
-                            fontStyle: "normal",
                             fontWeight: 400,
                             fontSize: "16px",
                             lineHeight: "25px",
@@ -90,8 +82,6 @@ const ResearchCenterCard: FC<EntityItemProps> = ({ item }) => {
                     <div className={classes.textcolsRight}>
                         <Typography className={classes.status}><p style={{
                             display: "inline",
-                            fontFamily: "Inter",
-                            fontStyle: "normal",
                             fontWeight: 400,
                             fontSize: "14px",
                             lineHeight: "25px",
@@ -101,16 +91,12 @@ const ResearchCenterCard: FC<EntityItemProps> = ({ item }) => {
                         </Typography>
 
                         <Typography className={'max-lines-1'} style={{
-                            fontFamily: "Inter",
-                            fontStyle: "normal",
                             fontWeight: 400,
                             fontSize: "14px",
                             lineHeight: "30px",
                             color: "#4A4646"
                         }} overflow={'hidden'} textOverflow={'ellipsis'}><p style={{
                             display: "inline",
-                            fontFamily: "Inter",
-                            fontStyle: "normal",
                             fontWeight: 400,
                             fontSize: "14px",
                             lineHeight: "25px",
@@ -121,8 +107,6 @@ const ResearchCenterCard: FC<EntityItemProps> = ({ item }) => {
 
                         <Typography className={classes.competence}><p style={{
                             display: "inline",
-                            fontFamily: "Inter",
-                            fontStyle: "normal",
                             fontWeight: 400,
                             fontSize: "14px",
                             lineHeight: "25px",
@@ -132,16 +116,12 @@ const ResearchCenterCard: FC<EntityItemProps> = ({ item }) => {
                         </Typography>
 
                         <Typography className={'max-lines-1'} style={{
-                            fontFamily: "Inter",
-                            fontStyle: "normal",
                             fontWeight: 400,
                             fontSize: "14px",
                             lineHeight: "30px",
                             color: "#4A4646"
                         }} overflow={'hidden'} textOverflow={'ellipsis'}><p style={{
                             display: "inline",
-                            fontFamily: "Inter",
-                            fontStyle: "normal",
                             fontWeight: 400,
                             fontSize: "14px",
                             lineHeight: "25px",
@@ -150,16 +130,12 @@ const ResearchCenterCard: FC<EntityItemProps> = ({ item }) => {
                         }}>{item.filter(x => x.id === 'org_method_ai')[0].label as string}&nbsp;&nbsp;&nbsp;&nbsp;</p>{(item.filter(x => x.id === 'org_method_ai')[0].value[0] as DictionaryItemProps).name as string}
                         </Typography>
                         <Typography className={'max-lines-1'} style={{
-                            fontFamily: "Inter",
-                            fontStyle: "normal",
                             fontWeight: 400,
                             fontSize: "14px",
                             lineHeight: "30px",
                             color: "#4A4646"
                         }} overflow={'hidden'} textOverflow={'ellipsis'}><p style={{
                             display: "inline",
-                            fontFamily: "Inter",
-                            fontStyle: "normal",
                             fontWeight: 400,
                             fontSize: "14px",
                             lineHeight: "25px",
@@ -167,7 +143,7 @@ const ResearchCenterCard: FC<EntityItemProps> = ({ item }) => {
                             color: "#5F52FA",
                         }}>{item.filter(x => x.id === 'org_tools_ai')[0].label as string}&nbsp;&nbsp;&nbsp;&nbsp;</p>{(item.filter(x => x.id === 'org_tools_ai')[0].value[0] as DictionaryItemProps).name as string}
                         </Typography>
-                        <Container style={{marginLeft: "78%", marginTop: "24%"}}>
+                        <Container style={{marginLeft: "75%", marginTop: "24%"}}>
                             <Link to={`${routers.researchCenter}/${item.filter(x => x.id === 'nid')[0].value}`}
                                   onClick={scrollTopPage}>
                                 <PinkButton title={'ПОДРОБНЕЕ'}></PinkButton>

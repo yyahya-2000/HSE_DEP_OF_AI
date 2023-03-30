@@ -69,8 +69,7 @@ const ProjectPage: FC = () => {
                         {detail.item.filter(x => x.id === 'project_common_title')[0].value.length === 0 ?
                             <Typography className={classes.title}>{" "}
                             </Typography> :
-                            <Typography className={'max-lines-2'} style={{fontFamily: "Inter",
-                                fontStyle: "normal",
+                            <Typography className={'max-lines-2'} style={{
                                 fontWeight: 700,
                                 fontSize: "20px",
                                 lineHeight: "24px",
@@ -82,16 +81,14 @@ const ProjectPage: FC = () => {
                             <div className={classes.textcolsLeft}>
                                 {detail.item.filter(x => x.id === 'project_application_area')[0].value.length === 0 ?
                                     <Typography style={{
-                                        fontFamily: "Inter",
-                                        fontStyle: "normal",
+
                                         fontWeight: 400,
                                         fontSize: "16px",
                                         lineHeight: "25px",
                                         textAlign: "justify",
                                         color: "#4A4646",
                                     }}><p style={{
-                                        fontFamily: "Inter",
-                                        fontStyle: "normal",
+
                                         fontWeight: 400,
                                         fontSize: "14px",
                                         lineHeight: "25px",
@@ -102,16 +99,14 @@ const ProjectPage: FC = () => {
                                         {" "}
                                     </Typography> :
                                     <Typography style={{
-                                        fontFamily: "Inter",
-                                        fontStyle: "normal",
+
                                         fontWeight: 400,
                                         fontSize: "16px",
                                         lineHeight: "25px",
                                         textAlign: "justify",
                                         color: "#4A4646",
                                     }}><p style={{
-                                        fontFamily: "Inter",
-                                        fontStyle: "normal",
+
                                         fontWeight: 400,
                                         fontSize: "14px",
                                         lineHeight: "25px",
@@ -123,16 +118,12 @@ const ProjectPage: FC = () => {
                             <div className={classes.textcolsRight}>
                                 {detail.item.filter(x => x.id === 'domain_ai')[0].value.length === 0 ?
                                     <Typography style={{
-                                        fontFamily: "Inter",
-                                        fontStyle: "normal",
                                         fontWeight: 400,
                                         fontSize: "16px",
                                         lineHeight: "25px",
                                         textAlign: "justify",
                                         color: "#4A4646",
                                     }}><p style={{
-                                        fontFamily: "Inter",
-                                        fontStyle: "normal",
                                         fontWeight: 400,
                                         fontSize: "14px",
                                         lineHeight: "25px",
@@ -143,16 +134,13 @@ const ProjectPage: FC = () => {
                                         {" "}
                                     </Typography> :
                                     <Typography style={{
-                                        fontFamily: "Inter",
-                                        fontStyle: "normal",
                                         fontWeight: 400,
                                         fontSize: "16px",
                                         lineHeight: "25px",
                                         textAlign: "justify",
                                         color: "#4A4646",
                                     }}><p style={{
-                                        fontFamily: "Inter",
-                                        fontStyle: "normal",
+
                                         fontWeight: 400,
                                         fontSize: "14px",
                                         lineHeight: "25px",
@@ -164,9 +152,9 @@ const ProjectPage: FC = () => {
                         </div>
                         <Accordion defaultExpanded={true}>
                             <AccordionSummary expandIcon={'>'}>
-                                <div id="home-organization">
-                                    <div className='organization__Head'>
-                                        <div className='organization__Head__text'>
+                                <div id="home-carousel">
+                                    <div className='carousel__Head'>
+                                        <div className='carousel__Head__text'>
                                             {'описание'.toUpperCase()}
                                         </div>
                                     </div>
@@ -175,8 +163,7 @@ const ProjectPage: FC = () => {
                             <AccordionDetails>
                                 {detail.item.filter(x => x.id === 'project_desc')[0].value.length === 0 ?
                                     <Typography style={{
-                                        fontFamily: "Inter",
-                                        fontStyle: "normal",
+
                                         fontWeight: 400,
                                         fontSize: "14px",
                                         lineHeight: "25px",
@@ -185,8 +172,6 @@ const ProjectPage: FC = () => {
                                         wordWrap: "break-word",
                                     }}>{" "}</Typography> :
                                     <Typography style={{
-                                        fontFamily: "Inter",
-                                        fontStyle: "normal",
                                         fontWeight: 400,
                                         fontSize: "14px",
                                         lineHeight: "25px",
@@ -198,14 +183,12 @@ const ProjectPage: FC = () => {
                             </AccordionDetails>
                         </Accordion>
                         {detail.item.filter(x => x.id === 'project_subject')[0].value.length === 0 ?
-                            <Typography className={'max-lines-1'}>
+                            <Grid className={'max-lines-1'}>
                                 <p className={classes.text} style={{display: "inline"}}>
                                     {detail.item.filter(x => x.id === 'project_subject')[0].label as string}&nbsp;&nbsp;&nbsp;&nbsp;
                                 </p>
                                 <p style={{
                                     display: "inline",
-                                    fontFamily: "Inter",
-                                    fontStyle: "normal",
                                     fontWeight: 400,
                                     fontSize: "14px",
                                     lineHeight: "25px",
@@ -214,15 +197,14 @@ const ProjectPage: FC = () => {
                                 }}>
                                     {" "}&nbsp;&nbsp;&nbsp;&nbsp;
                                 </p>
-                            </Typography> :
-                            <Typography className={'max-lines-2'}>
+                            </Grid> :
+                            <Grid className={'max-lines-2'}>
                                 <p className={classes.text} style={{display: "inline"}}>
                                     {detail.item.filter(x => x.id === 'project_subject')[0].label as string}&nbsp;&nbsp;&nbsp;&nbsp;
                                 </p>
                                 <p style={{
                                     display: "inline",
-                                    fontFamily: "Inter",
-                                    fontStyle: "normal",
+
                                     fontWeight: 400,
                                     fontSize: "14px",
                                     lineHeight: "25px",
@@ -231,7 +213,7 @@ const ProjectPage: FC = () => {
                                 }}>
                                     {detail.item.filter(x => x.id === 'project_subject')[0].value[0] as string}&nbsp;&nbsp;&nbsp;&nbsp;
                                 </p>
-                            </Typography>
+                            </Grid>
                         }
                     </Container>
                     <Footer />

@@ -12,8 +12,6 @@ export const useResearchCenterCardStyle = makeStyles()((theme) => ({
         marginLeft: "53%",
     },
     title:{
-        fontFamily: "Inter",
-        fontStyle: "normal",
         fontWeight: 600,
         fontSize: "20px",
         lineHeight: "24px",
@@ -25,8 +23,6 @@ export const useResearchCenterCardStyle = makeStyles()((theme) => ({
         border: "1px solid #D9D9D9"
     },
     website:{
-        fontFamily: "Inter",
-        fontStyle: "normal",
         fontWeight: 400,
         fontSize: "14px",
         lineHeight: "25px",
@@ -35,16 +31,12 @@ export const useResearchCenterCardStyle = makeStyles()((theme) => ({
 
     },
     status:{
-        fontFamily: "Inter",
-        fontStyle: "normal",
         fontWeight: 400,
         fontSize: "14px",
         lineHeight: "30px",
         color: "#4A4646"
     },
     competence:{
-        fontFamily: "Inter",
-        fontStyle: "normal",
         fontWeight: 400,
         fontSize: "14px",
         lineHeight: "30px",

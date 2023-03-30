@@ -2,8 +2,6 @@ import { makeStyles } from 'tss-react/mui'
 
 export const useProductCardStyle = makeStyles()((theme) => ({
     title:{
-        fontFamily: "Inter",
-        fontStyle: "normal",
         fontWeight: 600,
         fontSize: "20px",
         lineHeight: "24px",
@@ -12,8 +10,6 @@ export const useProductCardStyle = makeStyles()((theme) => ({
         marginBottom: "10px",
     },
     category:{
-        fontFamily: "Inter",
-        fontStyle: "normal",
         fontWeight: 400,
         fontSize: "14px",
         lineHeight: "30px",

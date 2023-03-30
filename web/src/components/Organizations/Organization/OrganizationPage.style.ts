@@ -2,8 +2,6 @@ import { makeStyles } from 'tss-react/mui'
 
 export const useOrganizationStyle = makeStyles()((theme) => ({
     title:{
-        fontFamily: "Inter",
-        fontStyle: "normal",
         fontWeight: 700,
         fontSize: "20px",
         lineHeight: "24px",
@@ -22,8 +20,6 @@ export const useOrganizationStyle = makeStyles()((theme) => ({
         marginLeft: "53%",
     },
     text:{
-        fontFamily: "Inter",
-        fontStyle: "normal",
         fontWeight: 600,
         fontSize: "20px",
         lineHeight: "25px",
@@ -32,8 +28,6 @@ export const useOrganizationStyle = makeStyles()((theme) => ({
 
     },
     value:{
-        fontFamily: "Inter",
-        fontStyle: "normal",
         fontWeight: 600,
         fontSize: "20px",
         lineHeight: "25px",

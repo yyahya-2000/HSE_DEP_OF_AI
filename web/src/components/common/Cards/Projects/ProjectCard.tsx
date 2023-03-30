@@ -37,16 +37,12 @@ const ProjectCard: FC<EntityItemProps> = ({ item }) => {
 
                     {item.filter(x => x.id === 'project_application_area')[0].value.length === 0 ?
                         <Typography style={{
-                            fontFamily: "Inter",
-                            fontStyle: "normal",
                             fontWeight: 400,
                             fontSize: "16px",
                             lineHeight: "25px",
                             textAlign: "justify",
                             color: "#4A4646",}}><p style={{
                             display: "inline",
-                            fontFamily: "Inter",
-                            fontStyle: "normal",
                             fontWeight: 400,
                             fontSize: "14px",
                             lineHeight: "25px",
@@ -55,16 +51,12 @@ const ProjectCard: FC<EntityItemProps> = ({ item }) => {
                         }}>{item.filter(x => x.id === 'project_application_area')[0].label as string}&nbsp;&nbsp;&nbsp;&nbsp;</p>{" "}
                         </Typography> :
                         <Typography style={{
-                            fontFamily: "Inter",
-                            fontStyle: "normal",
                             fontWeight: 400,
                             fontSize: "16px",
                             lineHeight: "25px",
                             textAlign: "justify",
                             color: "#4A4646",}}><p style={{
                             display: "inline",
-                            fontFamily: "Inter",
-                            fontStyle: "normal",
                             fontWeight: 400,
                             fontSize: "14px",
                             lineHeight: "25px",
@@ -79,8 +71,6 @@ const ProjectCard: FC<EntityItemProps> = ({ item }) => {
                         <Typography>{" "}</Typography> :
                         <Typography
                             className={'max-lines-3'} style={{
-                            fontFamily: "Inter",
-                            fontStyle: "normal",
                             fontWeight: 400,
                             fontSize: "16px",
                             lineHeight: "25px",
@@ -93,16 +83,12 @@ const ProjectCard: FC<EntityItemProps> = ({ item }) => {
 
                     {item.filter(x => x.id === 'project_supervisor')[0].value.length === 0 ?
                         <Typography style={{
-                            fontFamily: "Inter",
-                            fontStyle: "normal",
                             fontWeight: 400,
                             fontSize: "16px",
                             lineHeight: "25px",
                             textAlign: "justify",
                             color: "#4A4646",}}><p style={{
                             display: "inline",
-                            fontFamily: "Inter",
-                            fontStyle: "normal",
                             fontWeight: 400,
                             fontSize: "14px",
                             lineHeight: "25px",
@@ -111,16 +97,12 @@ const ProjectCard: FC<EntityItemProps> = ({ item }) => {
                         }}>{item.filter(x => x.id === 'project_supervisor')[0].label as string}&nbsp;&nbsp;&nbsp;&nbsp;</p>{" "}
                         </Typography> :
                         <Typography style={{
-                            fontFamily: "Inter",
-                            fontStyle: "normal",
                             fontWeight: 400,
                             fontSize: "16px",
                             lineHeight: "25px",
                             textAlign: "justify",
                             color: "#4A4646",}}><p style={{
                             display: "inline",
-                            fontFamily: "Inter",
-                            fontStyle: "normal",
                             fontWeight: 400,
                             fontSize: "14px",
                             lineHeight: "25px",
@@ -129,7 +111,7 @@ const ProjectCard: FC<EntityItemProps> = ({ item }) => {
                         }}>{item.filter(x => x.id === 'project_supervisor')[0].label as string}&nbsp;&nbsp;&nbsp;&nbsp;</p> {(item.filter(x => x.id === 'project_supervisor')[0].value[0] as DictionaryItemProps).name}
                         </Typography>}
 
-                    <Container style={{marginLeft: "85%"}}>
+                    <Container style={{marginLeft: "90%"}}>
                         <Link to={`${routers.projects}/${item.filter(x => x.id === 'nid')[0].value}`}
                               onClick={scrollTopPage}>
                             <PinkButton title={'ПОДРОБНЕЕ'}></PinkButton>

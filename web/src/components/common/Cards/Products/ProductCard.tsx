@@ -18,16 +18,12 @@ const ProductCard: FC<EntityItemProps> = ({item}) => {
                     className={classes.title}>{item.filter(x => x.id === 'title')[0].value[0] as string}</Typography>
                 {item.filter(x => x.id === 'product_type')[0].value.length === 0 ?
                     <Typography style={{
-                        fontFamily: "Inter",
-                        fontStyle: "normal",
                         fontWeight: 400,
                         fontSize: "16px",
                         lineHeight: "25px",
                         textAlign: "justify",
                         color: "#4A4646",}}><p style={{
                         display: "inline",
-                        fontFamily: "Inter",
-                        fontStyle: "normal",
                         fontWeight: 400,
                         fontSize: "14px",
                         lineHeight: "25px",
@@ -36,16 +32,12 @@ const ProductCard: FC<EntityItemProps> = ({item}) => {
                     }}>{item.filter(x => x.id === 'product_type')[0].label as string}&nbsp;&nbsp;&nbsp;&nbsp;</p>{" "}
                     </Typography> :
                     <Typography style={{
-                        fontFamily: "Inter",
-                        fontStyle: "normal",
                         fontWeight: 400,
                         fontSize: "16px",
                         lineHeight: "25px",
                         textAlign: "justify",
                         color: "#4A4646",}}><p style={{
                         display: "inline",
-                        fontFamily: "Inter",
-                        fontStyle: "normal",
                         fontWeight: 400,
                         fontSize: "14px",
                         lineHeight: "25px",
@@ -55,16 +47,12 @@ const ProductCard: FC<EntityItemProps> = ({item}) => {
                     </Typography>}
                 {item.filter(x => x.id === 'application_area')[0].value.length === 0 ?
                     <Typography style={{
-                        fontFamily: "Inter",
-                        fontStyle: "normal",
                         fontWeight: 400,
                         fontSize: "16px",
                         lineHeight: "25px",
                         textAlign: "justify",
                         color: "#4A4646",}}><p style={{
                         display: "inline",
-                        fontFamily: "Inter",
-                        fontStyle: "normal",
                         fontWeight: 400,
                         fontSize: "14px",
                         lineHeight: "25px",
@@ -73,16 +61,12 @@ const ProductCard: FC<EntityItemProps> = ({item}) => {
                     }}>{item.filter(x => x.id === 'application_area')[0].label as string}&nbsp;&nbsp;&nbsp;&nbsp;</p>{" "}
                     </Typography> :
                     <Typography style={{
-                        fontFamily: "Inter",
-                        fontStyle: "normal",
                         fontWeight: 400,
                         fontSize: "16px",
                         lineHeight: "25px",
                         textAlign: "justify",
                         color: "#4A4646",}}><p style={{
                         display: "inline",
-                        fontFamily: "Inter",
-                        fontStyle: "normal",
                         fontWeight: 400,
                         fontSize: "14px",
                         lineHeight: "25px",
@@ -97,8 +81,6 @@ const ProductCard: FC<EntityItemProps> = ({item}) => {
                     <Typography>{" "}</Typography> :
                     <Typography
                         className={'max-lines-3'} style={{
-                        fontFamily: "Inter",
-                        fontStyle: "normal",
                         fontWeight: 400,
                         fontSize: "16px",
                         lineHeight: "25px",
@@ -107,7 +89,7 @@ const ProductCard: FC<EntityItemProps> = ({item}) => {
                     }}>{(item.filter(x => x.id === 'description')[0].value[0] as string)}
                     </Typography>}
 
-                <Container style={{marginLeft: "90%"}}>
+                <Container style={{marginLeft: "76%"}}>
                     <Link to={`${routers.products}/${item.filter(x => x.id === 'nid')[0].value}`}
                           onClick={scrollTopPage}>
                         <PinkButton title={'ПОДРОБНЕЕ'}></PinkButton>

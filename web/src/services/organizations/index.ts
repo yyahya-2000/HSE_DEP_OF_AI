@@ -85,6 +85,7 @@ class OrganizationService {
           page: newPage,
           count: Math.ceil(total / defaultPaging.psize)
         }
+        this.totalOrganization = total
       })
     } catch (error) {
       console.log(error)

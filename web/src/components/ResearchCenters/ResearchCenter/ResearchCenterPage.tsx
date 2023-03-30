@@ -68,8 +68,6 @@ const ResearchCenterPage: FC = () => {
                             className={classes.title}>{detail.item.filter(x => x.id === 'title')[0].value[0] as string}</Typography>
                         <Typography className={'max-lines-4'} style={{
                             width: "650px",
-                            fontFamily: "Inter",
-                            fontStyle: "normal",
                             fontWeight: 600,
                             fontSize: "20px",
                             lineHeight: "20px",
@@ -80,7 +78,7 @@ const ResearchCenterPage: FC = () => {
                         }} overflow={'hidden'}
                                     textOverflow={'ellipsis'}>{ detail.item.length &&detail.item.filter(x => x.id === 'common_org_name')[0].value[0] as string}</Typography>
                         {/*<Typography><p>{detail.item.filter(x => x.id === 'uid')[0].label as string}</p><p>{detail.item.filter(x => x.id === 'uid')[0].value[0] as string}</p></Typography>*/}
-                        <Typography>
+                        <Grid>
                             <p className={classes.text} style={{display: "inline"}}>
                                 { detail.item.length &&detail.item.filter(x => x.id === 'org_ogrn')[0].label as string}&nbsp;&nbsp;&nbsp;&nbsp;
                             </p>
@@ -105,14 +103,12 @@ const ResearchCenterPage: FC = () => {
                             <p className={classes.value} style={{display: "inline"}}>
                                 { detail.item.length && (detail.item.filter(x => x.id === 'org_status')[0].value[0] as DictionaryItemProps).name as string}&nbsp;&nbsp;&nbsp;&nbsp;
                             </p>
-                        </Typography>
-                        <Typography>
+                        </Grid>
+                        <Grid>
                             <p className={classes.text} style={{display: "inline"}}>
                                 {detail.item.filter(x => x.id === 'org_form')[0].label as string}&nbsp;&nbsp;&nbsp;&nbsp;
                             </p>
                             <p className={'max-lines-1'} style={{display: "inline",
-                                fontFamily: "Inter",
-                                fontStyle: "normal",
                                 fontWeight: 600,
                                 fontSize: "20px",
                                 lineHeight: "25px",
@@ -121,20 +117,20 @@ const ResearchCenterPage: FC = () => {
                             }} >
                                 {detail.item.filter(x => x.id === 'org_form')[0].value[0] as string}&nbsp;&nbsp;&nbsp;&nbsp;
                             </p>
-                        </Typography>
-                        <Typography>
+                        </Grid>
+                        <Grid>
                             <p className={classes.text} style={{display: "inline"}}>
                                 {detail.item.filter(x => x.id === 'org_size')[0].label as string}&nbsp;&nbsp;&nbsp;&nbsp;
                             </p>
                             <p className={classes.value} style={{display: "inline"}}>
                                 {(detail.item.filter(x => x.id === 'org_size')[0].value[0] as DictionaryItemProps).name as string}&nbsp;&nbsp;&nbsp;&nbsp;
                             </p>
-                        </Typography>
+                        </Grid>
                         <Accordion defaultExpanded={true}>
                             <AccordionSummary expandIcon={'>'}>
-                                <div id="home-researchcenter">
-                                    <div className='researchcenter__Head'>
-                                        <div className='researchcenter__Head__text'>
+                                <div id="home-carousel">
+                                    <div className='carousel__Head'>
+                                        <div className='carousel__Head__text'>
                                             {'контакты'.toUpperCase()}
                                         </div>
                                     </div>
@@ -143,8 +139,7 @@ const ResearchCenterPage: FC = () => {
                             <AccordionDetails>
                                 <div className={classes.textcols}>
                                     <div className={classes.textcolsLeft}>
-                                        <Typography className={'max-lines-1'} style={{fontFamily: "Inter",
-                                            fontStyle: "normal",
+                                        <Typography className={'max-lines-1'} style={{
                                             fontWeight: 600,
                                             fontSize: "20px",
                                             lineHeight: "25px",
@@ -153,8 +148,7 @@ const ResearchCenterPage: FC = () => {
                                             wordWrap: "break-word",
                                         }} overflow={'hidden'}
                                                     textOverflow={'ellipsis'}>{detail.item.filter(x => x.id === 'org_location')[0].label as string}</Typography>
-                                        <Typography className={'max-lines-1'} style={{fontFamily: "Inter",
-                                            fontStyle: "normal",
+                                        <Typography className={'max-lines-1'} style={{
                                             fontWeight: 400,
                                             fontSize: "14px",
                                             lineHeight: "25px",
@@ -164,8 +158,7 @@ const ResearchCenterPage: FC = () => {
                                         }} overflow={'hidden'}
                                                     textOverflow={'ellipsis'}>{detail.item.filter(x => x.id === 'org_location')[0].value[0] as string}</Typography>
                                         <Typography className={classes.text}>{detail.item.filter(x => x.id === 'org_website')[0].label as string}</Typography>
-                                        <Typography className={'max-lines-1'} style={{fontFamily: "Inter",
-                                            fontStyle: "normal",
+                                        <Typography className={'max-lines-1'} style={{
                                             fontWeight: 400,
                                             fontSize: "14px",
                                             lineHeight: "25px",
@@ -176,8 +169,7 @@ const ResearchCenterPage: FC = () => {
                                         }} overflow={'hidden'}
                                                     textOverflow={'ellipsis'}>{(detail.item.filter(x => x.id === 'org_website')[0].value as LinkProps[]).map(urls => urls.url as string)}</Typography>
                                         <Typography className={classes.text}>{detail.item.filter(x => x.id === 'org_email')[0].label as string}</Typography>
-                                        <Typography className={'max-lines-1'} style={{fontFamily: "Inter",
-                                            fontStyle: "normal",
+                                        <Typography className={'max-lines-1'} style={{
                                             fontWeight: 400,
                                             fontSize: "14px",
                                             lineHeight: "25px",
@@ -195,9 +187,9 @@ const ResearchCenterPage: FC = () => {
                         </Accordion>
                         <Accordion defaultExpanded={true}>
                             <AccordionSummary expandIcon={'>'}>
-                                <div id="home-researchcenter">
-                                    <div className='researchcenter__Head'>
-                                        <div className='researchcenter__Head__text'>
+                                <div id="home-carousel">
+                                    <div className='carousel__Head'>
+                                        <div className='carousel__Head__text'>
                                             {'описание'.toUpperCase()}
                                         </div>
                                     </div>
@@ -205,8 +197,7 @@ const ResearchCenterPage: FC = () => {
                             </AccordionSummary>
                             <AccordionDetails>
 
-                                <Typography style={{fontFamily: "Inter",
-                                    fontStyle: "normal",
+                                <Typography style={{
                                     fontWeight: 400,
                                     fontSize: "14px",
                                     lineHeight: "25px",
@@ -220,22 +211,21 @@ const ResearchCenterPage: FC = () => {
 
                         <Accordion defaultExpanded={true}>
                             <AccordionSummary expandIcon={'>'}>
-                                <div id="home-researchcenter">
-                                    <div className='researchcenter__Head'>
-                                        <div className='researchcenter__Head__text'>
-                                            {'деятельность'.toUpperCase()}
+                                <div id="home-carousel">
+                                    <div className='carousel__Head'>
+                                        <div className='carousel__Head__text'>
+                                            {'леятельность'.toUpperCase()}
                                         </div>
                                     </div>
                                 </div>
                             </AccordionSummary>
                             <AccordionDetails>
-                                <Typography>
+                                <Grid>
                                     <p className={classes.text} style={{display: "inline",}}>
                                         {detail.item.filter(x => x.id === 'org_okved')[0].label as string}&nbsp;
                                     </p>
                                     <p className={'max-lines-3'} style={{display: "inline",
-                                        fontFamily: "Inter",
-                                        fontStyle: "normal",
+
                                         fontWeight: 400,
                                         fontSize: "14px",
                                         lineHeight: "25px",
@@ -245,7 +235,7 @@ const ResearchCenterPage: FC = () => {
                                     }}>
                                         {detail.item.filter(x => x.id === 'org_okved')[0].value[0] as string}&nbsp;&nbsp;&nbsp;&nbsp;
                                     </p>
-                                </Typography>
+                                </Grid>
                                 <Accordion defaultExpanded={true}>
                                     <AccordionSummary expandIcon={'>'}>
                                         <Typography className={classes.text}>{detail.item.filter(x => x.id === 'org_okved_add')[0].label as string}</Typography>
@@ -258,22 +248,21 @@ const ResearchCenterPage: FC = () => {
                         </Accordion>
                         <Accordion defaultExpanded={true}>
                             <AccordionSummary expandIcon={'>'}>
-                                <div id="home-researchcenter">
-                                    <div className='researchcenter__Head'>
-                                        <div className='researchcenter__Head__text'>
+                                <div id="home-carousel">
+                                    <div className='carousel__Head'>
+                                        <div className='carousel__Head__text'>
                                             {'искусственный интеллект'.toUpperCase()}
                                         </div>
                                     </div>
                                 </div>
                             </AccordionSummary>
                             <AccordionDetails>
-                                <Typography className={'max-lines-1'} >
+                                <Grid className={'max-lines-1'} >
                                     <p className={classes.text} style={{display: "inline"}}>
                                         {detail.item.filter(x => x.id === 'org_subject')[0].label as string}&nbsp;&nbsp;&nbsp;&nbsp;
                                     </p>
                                     <p style={{display: "inline",
-                                        fontFamily: "Inter",
-                                        fontStyle: "normal",
+
                                         fontWeight: 400,
                                         fontSize: "14px",
                                         lineHeight: "25px",
@@ -281,14 +270,13 @@ const ResearchCenterPage: FC = () => {
                                         color: "#4A4646",}}>
                                         {detail.item.filter(x => x.id === 'org_subject')[0].value[0] as string}&nbsp;&nbsp;&nbsp;&nbsp;
                                     </p>
-                                </Typography>
-                                <Typography className={'max-lines-1'} >
+                                </Grid>
+                                <Grid className={'max-lines-1'} >
                                     <p className={classes.text} style={{display: "inline"}}>
                                         {detail.item.filter(x => x.id === 'org_competence_ai')[0].label as string}&nbsp;&nbsp;&nbsp;&nbsp;
                                     </p>
                                     <p style={{display: "inline",
-                                        fontFamily: "Inter",
-                                        fontStyle: "normal",
+
                                         fontWeight: 400,
                                         fontSize: "14px",
                                         lineHeight: "25px",
@@ -296,14 +284,13 @@ const ResearchCenterPage: FC = () => {
                                         color: "#4A4646",}}>
                                         {(detail.item.filter(x => x.id === 'org_competence_ai')[0].value as DictionaryItemProps[]).map(value => value.name as string).join(', ')}&nbsp;&nbsp;&nbsp;&nbsp;
                                     </p>
-                                </Typography>
-                                <Typography className={'max-lines-1'} >
+                                </Grid>
+                                <Grid className={'max-lines-1'} >
                                     <p className={classes.text} style={{display: "inline"}}>
                                         {detail.item.filter(x => x.id === 'org_method_ai')[0].label as string}&nbsp;&nbsp;&nbsp;&nbsp;
                                     </p>
                                     <p className={classes.value} style={{display: "inline",
-                                        fontFamily: "Inter",
-                                        fontStyle: "normal",
+
                                         fontWeight: 400,
                                         fontSize: "14px",
                                         lineHeight: "25px",
@@ -311,14 +298,13 @@ const ResearchCenterPage: FC = () => {
                                         color: "#4A4646",}}>
                                         {(detail.item.filter(x => x.id === 'org_method_ai')[0].value as DictionaryItemProps[]).map(value => value.name as string).join(', ')}&nbsp;&nbsp;&nbsp;&nbsp;
                                     </p>
-                                </Typography>
-                                <Typography className={'max-lines-1'} >
+                                </Grid>
+                                <Grid className={'max-lines-1'} >
                                     <p className={classes.text} style={{display: "inline"}}>
                                         {detail.item.filter(x => x.id === 'org_tools_ai')[0].label as string}&nbsp;&nbsp;&nbsp;&nbsp;
                                     </p>
                                     <p style={{display: "inline",
-                                        fontFamily: "Inter",
-                                        fontStyle: "normal",
+
                                         fontWeight: 400,
                                         fontSize: "14px",
                                         lineHeight: "25px",
@@ -326,7 +312,7 @@ const ResearchCenterPage: FC = () => {
                                         color: "#4A4646",}}>
                                         {(detail.item.filter(x => x.id === 'org_tools_ai')[0].value as DictionaryItemProps[]).map(value => value.name as string).join(', ')}&nbsp;&nbsp;&nbsp;&nbsp;
                                     </p>
-                                </Typography>
+                                </Grid>
                             </AccordionDetails>
                         </Accordion>
                     </Container>

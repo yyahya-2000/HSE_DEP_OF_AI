@@ -77,6 +77,7 @@ class ResearchCenterService {
           page: newPage,
           count: Math.ceil(total / defaultPaging.psize)
         }
+        this.totalResearchCenter = total
       })
     } catch (error) {
       console.log(error)

@@ -2,8 +2,7 @@ import { makeStyles } from 'tss-react/mui'
 
 export const useProductStyle = makeStyles()((theme) => ({
     title:{
-        fontFamily: "Inter",
-        fontStyle: "normal",
+
         fontWeight: 700,
         fontSize: "20px",
         lineHeight: "24px",
@@ -22,8 +21,6 @@ export const useProductStyle = makeStyles()((theme) => ({
         marginLeft: "53%",
     },
     text:{
-        fontFamily: "Inter",
-        fontStyle: "normal",
         fontWeight: 600,
         fontSize: "20px",
         lineHeight: "25px",
@@ -32,8 +29,6 @@ export const useProductStyle = makeStyles()((theme) => ({
 
     },
     value:{
-        fontFamily: "Inter",
-        fontStyle: "normal",
         fontWeight: 600,
         fontSize: "20px",
         lineHeight: "25px",
