@@ -81,13 +81,13 @@ const ProductPage: FC = () => {
                                 lineHeight: "25px",
                                 textAlign: "justify",
                                 color: "#4A4646",
-                            }}><p style={{
+                            }}><Typography style={{
                                 fontWeight: 400,
                                 fontSize: "14px",
                                 lineHeight: "25px",
                                 textTransform: "uppercase",
                                 color: "#5F52FA",
-                            }}>{detail.item.filter(x => x.id === 'product_type')[0].label as string}</p> {(detail.item.filter(x => x.id === 'product_type')[0].value[0] as DictionaryItemProps).name}
+                            }}>{detail.item.filter(x => x.id === 'product_type')[0].label as string}</Typography> {(detail.item.filter(x => x.id === 'product_type')[0].value[0] as DictionaryItemProps).name}
                             </Typography>}
                         <div className={classes.textcols}>
                             <div className={classes.textcolsLeft}>
@@ -98,13 +98,13 @@ const ProductPage: FC = () => {
                                         lineHeight: "25px",
                                         textAlign: "justify",
                                         color: "#4A4646",
-                                    }}><p style={{
+                                    }}><Typography style={{
                                         fontWeight: 400,
                                         fontSize: "14px",
                                         lineHeight: "25px",
                                         textTransform: "uppercase",
                                         color: "#5F52FA",
-                                    }}>{detail.item.filter(x => x.id === 'application_area')[0].label as string}</p>
+                                    }}>{detail.item.filter(x => x.id === 'application_area')[0].label as string}</Typography>
                                         <hr className={classes.line}/>
                                         {" "}
                                     </Typography> :
@@ -114,13 +114,13 @@ const ProductPage: FC = () => {
                                         lineHeight: "25px",
                                         textAlign: "justify",
                                         color: "#4A4646",
-                                    }}><p style={{
+                                    }}><Typography style={{
                                         fontWeight: 400,
                                         fontSize: "14px",
                                         lineHeight: "25px",
                                         textTransform: "uppercase",
                                         color: "#5F52FA",
-                                    }}>{detail.item.filter(x => x.id === 'application_area')[0].label as string}</p> {(detail.item.filter(x => x.id === 'application_area')[0].value as DictionaryItemProps[]).map(value => value.name as string).join('\n')}
+                                    }}>{detail.item.filter(x => x.id === 'application_area')[0].label as string}</Typography> {(detail.item.filter(x => x.id === 'application_area')[0].value as DictionaryItemProps[]).map(value => value.name as string).join('\n')}
                                     </Typography>}
                             </div>
                             <div className={classes.textcolsRight}>
@@ -131,13 +131,13 @@ const ProductPage: FC = () => {
                                         lineHeight: "25px",
                                         textAlign: "justify",
                                         color: "#4A4646",
-                                    }}><p style={{
+                                    }}><Typography style={{
                                         fontWeight: 400,
                                         fontSize: "14px",
                                         lineHeight: "25px",
                                         textTransform: "uppercase",
                                         color: "#5F52FA",
-                                    }}>{detail.item.filter(x => x.id === 'domain_ai')[0].label as string}</p>
+                                    }}>{detail.item.filter(x => x.id === 'domain_ai')[0].label as string}</Typography>
                                         <hr className={classes.line}/>
                                         {" "}
                                     </Typography> :
@@ -147,13 +147,13 @@ const ProductPage: FC = () => {
                                         lineHeight: "25px",
                                         textAlign: "justify",
                                         color: "#4A4646",
-                                    }}><p style={{
+                                    }}><Typography style={{
                                         fontWeight: 400,
                                         fontSize: "14px",
                                         lineHeight: "25px",
                                         textTransform: "uppercase",
                                         color: "#5F52FA",
-                                    }}>{detail.item.filter(x => x.id === 'domain_ai')[0].label as string}</p> {(detail.item.filter(x => x.id === 'domain_ai')[0].value as DictionaryItemProps[]).map(value => value.name as string).join('\n')}
+                                    }}>{detail.item.filter(x => x.id === 'domain_ai')[0].label as string}</Typography> {(detail.item.filter(x => x.id === 'domain_ai')[0].value as DictionaryItemProps[]).map(value => value.name as string).join('\n')}
                                     </Typography>}
                             </div>
                         </div>
@@ -190,10 +190,10 @@ const ProductPage: FC = () => {
                         </Accordion>
                         {detail.item.filter(x => x.id === 'subject')[0].value.length === 0 ?
                             <Grid className={'max-lines-1'}>
-                                <p className={classes.text} style={{display: "inline"}}>
+                                <Typography className={classes.text} style={{display: "inline"}}>
                                     {detail.item.filter(x => x.id === 'subject')[0].label as string}&nbsp;&nbsp;&nbsp;&nbsp;
-                                </p>
-                                <p style={{
+                                </Typography>
+                                <Typography style={{
                                     display: "inline",
                                     fontWeight: 400,
                                     fontSize: "14px",
@@ -202,13 +202,13 @@ const ProductPage: FC = () => {
                                     color: "#4A4646",
                                 }}>
                                     {" "}&nbsp;&nbsp;&nbsp;&nbsp;
-                                </p>
+                                </Typography>
                             </Grid> :
                             <Grid className={'max-lines-2'}>
-                                <p className={classes.text} style={{display: "inline"}}>
+                                <Typography className={classes.text} style={{display: "inline"}}>
                                     {detail.item.filter(x => x.id === 'subject')[0].label as string}&nbsp;&nbsp;&nbsp;&nbsp;
-                                </p>
-                                <p style={{
+                                </Typography>
+                                <Typography style={{
                                     display: "inline",
                                     fontWeight: 400,
                                     fontSize: "14px",
@@ -217,15 +217,15 @@ const ProductPage: FC = () => {
                                     color: "#4A4646",
                                 }}>
                                     {detail.item.filter(x => x.id === 'subject')[0].value[0] as string}&nbsp;&nbsp;&nbsp;&nbsp;
-                                </p>
+                                </Typography>
                             </Grid>
                         }
                         {detail.item.filter(x => x.id === 'product_russian')[0].value.length === 0 ?
                             <Grid className={'max-lines-1'}>
-                                <p className={classes.text} style={{display: "inline"}}>
+                                <Typography className={classes.text} style={{display: "inline"}}>
                                     {detail.item.filter(x => x.id === 'product_russian')[0].label as string}&nbsp;&nbsp;&nbsp;&nbsp;
-                                </p>
-                                <p style={{
+                                </Typography>
+                                <Typography style={{
                                     display: "inline",
                                     fontWeight: 400,
                                     fontSize: "14px",
@@ -234,13 +234,13 @@ const ProductPage: FC = () => {
                                     color: "#4A4646",
                                 }}>
                                     {" "}&nbsp;&nbsp;&nbsp;&nbsp;
-                                </p>
+                                </Typography>
                             </Grid> :
                             <Grid className={'max-lines-2'}>
-                                <p className={classes.text} style={{display: "inline"}}>
+                                <Typography className={classes.text} style={{display: "inline"}}>
                                     {detail.item.filter(x => x.id === 'product_russian')[0].label as string}&nbsp;&nbsp;&nbsp;&nbsp;
-                                </p>
-                                <p style={{
+                                </Typography>
+                                <Typography style={{
                                     display: "inline",
                                     fontWeight: 400,
                                     fontSize: "14px",
@@ -249,7 +249,7 @@ const ProductPage: FC = () => {
                                     color: "#4A4646",
                                 }}>
                                     {detail.item.filter(x => x.id === 'product_russian')[0].value[0] as string}&nbsp;&nbsp;&nbsp;&nbsp;
-                                </p>
+                                </Typography>
                             </Grid>
                         }
                     </Container>

@@ -77,38 +77,38 @@ const ResearchCenterPage: FC = () => {
                             marginBottom: "10px",
                         }} overflow={'hidden'}
                                     textOverflow={'ellipsis'}>{ detail.item.length &&detail.item.filter(x => x.id === 'common_org_name')[0].value[0] as string}</Typography>
-                        {/*<Typography><p>{detail.item.filter(x => x.id === 'uid')[0].label as string}</p><p>{detail.item.filter(x => x.id === 'uid')[0].value[0] as string}</p></Typography>*/}
+                        {/*<Typography><Typography>{detail.item.filter(x => x.id === 'uid')[0].label as string}</Typography><Typography>{detail.item.filter(x => x.id === 'uid')[0].value[0] as string}</Typography></Typography>*/}
                         <Grid>
-                            <p className={classes.text} style={{display: "inline"}}>
+                            <Typography className={classes.text} style={{display: "inline"}}>
                                 { detail.item.length &&detail.item.filter(x => x.id === 'org_ogrn')[0].label as string}&nbsp;&nbsp;&nbsp;&nbsp;
-                            </p>
-                            <p className={classes.value} style={{display: "inline"}}>
+                            </Typography>
+                            <Typography className={classes.value} style={{display: "inline"}}>
                                 { detail.item.length && detail.item.filter(x => x.id === 'org_ogrn')[0].value[0] as string}&nbsp;&nbsp;&nbsp;&nbsp;
-                            </p>
-                            <p className={classes.text} style={{display: "inline"}}>
+                            </Typography>
+                            <Typography className={classes.text} style={{display: "inline"}}>
                                 {detail.item.length && detail.item.filter(x => x.id === 'org_inn')[0].label as string}&nbsp;&nbsp;&nbsp;&nbsp;
-                            </p>
-                            <p className={classes.value} style={{display: "inline"}}>
+                            </Typography>
+                            <Typography className={classes.value} style={{display: "inline"}}>
                                 {detail.item.length && detail.item.filter(x => x.id === 'org_inn')[0].value[0] as string}&nbsp;&nbsp;&nbsp;&nbsp;
-                            </p>
-                            <p className={classes.text} style={{display: "inline"}}>
+                            </Typography>
+                            <Typography className={classes.text} style={{display: "inline"}}>
                                 {detail.item.length && detail.item.filter(x => x.id === 'org_date')[0].label as string}&nbsp;&nbsp;&nbsp;&nbsp;
-                            </p>
-                            <p className={classes.value} style={{display: "inline"}}>
+                            </Typography>
+                            <Typography className={classes.value} style={{display: "inline"}}>
                                 {detail.item.length && detail.item.filter(x => x.id === 'org_date')[0].value[0] as string}&nbsp;&nbsp;&nbsp;&nbsp;
-                            </p>
-                            <p className={classes.text} style={{display: "inline"}}>
+                            </Typography>
+                            <Typography className={classes.text} style={{display: "inline"}}>
                                 {detail.item.length && detail.item.filter(x => x.id === 'org_status')[0].label as string}&nbsp;&nbsp;&nbsp;&nbsp;
-                            </p>
-                            <p className={classes.value} style={{display: "inline"}}>
+                            </Typography>
+                            <Typography className={classes.value} style={{display: "inline"}}>
                                 { detail.item.length && (detail.item.filter(x => x.id === 'org_status')[0].value[0] as DictionaryItemProps).name as string}&nbsp;&nbsp;&nbsp;&nbsp;
-                            </p>
+                            </Typography>
                         </Grid>
                         <Grid>
-                            <p className={classes.text} style={{display: "inline"}}>
+                            <Typography className={classes.text} style={{display: "inline"}}>
                                 {detail.item.filter(x => x.id === 'org_form')[0].label as string}&nbsp;&nbsp;&nbsp;&nbsp;
-                            </p>
-                            <p className={'max-lines-1'} style={{display: "inline",
+                            </Typography>
+                            <Typography className={'max-lines-1'} style={{display: "inline",
                                 fontWeight: 600,
                                 fontSize: "20px",
                                 lineHeight: "25px",
@@ -116,15 +116,15 @@ const ResearchCenterPage: FC = () => {
                                 wordWrap: "break-word",
                             }} >
                                 {detail.item.filter(x => x.id === 'org_form')[0].value[0] as string}&nbsp;&nbsp;&nbsp;&nbsp;
-                            </p>
+                            </Typography>
                         </Grid>
                         <Grid>
-                            <p className={classes.text} style={{display: "inline"}}>
+                            <Typography className={classes.text} style={{display: "inline"}}>
                                 {detail.item.filter(x => x.id === 'org_size')[0].label as string}&nbsp;&nbsp;&nbsp;&nbsp;
-                            </p>
-                            <p className={classes.value} style={{display: "inline"}}>
+                            </Typography>
+                            <Typography className={classes.value} style={{display: "inline"}}>
                                 {(detail.item.filter(x => x.id === 'org_size')[0].value[0] as DictionaryItemProps).name as string}&nbsp;&nbsp;&nbsp;&nbsp;
-                            </p>
+                            </Typography>
                         </Grid>
                         <Accordion defaultExpanded={true}>
                             <AccordionSummary expandIcon={'>'}>
@@ -221,10 +221,10 @@ const ResearchCenterPage: FC = () => {
                             </AccordionSummary>
                             <AccordionDetails>
                                 <Grid>
-                                    <p className={classes.text} style={{display: "inline",}}>
+                                    <Typography className={classes.text} style={{display: "inline",}}>
                                         {detail.item.filter(x => x.id === 'org_okved')[0].label as string}&nbsp;
-                                    </p>
-                                    <p className={'max-lines-3'} style={{display: "inline",
+                                    </Typography>
+                                    <Typography className={'max-lines-3'} style={{display: "inline",
 
                                         fontWeight: 400,
                                         fontSize: "14px",
@@ -234,7 +234,7 @@ const ResearchCenterPage: FC = () => {
                                         wordWrap: "break-word",
                                     }}>
                                         {detail.item.filter(x => x.id === 'org_okved')[0].value[0] as string}&nbsp;&nbsp;&nbsp;&nbsp;
-                                    </p>
+                                    </Typography>
                                 </Grid>
                                 <Accordion defaultExpanded={true}>
                                     <AccordionSummary expandIcon={'>'}>
@@ -258,10 +258,10 @@ const ResearchCenterPage: FC = () => {
                             </AccordionSummary>
                             <AccordionDetails>
                                 <Grid className={'max-lines-1'} >
-                                    <p className={classes.text} style={{display: "inline"}}>
+                                    <Typography className={classes.text} style={{display: "inline"}}>
                                         {detail.item.filter(x => x.id === 'org_subject')[0].label as string}&nbsp;&nbsp;&nbsp;&nbsp;
-                                    </p>
-                                    <p style={{display: "inline",
+                                    </Typography>
+                                    <Typography style={{display: "inline",
 
                                         fontWeight: 400,
                                         fontSize: "14px",
@@ -269,13 +269,13 @@ const ResearchCenterPage: FC = () => {
                                         textAlign: "justify",
                                         color: "#4A4646",}}>
                                         {detail.item.filter(x => x.id === 'org_subject')[0].value[0] as string}&nbsp;&nbsp;&nbsp;&nbsp;
-                                    </p>
+                                    </Typography>
                                 </Grid>
                                 <Grid className={'max-lines-1'} >
-                                    <p className={classes.text} style={{display: "inline"}}>
+                                    <Typography className={classes.text} style={{display: "inline"}}>
                                         {detail.item.filter(x => x.id === 'org_competence_ai')[0].label as string}&nbsp;&nbsp;&nbsp;&nbsp;
-                                    </p>
-                                    <p style={{display: "inline",
+                                    </Typography>
+                                    <Typography style={{display: "inline",
 
                                         fontWeight: 400,
                                         fontSize: "14px",
@@ -283,13 +283,13 @@ const ResearchCenterPage: FC = () => {
                                         textAlign: "justify",
                                         color: "#4A4646",}}>
                                         {(detail.item.filter(x => x.id === 'org_competence_ai')[0].value as DictionaryItemProps[]).map(value => value.name as string).join(', ')}&nbsp;&nbsp;&nbsp;&nbsp;
-                                    </p>
+                                    </Typography>
                                 </Grid>
                                 <Grid className={'max-lines-1'} >
-                                    <p className={classes.text} style={{display: "inline"}}>
+                                    <Typography className={classes.text} style={{display: "inline"}}>
                                         {detail.item.filter(x => x.id === 'org_method_ai')[0].label as string}&nbsp;&nbsp;&nbsp;&nbsp;
-                                    </p>
-                                    <p className={classes.value} style={{display: "inline",
+                                    </Typography>
+                                    <Typography className={classes.value} style={{display: "inline",
 
                                         fontWeight: 400,
                                         fontSize: "14px",
@@ -297,13 +297,13 @@ const ResearchCenterPage: FC = () => {
                                         textAlign: "justify",
                                         color: "#4A4646",}}>
                                         {(detail.item.filter(x => x.id === 'org_method_ai')[0].value as DictionaryItemProps[]).map(value => value.name as string).join(', ')}&nbsp;&nbsp;&nbsp;&nbsp;
-                                    </p>
+                                    </Typography>
                                 </Grid>
                                 <Grid className={'max-lines-1'} >
-                                    <p className={classes.text} style={{display: "inline"}}>
+                                    <Typography className={classes.text} style={{display: "inline"}}>
                                         {detail.item.filter(x => x.id === 'org_tools_ai')[0].label as string}&nbsp;&nbsp;&nbsp;&nbsp;
-                                    </p>
-                                    <p style={{display: "inline",
+                                    </Typography>
+                                    <Typography style={{display: "inline",
 
                                         fontWeight: 400,
                                         fontSize: "14px",
@@ -311,7 +311,7 @@ const ResearchCenterPage: FC = () => {
                                         textAlign: "justify",
                                         color: "#4A4646",}}>
                                         {(detail.item.filter(x => x.id === 'org_tools_ai')[0].value as DictionaryItemProps[]).map(value => value.name as string).join(', ')}&nbsp;&nbsp;&nbsp;&nbsp;
-                                    </p>
+                                    </Typography>
                                 </Grid>
                             </AccordionDetails>
                         </Accordion>

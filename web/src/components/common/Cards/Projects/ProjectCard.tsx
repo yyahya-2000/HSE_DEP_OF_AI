@@ -41,28 +41,28 @@ const ProjectCard: FC<EntityItemProps> = ({ item }) => {
                             fontSize: "16px",
                             lineHeight: "25px",
                             textAlign: "justify",
-                            color: "#4A4646",}}><p style={{
+                            color: "#4A4646",}}><Typography style={{
                             display: "inline",
                             fontWeight: 400,
                             fontSize: "14px",
                             lineHeight: "25px",
                             textTransform: "uppercase",
                             color: "#5F52FA",
-                        }}>{item.filter(x => x.id === 'project_application_area')[0].label as string}&nbsp;&nbsp;&nbsp;&nbsp;</p>{" "}
+                        }}>{item.filter(x => x.id === 'project_application_area')[0].label as string}&nbsp;&nbsp;&nbsp;&nbsp;</Typography>{" "}
                         </Typography> :
                         <Typography style={{
                             fontWeight: 400,
                             fontSize: "16px",
                             lineHeight: "25px",
                             textAlign: "justify",
-                            color: "#4A4646",}}><p style={{
+                            color: "#4A4646",}}><Typography style={{
                             display: "inline",
                             fontWeight: 400,
                             fontSize: "14px",
                             lineHeight: "25px",
                             textTransform: "uppercase",
                             color: "#5F52FA",
-                        }}>{item.filter(x => x.id === 'project_application_area')[0].label as string}&nbsp;&nbsp;&nbsp;&nbsp;</p> {(item.filter(x => x.id === 'project_application_area')[0].value[0] as DictionaryItemProps).name}
+                        }}>{item.filter(x => x.id === 'project_application_area')[0].label as string}&nbsp;&nbsp;&nbsp;&nbsp;</Typography> {(item.filter(x => x.id === 'project_application_area')[0].value[0] as DictionaryItemProps).name}
                         </Typography>}
 
                     <hr className={classes.line}/>
@@ -87,28 +87,28 @@ const ProjectCard: FC<EntityItemProps> = ({ item }) => {
                             fontSize: "16px",
                             lineHeight: "25px",
                             textAlign: "justify",
-                            color: "#4A4646",}}><p style={{
+                            color: "#4A4646",}}><Typography style={{
                             display: "inline",
                             fontWeight: 400,
                             fontSize: "14px",
                             lineHeight: "25px",
                             textTransform: "uppercase",
                             color: "#5F52FA",
-                        }}>{item.filter(x => x.id === 'project_supervisor')[0].label as string}&nbsp;&nbsp;&nbsp;&nbsp;</p>{" "}
+                        }}>{item.filter(x => x.id === 'project_supervisor')[0].label as string}&nbsp;&nbsp;&nbsp;&nbsp;</Typography>{" "}
                         </Typography> :
                         <Typography style={{
                             fontWeight: 400,
                             fontSize: "16px",
                             lineHeight: "25px",
                             textAlign: "justify",
-                            color: "#4A4646",}}><p style={{
+                            color: "#4A4646",}}><Typography style={{
                             display: "inline",
                             fontWeight: 400,
                             fontSize: "14px",
                             lineHeight: "25px",
                             textTransform: "uppercase",
                             color: "#5F52FA",
-                        }}>{item.filter(x => x.id === 'project_supervisor')[0].label as string}&nbsp;&nbsp;&nbsp;&nbsp;</p> {(item.filter(x => x.id === 'project_supervisor')[0].value[0] as DictionaryItemProps).name}
+                        }}>{item.filter(x => x.id === 'project_supervisor')[0].label as string}&nbsp;&nbsp;&nbsp;&nbsp;</Typography> {(item.filter(x => x.id === 'project_supervisor')[0].value[0] as DictionaryItemProps).name}
                         </Typography>}
 
                     <Container style={{marginLeft: "90%"}}>

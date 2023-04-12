@@ -6,7 +6,7 @@ import {Box, Card, Container, Grid, Tab, Typography} from "@mui/material";
 import {EntityItemProps, DictionaryItemProps} from "types";
 import useProductCardStyle from "./ProductCard.styles";
 import {PinkButton} from "../../Buttons";
-import {TabContext, TabList, TabPanel} from "@mui/lab";
+
 
 const ProductCard: FC<EntityItemProps> = ({item}) => {
     const {classes} = useProductCardStyle();
@@ -26,28 +26,28 @@ const ProductCard: FC<EntityItemProps> = ({item}) => {
                         fontSize: "16px",
                         lineHeight: "25px",
                         textAlign: "justify",
-                        color: "#4A4646",}}><p style={{
+                        color: "#4A4646",}}><Typography style={{
                         display: "inline",
                         fontWeight: 400,
                         fontSize: "14px",
                         lineHeight: "25px",
                         textTransform: "uppercase",
                         color: "#5F52FA",
-                    }}>{item.filter(x => x.id === 'product_type')[0].label as string}&nbsp;&nbsp;&nbsp;&nbsp;</p>{" "}
+                    }}>{item.filter(x => x.id === 'product_type')[0].label as string}&nbsp;&nbsp;&nbsp;&nbsp;</Typography>{" "}
                     </Typography> :
                     <Typography style={{
                         fontWeight: 400,
                         fontSize: "16px",
                         lineHeight: "25px",
                         textAlign: "justify",
-                        color: "#4A4646",}}><p style={{
+                        color: "#4A4646",}}><Typography style={{
                         display: "inline",
                         fontWeight: 400,
                         fontSize: "14px",
                         lineHeight: "25px",
                         textTransform: "uppercase",
                         color: "#5F52FA",
-                    }}>{item.filter(x => x.id === 'product_type')[0].label as string}&nbsp;&nbsp;&nbsp;&nbsp;</p> {(item.filter(x => x.id === 'product_type')[0].value[0] as DictionaryItemProps).name}
+                    }}>{item.filter(x => x.id === 'product_type')[0].label as string}&nbsp;&nbsp;&nbsp;&nbsp;</Typography> {(item.filter(x => x.id === 'product_type')[0].value[0] as DictionaryItemProps).name}
                     </Typography>}
                 {item.filter(x => x.id === 'application_area')[0].value.length === 0 ?
                     <Typography style={{
@@ -55,28 +55,28 @@ const ProductCard: FC<EntityItemProps> = ({item}) => {
                         fontSize: "16px",
                         lineHeight: "25px",
                         textAlign: "justify",
-                        color: "#4A4646",}}><p style={{
+                        color: "#4A4646",}}><Typography style={{
                         display: "inline",
                         fontWeight: 400,
                         fontSize: "14px",
                         lineHeight: "25px",
                         textTransform: "uppercase",
                         color: "#5F52FA",
-                    }}>{item.filter(x => x.id === 'application_area')[0].label as string}&nbsp;&nbsp;&nbsp;&nbsp;</p>{" "}
+                    }}>{item.filter(x => x.id === 'application_area')[0].label as string}&nbsp;&nbsp;&nbsp;&nbsp;</Typography>{" "}
                     </Typography> :
                     <Typography style={{
                         fontWeight: 400,
                         fontSize: "16px",
                         lineHeight: "25px",
                         textAlign: "justify",
-                        color: "#4A4646",}}><p style={{
+                        color: "#4A4646",}}><Typography style={{
                         display: "inline",
                         fontWeight: 400,
                         fontSize: "14px",
                         lineHeight: "25px",
                         textTransform: "uppercase",
                         color: "#5F52FA",
-                    }}>{item.filter(x => x.id === 'application_area')[0].label as string}&nbsp;&nbsp;&nbsp;&nbsp;</p> {(item.filter(x => x.id === 'application_area')[0].value[0] as DictionaryItemProps).name}
+                    }}>{item.filter(x => x.id === 'application_area')[0].label as string}&nbsp;&nbsp;&nbsp;&nbsp;</Typography> {(item.filter(x => x.id === 'application_area')[0].value[0] as DictionaryItemProps).name}
                     </Typography>}
 
                 <hr className={classes.line}/>
