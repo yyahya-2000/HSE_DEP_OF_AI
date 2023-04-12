@@ -1,16 +1,20 @@
-import {FC} from "react";
+import {FC, useState} from "react";
 import {Link} from "react-router-dom";
 import {scrollTopPage} from "utils";
 import {routers} from "routers";
-import {Card, Container, Grid, Typography} from "@mui/material";
+import {Box, Card, Container, Grid, Tab, Typography} from "@mui/material";
 import {EntityItemProps, DictionaryItemProps} from "types";
 import useProductCardStyle from "./ProductCard.styles";
 import {PinkButton} from "../../Buttons";
+import {TabContext, TabList, TabPanel} from "@mui/lab";
 
 const ProductCard: FC<EntityItemProps> = ({item}) => {
     const {classes} = useProductCardStyle();
 
+
     return (
+
+
 
         <Card>
             <Container>
