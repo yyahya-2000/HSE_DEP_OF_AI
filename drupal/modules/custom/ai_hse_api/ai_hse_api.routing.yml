@@ -313,3 +313,12 @@ ai_hse_api.api.filter_fields:
     _title: ''
   requirements:
     _access: 'TRUE'
+
+ai_hse_api.api.search:
+  path: '/api/search'
+  methods: [ GET ]
+  defaults:
+    _controller: '\Drupal\ai_hse_api\controller\APIController::search'
+    _title: ''
+  requirements:
+    _access: 'TRUE'
