@@ -557,7 +557,7 @@ class APIController extends ControllerBase
     $res = [];
     foreach ($bundles as $bundle) {
       $this->setFilterParamsForSearchByBundle($bundle, $text);
-      $this->setAnswerParams(self::ORG_ROLE_TAX_ID);
+      $this->setAnswerParams($bundle);
       $res[$bundle] = ['status' => $this->status, 'data' => $this->data, 'total' => $this->total];
     }
 
