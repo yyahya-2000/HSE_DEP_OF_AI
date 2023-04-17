@@ -63,12 +63,15 @@ class APIController extends ControllerBase
     $this->lang = $request->get('lang') == 'en' ? 'en' : 'ru';
     $this->page = intval($request->get('page'));
     $this->filterParams = array_diff_key($request->query->all(), array_flip(['lang', 'page', 'psize']));
-    if (!key_exists('nid', $this->filterParams) && !key_exists('tid', $this->filterParams)) {
-      $this->viewMode = 'teaser';
-    }
     if ($this->page < 0) $this->page = 0;
     $this->psize = intval($request->get('psize'));
     if ($this->psize < 0) $this->psize = 10;
+    if (!key_exists('nid', $this->filterParams) && !key_exists('tid', $this->filterParams)) {
+      $this->viewMode = 'teaser';
+    }
+    else {
+      $this->psize = 1;
+    }
   }
 
   private function setAnswerParams(string $bundle, string $etityType = 'node'): void
