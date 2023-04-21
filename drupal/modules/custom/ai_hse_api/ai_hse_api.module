@@ -1,1 +1,15 @@
 <?php
+
+use Drupal\Core\Url;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+
+/**
+ * Implements hook_node_delete().
+ */
+function ai_hse_api_node_delete($node) {
+    // Redirect to the home page after deleting a content.
+    $url = Url::fromRoute('system.admin_content');
+    $response = new RedirectResponse($url->toString());
+    $response->send();
+    return;
+}
