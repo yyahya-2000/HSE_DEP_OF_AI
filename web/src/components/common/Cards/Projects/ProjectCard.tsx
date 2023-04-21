@@ -13,14 +13,14 @@ const ProjectCard: FC<EntityItemProps> = ({item}) => {
 
     const fields = item.map((field) => {
 
-        if (field.type === 'string' && field.label.length !== 0) {
+        if (field.type === 'string' && field.value.length !== 0) {
             return (
                 <Grid item width={'100%'} className={classes.title}>
                     {field.value.map(value => value)}
                 </Grid>
             )
         }
-        if (field.type === 'text_long' && field.label.length !== 0) {
+        if (field.type === 'text_long' && field.value.length !== 0) {
             if (field.label === 'Описание проекта') {
                 return (
                     <Grid item width={'100%'}>
@@ -39,7 +39,7 @@ const ProjectCard: FC<EntityItemProps> = ({item}) => {
             }
 
         }
-        if (field.type === 'entity_reference' && field.label.length !== 0) {
+        if (field.type === 'entity_reference' && field.value.length !== 0) {
             if (field.label === 'Руководитель') {
                 return (
                     <Grid item width={'100%'}>
