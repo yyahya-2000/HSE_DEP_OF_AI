@@ -100,6 +100,7 @@ class ResultMapper
                 case 'datetime':
                 case 'email':
                 case 'decimal':
+                case 'phone_number':
                     //default:
                     $values[] = $fieldEntity->get($i)->value;
                     break;
