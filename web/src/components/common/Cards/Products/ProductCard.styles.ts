@@ -9,15 +9,21 @@ export const useProductCardStyle = makeStyles()((theme) => ({
         color: "#4A4646",
         marginBottom: "10px",
     },
-    category:{
-        fontWeight: 400,
-        fontSize: "14px",
-        lineHeight: "30px",
-        color: "#4A4646"
-    },
     line:{
         border: "1px solid #D9D9D9"
     },
+    desc:{
+        color: "#4A4646"
+    },
+    label:{
+        display: "inline",
+        textTransform: "uppercase",
+        color: "#5F52FA"
+    },
+    value:{
+        display: "inline",
+        color: "#4A4646"
+    }
 
 }));
 

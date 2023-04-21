@@ -12,6 +12,18 @@ export const useProjectCardStyle = makeStyles()((theme) => ({
     line:{
         border: "1px solid #D9D9D9"
     },
+    desc:{
+        color: "#4A4646"
+    },
+    label:{
+        display: "inline",
+        textTransform: "uppercase",
+        color: "#5F52FA"
+    },
+    value:{
+        display: "inline",
+        color: "#4A4646"
+    }
 }));
 
 export default useProjectCardStyle;
