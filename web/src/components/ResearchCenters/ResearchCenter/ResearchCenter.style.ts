@@ -2,37 +2,31 @@ import { makeStyles } from 'tss-react/mui'
 
 export const useResearchCenterStyle = makeStyles()((theme) => ({
     title:{
-        fontWeight: 700,
+        fontWeight: 600,
         fontSize: "20px",
         lineHeight: "24px",
         textTransform: "uppercase",
         color: "#4A4646",
-        marginBottom: "10px"
+        marginBottom: "10px",
     },
-    textcols:{
-        overflow: "hidden"
+    line:{
+        border: "1px solid #D9D9D9"
     },
-    textcolsLeft:{
-        float: "left",
-        width: "51%",
-    },
-    textcolsRight:{
-        marginLeft: "53%",
-    },
-    text:{
-        fontWeight: 600,
-        fontSize: "20px",
-        lineHeight: "25px",
-        textTransform: "uppercase",
+    desc:{
         color: "#4A4646"
-
+    },
+    label:{
+        textTransform: "uppercase",
+        color: "#5F52FA"
+    },
+    labelEntity:{
+        display: "inline",
+        textTransform: "uppercase",
+        color: "#5F52FA"
     },
     value:{
-
-        fontWeight: 600,
-        fontSize: "20px",
-        lineHeight: "25px",
-        color: "#5F52FA"
+        display: "inline",
+        color: "#4A4646",
     }
 }));
 

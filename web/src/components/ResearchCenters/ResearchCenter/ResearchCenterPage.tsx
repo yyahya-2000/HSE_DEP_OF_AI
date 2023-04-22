@@ -33,26 +33,238 @@ const ResearchCenterPage: FC = () => {
         };
     }, []);
 
-    const fields = detail.item.map((field, index) => {
-        let val = ''
-        for (let index in field.value) {
-            if (field.type === 'link') {
-                const link = field.value[index] as LinkProps
-                val += `[ Url: ${link.url}, Text:  ${link.text} ], `
-            }
-            else if (field.type !== 'entity_reference') {
-                val += field.value[index] + ', '
-            }
-            else {
-                const dic = field.value[index] as DictionaryItemProps
-                val += `[ ID: ${dic.id}, Name:  ${dic.name}, Bundle: ${dic.bundle}, Description: ${dic.description}], `
-            }
+    const fieldsTitles = detail.item.map((field, index) => {
+        if ((field.label === 'Название организации' || field.label === 'Общепринятое название организации') && field.value.length !== 0) {
+            return (
+                <Grid item key={index} width={'100%'} style={{overflow: "hidden"}}>
+                    <Typography className={classes.title}
+                                textOverflow={'ellipsis'}>{field.value.map(val => val)}</Typography>
+                </Grid>
+            )
+
         }
-        return (
-            <Grid key={index} className={'max-lines-2'} overflow={'hidden'} textOverflow={'ellipsis'}>
-                {`${field.id} => Type: ${field.type}, Label:${field.label}, Value: ${val}`}
-            </Grid>
-        )
+    })
+
+    const fieldsDescription = detail.item.map((field, index) => {
+        if (field.type === 'text_long' && field.value.length !== 0) {
+            return (
+                <Accordion defaultExpanded={true}>
+                    <AccordionSummary expandIcon={'>'}>
+                        <div id="home-carousel">
+                            <div className='carousel__Head'>
+                                <div className='carousel__Head__text'>
+                                    {'описание'.toUpperCase()}
+                                </div>
+                            </div>
+                        </div>
+                    </AccordionSummary>
+                    <AccordionDetails>
+                        <Typography key={index} className={classes.desc}>{field.value.map(value => value)}</Typography>
+                    </AccordionDetails>
+                </Accordion>
+            )
+
+        }
+    })
+
+    const fieldsLeft = detail.item.map((field, index) => {
+        if ((field.type === 'bigint' || field.type === 'datetime') && field.value.length !== 0) {
+            return (
+                <Grid item key={index} width={'100%'} style={{overflow: "hidden"}}>
+                    <Typography className={classes.label}>{field.label}</Typography>
+                    <Typography className={classes.value}
+                                textOverflow={'ellipsis'}>{field.value.map(value => value)}</Typography>
+                </Grid>
+            )
+
+        }
+    })
+    const fieldsRight = detail.item.map((field, index) => {
+        if ((field.label === 'Размер организации' || field.label === 'Статус') && field.value.length !== 0) {
+            return (
+                <Grid item key={index} width={'100%'} style={{overflow: "hidden"}}>
+                    <Typography className={classes.label}>{field.label}</Typography>
+                    <Typography className={classes.value}
+                                textOverflow={'ellipsis'}>{field.value.map(value => value.name)}</Typography>
+                </Grid>
+            )
+        }
+        if (field.label === 'Организационно-правовая форма' && field.value.length !== 0) {
+            return (
+                <Grid item key={index} width={'100%'} style={{overflow: "hidden"}}>
+                    <Typography className={classes.label}>{field.label}</Typography>
+                    <Typography className={classes.value}
+                                textOverflow={'ellipsis'}>{field.value.map(value => value)}</Typography>
+                </Grid>
+            )
+        }
+    })
+
+    const fieldsLeftContact = detail.item.map((field, index) => {
+        if ((field.label === 'Местоположение' || field.label === 'Юридический  адрес') && field.value.length !== 0) {
+            return (
+                <Grid item key={index} width={'100%'} style={{overflow: "hidden"}}>
+                    <Typography className={classes.label}>{field.label}</Typography>
+                    <Typography className={classes.value}
+                                textOverflow={'ellipsis'}>{field.value.map(value => value)}</Typography>
+                </Grid>
+            )
+        }
+    })
+    const fieldsRightContact = detail.item.map((field, index) => {
+        if (field.type === 'link' && field.value.length !== 0) {
+            return (
+                <Grid item key={index} width={'100%'} style={{overflow: "hidden"}}>
+                    <Typography className={classes.label}>{field.label}</Typography>
+                    <Typography className={classes.value}
+                                textOverflow={'ellipsis'}>{field.value.map(value => value.url).join(', ')}</Typography>
+                </Grid>
+            )
+        }
+        if (field.type === 'email' && field.value.length !== 0) {
+            return (
+                <Grid item key={index} width={'100%'} style={{overflow: "hidden"}}>
+                    <Typography className={classes.label}>{field.label}</Typography>
+                    <Typography className={classes.value}
+                                textOverflow={'ellipsis'}>{field.value.map(value => value)}</Typography>
+                </Grid>
+            )
+        }
+        if (field.type === 'phone_number' && field.value.length !== 0) {
+            return (
+                <Grid item key={index} width={'100%'} style={{overflow: "hidden"}}>
+                    <Typography className={classes.label}>{field.label}</Typography>
+                    <Typography className={classes.value}
+                                textOverflow={'ellipsis'}>{field.value.map(value => value)}</Typography>
+                </Grid>
+            )
+        }
+        if (field.label === 'ФИО руководителя организации' && field.value.length !== 0) {
+            return (
+                <Grid item key={index} width={'100%'} style={{overflow: "hidden"}}>
+                    <Typography className={classes.label}>{field.label}</Typography>
+                    <Typography className={classes.value}
+                                textOverflow={'ellipsis'}>{field.value.map(value => value)}</Typography>
+                </Grid>
+            )
+        }
+    })
+    const fieldsLeftResearchCenter = detail.item.map((field, index) => {
+        if (field.label === 'Основной вид деятельности' && field.value.length !== 0) {
+            return (
+                <Grid item key={index} width={'100%'} style={{overflow: "hidden"}}>
+                    <Typography className={classes.label}>{field.label}</Typography>
+                    <Typography className={classes.value}
+                                textOverflow={'ellipsis'}>{field.value.map(value => value)}</Typography>
+                </Grid>
+            )
+        }
+        if (field.label === 'Дополнительный вид деятельности' && field.value.length !== 0) {
+            return (
+                <Accordion defaultExpanded={true}>
+                    <AccordionSummary expandIcon={'>'}>
+                        <Typography className={classes.title}>{field.label}</Typography>
+                    </AccordionSummary>
+                    <AccordionDetails style={{overflow: "hidden"}}>
+                        <Typography key={index} className={classes.value}
+                                    textOverflow={'ellipsis'}>{field.value.map(value => value)}</Typography>
+                    </AccordionDetails>
+                </Accordion>
+            )
+        }
+        if (field.type === 'string_long' && field.value.length !== 0) {
+            return (
+                <Accordion defaultExpanded={true}>
+                    <AccordionSummary expandIcon={'>'}>
+                        <Typography className={classes.title}>{field.label}</Typography>
+                    </AccordionSummary>
+                    <AccordionDetails style={{overflow: "hidden"}}>
+                        <Typography key={index} className={classes.value}
+                                    textOverflow={'ellipsis'}>{field.value.map(value => value)}</Typography>
+                    </AccordionDetails>
+                </Accordion>
+            )
+        }
+    })
+    const fieldsRightResearchCenter = detail.item.map((field, index) => {
+        if (field.label === 'ИИ-область' && field.value.length !== 0) {
+            return (
+                <Grid item key={index} width={'100%'} style={{overflow: "hidden"}}>
+                    <Typography className={classes.label}>{field.label}</Typography>
+                    <Typography className={classes.value}
+                                textOverflow={'ellipsis'}>{field.value.map(value => value.name).join(', ')}</Typography>
+                </Grid>
+            )
+        }
+        if (field.label === 'Метод ИИ' && field.value.length !== 0) {
+            return (
+                <Grid item key={index} width={'100%'} style={{overflow: "hidden"}}>
+                    <Typography className={classes.label}>{field.label}</Typography>
+                    <Typography className={classes.value}
+                                textOverflow={'ellipsis'}>{field.value.map(value => value.name).join(', ')}</Typography>
+                </Grid>
+            )
+        }
+        if (field.label === 'Инструмент ИИ' && field.value.length !== 0) {
+            return (
+                <Grid item key={index} width={'100%'} style={{overflow: "hidden"}}>
+                    <Typography className={classes.label}>{field.label}</Typography>
+                    <Typography className={classes.value}
+                                textOverflow={'ellipsis'}>{field.value.map(value => value.name).join(', ')}</Typography>
+                </Grid>
+            )
+        }
+    })
+
+    const fieldsLeftCount = detail.item.map((field, index) => {
+        if (field.type === 'decimal' && field.value.length !== 0) {
+            return (
+                <Grid item key={index} width={'100%'} style={{overflow: "hidden"}}>
+                    <Typography className={classes.label}>{field.label}</Typography>
+                    <Typography className={classes.value}
+                                textOverflow={'ellipsis'}>{field.value.map(value => value)}</Typography>
+                </Grid>
+            )
+        }
+    })
+
+    const fieldsRightCount = detail.item.map((field, index) => {
+        if (field.type === 'integer' && field.label !== 'ID' && field.value.length !== 0) {
+            return (
+                <Grid item key={index} width={'100%'} style={{overflow: "hidden"}}>
+                    <Typography className={classes.label}>{field.label}</Typography>
+                    <Typography className={classes.value}
+                                textOverflow={'ellipsis'}>{field.value.map(value => value)}</Typography>
+                </Grid>
+            )
+        }
+    })
+
+    const fieldsJob = detail.item.map((field, index) => {
+        if (field.label === 'Доклады' || field.label === 'Публикации') {
+            return (
+                <Accordion defaultExpanded={true}>
+                    <AccordionSummary expandIcon={'>'}>
+                        <div id="home-carousel">
+                            <div className='carousel__Head'>
+                                <div className='carousel__Head__text'>
+                                    {field.label.toUpperCase()}
+                                </div>
+                            </div>
+                        </div>
+                    </AccordionSummary>
+                    <AccordionDetails>
+
+
+                        <Typography key={index} className={classes.value}
+                                    textOverflow={'ellipsis'}>{field.value.map(value => value.name).join(', ')}</Typography>
+
+
+                    </AccordionDetails>
+                </Accordion>
+            )
+
+        }
     })
     return <>
 
@@ -64,67 +276,14 @@ const ResearchCenterPage: FC = () => {
                     <Header />
                     <Breadcrumb />
                     <Container >
-                        <Typography
-                            className={classes.title}>{detail.item.filter(x => x.id === 'title')[0].value[0] as string}</Typography>
-                        <Typography className={'max-lines-4'} style={{
-                            width: "650px",
-                            fontWeight: 600,
-                            fontSize: "20px",
-                            lineHeight: "20px",
-                            textTransform: "uppercase",
-                            color: "#4A4646",
-                            wordWrap: "break-word",
-                            marginBottom: "10px",
-                        }} overflow={'hidden'}
-                                    textOverflow={'ellipsis'}>{ detail.item.length &&detail.item.filter(x => x.id === 'common_org_name')[0].value[0] as string}</Typography>
-                        {/*<Typography><Typography>{detail.item.filter(x => x.id === 'uid')[0].label as string}</Typography><Typography>{detail.item.filter(x => x.id === 'uid')[0].value[0] as string}</Typography></Typography>*/}
-                        <Grid>
-                            <Typography className={classes.text} style={{display: "inline"}}>
-                                { detail.item.length &&detail.item.filter(x => x.id === 'org_ogrn')[0].label as string}&nbsp;&nbsp;&nbsp;&nbsp;
-                            </Typography>
-                            <Typography className={classes.value} style={{display: "inline"}}>
-                                { detail.item.length && detail.item.filter(x => x.id === 'org_ogrn')[0].value[0] as string}&nbsp;&nbsp;&nbsp;&nbsp;
-                            </Typography>
-                            <Typography className={classes.text} style={{display: "inline"}}>
-                                {detail.item.length && detail.item.filter(x => x.id === 'org_inn')[0].label as string}&nbsp;&nbsp;&nbsp;&nbsp;
-                            </Typography>
-                            <Typography className={classes.value} style={{display: "inline"}}>
-                                {detail.item.length && detail.item.filter(x => x.id === 'org_inn')[0].value[0] as string}&nbsp;&nbsp;&nbsp;&nbsp;
-                            </Typography>
-                            <Typography className={classes.text} style={{display: "inline"}}>
-                                {detail.item.length && detail.item.filter(x => x.id === 'org_date')[0].label as string}&nbsp;&nbsp;&nbsp;&nbsp;
-                            </Typography>
-                            <Typography className={classes.value} style={{display: "inline"}}>
-                                {detail.item.length && detail.item.filter(x => x.id === 'org_date')[0].value[0] as string}&nbsp;&nbsp;&nbsp;&nbsp;
-                            </Typography>
-                            <Typography className={classes.text} style={{display: "inline"}}>
-                                {detail.item.length && detail.item.filter(x => x.id === 'org_status')[0].label as string}&nbsp;&nbsp;&nbsp;&nbsp;
-                            </Typography>
-                            <Typography className={classes.value} style={{display: "inline"}}>
-                                { detail.item.length && (detail.item.filter(x => x.id === 'org_status')[0].value[0] as DictionaryItemProps).name as string}&nbsp;&nbsp;&nbsp;&nbsp;
-                            </Typography>
-                        </Grid>
-                        <Grid>
-                            <Typography className={classes.text} style={{display: "inline"}}>
-                                {detail.item.filter(x => x.id === 'org_form')[0].label as string}&nbsp;&nbsp;&nbsp;&nbsp;
-                            </Typography>
-                            <Typography className={'max-lines-1'} style={{display: "inline",
-                                fontWeight: 600,
-                                fontSize: "20px",
-                                lineHeight: "25px",
-                                color: "#5F52FA",
-                                wordWrap: "break-word",
-                            }} >
-                                {detail.item.filter(x => x.id === 'org_form')[0].value[0] as string}&nbsp;&nbsp;&nbsp;&nbsp;
-                            </Typography>
-                        </Grid>
-                        <Grid>
-                            <Typography className={classes.text} style={{display: "inline"}}>
-                                {detail.item.filter(x => x.id === 'org_size')[0].label as string}&nbsp;&nbsp;&nbsp;&nbsp;
-                            </Typography>
-                            <Typography className={classes.value} style={{display: "inline"}}>
-                                {(detail.item.filter(x => x.id === 'org_size')[0].value[0] as DictionaryItemProps).name as string}&nbsp;&nbsp;&nbsp;&nbsp;
-                            </Typography>
+                        {fieldsTitles}
+                        <Grid container>
+                            <Grid item width={'48%'}>
+                                {fieldsLeft}
+                            </Grid>
+                            <Grid item width={'50%'}>
+                                {fieldsRight}
+                            </Grid>
                         </Grid>
                         <Accordion defaultExpanded={true}>
                             <AccordionSummary expandIcon={'>'}>
@@ -137,74 +296,42 @@ const ResearchCenterPage: FC = () => {
                                 </div>
                             </AccordionSummary>
                             <AccordionDetails>
-                                <div className={classes.textcols}>
-                                    <div className={classes.textcolsLeft}>
-                                        <Typography className={'max-lines-1'} style={{
-                                            fontWeight: 600,
-                                            fontSize: "20px",
-                                            lineHeight: "25px",
-                                            textTransform: "uppercase",
-                                            color: "#4A4646",
-                                            wordWrap: "break-word",
-                                        }} overflow={'hidden'}
-                                                    textOverflow={'ellipsis'}>{detail.item.filter(x => x.id === 'org_location')[0].label as string}</Typography>
-                                        <Typography className={'max-lines-1'} style={{
-                                            fontWeight: 400,
-                                            fontSize: "14px",
-                                            lineHeight: "25px",
-                                            textTransform: "uppercase",
-                                            color: "#4A4646",
-                                            wordWrap: "break-word",
-                                        }} overflow={'hidden'}
-                                                    textOverflow={'ellipsis'}>{detail.item.filter(x => x.id === 'org_location')[0].value[0] as string}</Typography>
-                                        <Typography className={classes.text}>{detail.item.filter(x => x.id === 'org_website')[0].label as string}</Typography>
-                                        <Typography className={'max-lines-1'} style={{
-                                            fontWeight: 400,
-                                            fontSize: "14px",
-                                            lineHeight: "25px",
-                                            textTransform: "uppercase",
-                                            color: "#5F52FA",
-                                            wordWrap: "break-word",
-                                            textDecorationLine: "underline",
-                                        }} overflow={'hidden'}
-                                                    textOverflow={'ellipsis'}>{(detail.item.filter(x => x.id === 'org_website')[0].value as LinkProps[]).map(urls => urls.url as string)}</Typography>
-                                        <Typography className={classes.text}>{detail.item.filter(x => x.id === 'org_email')[0].label as string}</Typography>
-                                        <Typography className={'max-lines-1'} style={{
-                                            fontWeight: 400,
-                                            fontSize: "14px",
-                                            lineHeight: "25px",
-                                            textTransform: "uppercase",
-                                            color: "#4A4646",
-                                            wordWrap: "break-word",
-                                        }} overflow={'hidden'}
-                                                    textOverflow={'ellipsis'}>{detail.item.filter(x => x.id === 'org_email')[0].value.map(email => email as string).join(', ')}</Typography>
-                                    </div>
-                                    <div className={classes.textcolsRight}>
 
-                                    </div>
-                                </div>
+                                <Grid container>
+                                    <Grid item width={'48%'}>
+                                        {fieldsLeftContact}
+                                    </Grid>
+                                    <Grid item width={'50%'}>
+                                        {fieldsRightContact}
+                                    </Grid>
+                                </Grid>
+
                             </AccordionDetails>
                         </Accordion>
+
+                        {fieldsDescription}
+
+
                         <Accordion defaultExpanded={true}>
                             <AccordionSummary expandIcon={'>'}>
                                 <div id="home-carousel">
                                     <div className='carousel__Head'>
                                         <div className='carousel__Head__text'>
-                                            {'описание'.toUpperCase()}
+                                            {'информация об организации'.toUpperCase()}
                                         </div>
                                     </div>
                                 </div>
                             </AccordionSummary>
                             <AccordionDetails>
 
-                                <Typography style={{
-                                    fontWeight: 400,
-                                    fontSize: "14px",
-                                    lineHeight: "25px",
-                                    textAlign: "justify",
-                                    color: "#4A4646",
-                                    wordWrap: "break-word",
-                                }}>{detail.item.filter(x => x.id === 'org_desc')[0].value[0] as string}</Typography>
+                                <Grid container>
+                                    <Grid item width={'48%'}>
+                                        {fieldsLeftResearchCenter}
+                                    </Grid>
+                                    <Grid item width={'50%'}>
+                                        {fieldsRightResearchCenter}
+                                    </Grid>
+                                </Grid>
 
                             </AccordionDetails>
                         </Accordion>
@@ -214,107 +341,25 @@ const ResearchCenterPage: FC = () => {
                                 <div id="home-carousel">
                                     <div className='carousel__Head'>
                                         <div className='carousel__Head__text'>
-                                            {'леятельность'.toUpperCase()}
+                                            {'цифры'.toUpperCase()}
                                         </div>
                                     </div>
                                 </div>
                             </AccordionSummary>
                             <AccordionDetails>
-                                <Grid>
-                                    <Typography className={classes.text} style={{display: "inline",}}>
-                                        {detail.item.filter(x => x.id === 'org_okved')[0].label as string}&nbsp;
-                                    </Typography>
-                                    <Typography className={'max-lines-3'} style={{display: "inline",
-
-                                        fontWeight: 400,
-                                        fontSize: "14px",
-                                        lineHeight: "25px",
-                                        textAlign: "justify",
-                                        color: "#4A4646",
-                                        wordWrap: "break-word",
-                                    }}>
-                                        {detail.item.filter(x => x.id === 'org_okved')[0].value[0] as string}&nbsp;&nbsp;&nbsp;&nbsp;
-                                    </Typography>
-                                </Grid>
-                                <Accordion defaultExpanded={true}>
-                                    <AccordionSummary expandIcon={'>'}>
-                                        <Typography className={classes.text}>{detail.item.filter(x => x.id === 'org_okved_add')[0].label as string}</Typography>
-                                    </AccordionSummary>
-                                    <AccordionDetails>
-                                        <Typography className={'max-lines-2'}>{detail.item.filter(x => x.id === 'org_okved_add')[0].value.map(value => value as string).join(', ')}</Typography>
-                                    </AccordionDetails>
-                                </Accordion>
-                            </AccordionDetails>
-                        </Accordion>
-                        <Accordion defaultExpanded={true}>
-                            <AccordionSummary expandIcon={'>'}>
-                                <div id="home-carousel">
-                                    <div className='carousel__Head'>
-                                        <div className='carousel__Head__text'>
-                                            {'искусственный интеллект'.toUpperCase()}
-                                        </div>
-                                    </div>
-                                </div>
-                            </AccordionSummary>
-                            <AccordionDetails>
-                                <Grid className={'max-lines-1'} >
-                                    <Typography className={classes.text} style={{display: "inline"}}>
-                                        {detail.item.filter(x => x.id === 'org_subject')[0].label as string}&nbsp;&nbsp;&nbsp;&nbsp;
-                                    </Typography>
-                                    <Typography style={{display: "inline",
-
-                                        fontWeight: 400,
-                                        fontSize: "14px",
-                                        lineHeight: "25px",
-                                        textAlign: "justify",
-                                        color: "#4A4646",}}>
-                                        {detail.item.filter(x => x.id === 'org_subject')[0].value[0] as string}&nbsp;&nbsp;&nbsp;&nbsp;
-                                    </Typography>
-                                </Grid>
-                                <Grid className={'max-lines-1'} >
-                                    <Typography className={classes.text} style={{display: "inline"}}>
-                                        {detail.item.filter(x => x.id === 'org_competence_ai')[0].label as string}&nbsp;&nbsp;&nbsp;&nbsp;
-                                    </Typography>
-                                    <Typography style={{display: "inline",
-
-                                        fontWeight: 400,
-                                        fontSize: "14px",
-                                        lineHeight: "25px",
-                                        textAlign: "justify",
-                                        color: "#4A4646",}}>
-                                        {(detail.item.filter(x => x.id === 'org_competence_ai')[0].value as DictionaryItemProps[]).map(value => value.name as string).join(', ')}&nbsp;&nbsp;&nbsp;&nbsp;
-                                    </Typography>
-                                </Grid>
-                                <Grid className={'max-lines-1'} >
-                                    <Typography className={classes.text} style={{display: "inline"}}>
-                                        {detail.item.filter(x => x.id === 'org_method_ai')[0].label as string}&nbsp;&nbsp;&nbsp;&nbsp;
-                                    </Typography>
-                                    <Typography className={classes.value} style={{display: "inline",
-
-                                        fontWeight: 400,
-                                        fontSize: "14px",
-                                        lineHeight: "25px",
-                                        textAlign: "justify",
-                                        color: "#4A4646",}}>
-                                        {(detail.item.filter(x => x.id === 'org_method_ai')[0].value as DictionaryItemProps[]).map(value => value.name as string).join(', ')}&nbsp;&nbsp;&nbsp;&nbsp;
-                                    </Typography>
-                                </Grid>
-                                <Grid className={'max-lines-1'} >
-                                    <Typography className={classes.text} style={{display: "inline"}}>
-                                        {detail.item.filter(x => x.id === 'org_tools_ai')[0].label as string}&nbsp;&nbsp;&nbsp;&nbsp;
-                                    </Typography>
-                                    <Typography style={{display: "inline",
-
-                                        fontWeight: 400,
-                                        fontSize: "14px",
-                                        lineHeight: "25px",
-                                        textAlign: "justify",
-                                        color: "#4A4646",}}>
-                                        {(detail.item.filter(x => x.id === 'org_tools_ai')[0].value as DictionaryItemProps[]).map(value => value.name as string).join(', ')}&nbsp;&nbsp;&nbsp;&nbsp;
-                                    </Typography>
+                                <Grid container>
+                                    <Grid item width={'48%'}>
+                                        {fieldsLeftCount}
+                                    </Grid>
+                                    <Grid item width={'50%'}>
+                                        {fieldsRightCount}
+                                    </Grid>
                                 </Grid>
                             </AccordionDetails>
                         </Accordion>
+
+
+                        {fieldsJob}
                     </Container>
                     <Footer />
                 </>
