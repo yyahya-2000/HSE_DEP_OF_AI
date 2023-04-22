@@ -17,7 +17,8 @@ class SliderService {
     try {
       runInAction(() => (this.loading = true))
       const params = {
-        lang: language
+        lang: language,
+        psize: 10
       }
 
       const result = await axios.get(urlSlider, { params })

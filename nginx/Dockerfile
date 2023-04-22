@@ -59,14 +59,22 @@ ARG WEB_DOMAIN
 ARG SSL_CERTIFICATE
 ARG SSL_KEY
 
+ARG SUPERSET_DOMAIN
+ARG SUPERSET_SSL_CERTIFICATE
+ARG SUPERSET_SSL_KEY
+
 ENV WEB_DOMAIN=$WEB_DOMAIN
 ENV SSL_CERTIFICATE=$SSL_CERTIFICATE
 ENV SSL_KEY=$SSL_KEY
 
+ENV SUPERSET_DOMAIN=$SUPERSET_DOMAIN
+ENV SUPERSET_SSL_CERTIFICATE=$SUPERSET_SSL_CERTIFICATE
+ENV SUPERSET_SSL_KEY=$SUPERSET_SSL_KEY
+
 COPY nginx/conf/ /conf/
-RUN envsubst '${WEB_DOMAIN},${SSL_CERTIFICATE},${SSL_KEY}' < /conf/conf.d/site.conf > /etc/nginx/conf.d/site.conf && \
-    #cp -f /conf/conf.d/default.conf /etc/nginx/conf.d/default.conf &&  \
-    #cp /conf/conf.d/superset.conf /etc/nginx/conf.d/superset.conf && \
+RUN envsubst '${SUPERSET_DOMAIN},${WEB_DOMAIN},${SSL_CERTIFICATE},${SSL_KEY}' < /conf/conf.d/site.conf > /etc/nginx/conf.d/site.conf && \
+    #cp /conf/conf.d/def.conf /etc/nginx/conf.d/default.conf &&  \
+    envsubst '${SUPERSET_DOMAIN},${SUPERSET_SSL_CERTIFICATE},${SUPERSET_SSL_KEY}' < /conf/conf.d/superset.conf > /etc/nginx/conf.d/superset.conf && \
     cp /conf/nginx.conf /etc/nginx/nginx.conf && \
     rm -rf /conf
 
