@@ -8,6 +8,7 @@ import { observer } from 'mobx-react-lite';
 import { FC, useEffect } from 'react'
 import { projectService } from 'services/projects';
 import { scrollTopPage } from 'utils';
+import {TabIO} from "../common/Tabs";
 
 const ProjectsPage: FC = () => {
     const { language } = useLanguage();
@@ -38,24 +39,28 @@ const ProjectsPage: FC = () => {
                             <Filter onFind={handleFindClick} filterElements={filterFields} filterParams={projectService.getFilterValues()} />
                         }
                         list={
-                            <Box >
-                                <Box>
-                                    <Grid container spacing={2}>
-                                        {projects && projects.length ? (
-                                            projects.map((project, index) => {
-                                                return (
-                                                    <Grid item key={index} width={'100%'}>
-                                                        <ProjectCard item={project.item} />
-                                                    </Grid>
-                                                )
-                                            })
-                                        ) : (
-                                            <></>
-                                        )}
-                                    </Grid>
-                                    <Paging paging={paging} onChange={handlePageChange} />
+                        <TabIO
+                            list={
+                                <Box >
+                                    <Box>
+                                        <Grid container spacing={2}>
+                                            {projects && projects.length ? (
+                                                projects.map((project, index) => {
+                                                    return (
+                                                        <Grid item key={index} width={'100%'}>
+                                                            <ProjectCard item={project.item} />
+                                                        </Grid>
+                                                    )
+                                                })
+                                            ) : (
+                                                <></>
+                                            )}
+                                        </Grid>
+                                        <Paging paging={paging} onChange={handlePageChange} />
+                                    </Box>
                                 </Box>
-                            </Box>
+                            } name={"Проекты"}/>
+
                         }
                     />
                     <Footer />

@@ -9,6 +9,7 @@ import { observer } from 'mobx-react-lite';
 import { FC, useEffect } from 'react'
 import { researchCenterService } from 'services/researchCenter';
 import { scrollTopPage } from 'utils';
+import {TabIO} from "../common/Tabs";
 
 const ResearchCentersPage: FC = () => {
     const { language } = useLanguage();
@@ -40,24 +41,28 @@ const ResearchCentersPage: FC = () => {
                             <Filter onFind={handleFindClick} filterElements={filterFields} filterParams={researchCenterService.getFilterValues()}/>
                         }
                         list={
-                            <Box >
-                                <Box>
-                                    <Grid container spacing={2}>
-                                        {ResearchCenters && ResearchCenters.length ? (
-                                            ResearchCenters.map((researchCenter, index) => {
-                                                return (
-                                                    <Grid item key={index} width={'100%'}>
-                                                        <ResearchCenterCard item={researchCenter.item} />
-                                                    </Grid>
-                                                )
-                                            })
-                                        ) : (
-                                            <></>
-                                        )}
-                                    </Grid>
-                                    <Paging paging={paging} onChange={handlePageChange} />
+                        <TabIO
+                            list={
+                                <Box >
+                                    <Box>
+                                        <Grid container spacing={2}>
+                                            {ResearchCenters && ResearchCenters.length ? (
+                                                ResearchCenters.map((researchCenter, index) => {
+                                                    return (
+                                                        <Grid item key={index} width={'100%'}>
+                                                            <ResearchCenterCard item={researchCenter.item} />
+                                                        </Grid>
+                                                    )
+                                                })
+                                            ) : (
+                                                <></>
+                                            )}
+                                        </Grid>
+                                        <Paging paging={paging} onChange={handlePageChange} />
+                                    </Box>
                                 </Box>
-                            </Box>
+                            } name={"Исследовательские центры"}/>
+
                         }
                     />
                     <Footer />

@@ -9,6 +9,7 @@ import { observer } from 'mobx-react-lite'
 import { FC, useEffect } from 'react'
 import { productService } from 'services/product'
 import { scrollTopPage } from 'utils'
+import {TabIO} from "../common/Tabs";
 
 const ProductsPage: FC = () => {
     const { language } = useLanguage();
@@ -39,24 +40,28 @@ const ProductsPage: FC = () => {
                             <Filter onFind={handleFindClick}  filterElements={filterFields} filterParams={productService.getFilterValues()}/>
                         }
                         list={
-                            <Box >
-                                <Box>
-                                    <Grid container spacing={2}>
-                                        {products && products.length ? (
-                                            products.map((product, index) => {
-                                                return (
-                                                    <Grid item key={index} width={'100%'}>
-                                                        <ProductCard item={product.item} />
-                                                    </Grid>
-                                                )
-                                            })
-                                        ) : (
-                                            <></>
-                                        )}
-                                    </Grid>
-                                    <Paging paging={paging} onChange={handlePageChange} />
+                        <TabIO
+                            list={
+                                <Box >
+                                    <Box>
+                                        <Grid container spacing={2}>
+                                            {products && products.length ? (
+                                                products.map((product, index) => {
+                                                    return (
+                                                        <Grid item key={index} width={'100%'}>
+                                                            <ProductCard item={product.item} />
+                                                        </Grid>
+                                                    )
+                                                })
+                                            ) : (
+                                                <></>
+                                            )}
+                                        </Grid>
+                                        <Paging paging={paging} onChange={handlePageChange} />
+                                    </Box>
                                 </Box>
-                            </Box>
+                            } name={"Продукты"}/>
+
                         }
                     />
                     <Footer />

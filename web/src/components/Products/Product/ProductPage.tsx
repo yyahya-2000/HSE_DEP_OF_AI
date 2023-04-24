@@ -34,25 +34,200 @@ const ProductPage: FC = () => {
         };
     }, []);
 
-    const fields = detail.item.map((field, index) => {
-        let val = ''
-        for (let index in field.value) {
-            if (field.type === 'link') {
-                const link = field.value[index] as LinkProps
-                val += `[ Url: ${link.url}, Text:  ${link.text} ], `
-            } else if (field.type !== 'entity_reference') {
-                val += field.value[index] + ', '
-            } else {
-                const dic = field.value[index] as DictionaryItemProps
-                val += `[ ID: ${dic.id}, Name:  ${dic.name}, Bundle: ${dic.bundle}, Description: ${dic.description}], `
-            }
+    const fieldsTitles = detail.item.map((field, index) => {
+        if ((field.label === 'Название продукта' || field.label === 'Общепринятое название продукта') && field.value.length !== 0) {
+            return (
+                <Grid item key={index} width={'100%'} style={{overflow: "hidden"}}>
+                    <Typography className={classes.title + ' ' + 'max-lines-1'}
+                                textOverflow={'ellipsis'}>{field.value.map(value => value)}</Typography>
+                </Grid>
+            )
+
         }
-        return (
-            <Grid key={index} className={'max-lines-2'} overflow={'hidden'} textOverflow={'ellipsis'}>
-                {`${field.id} => Type: ${field.type}, Label:${field.label}, Value: ${val}`}
-            </Grid>
-        )
     })
+    const fieldsLeft = detail.item.map((field, index) => {
+        if ((field.label === 'Категория продукта' || field.label === 'Область применения' || field.label === 'Категория деловых процессов') && field.value.length !== 0) {
+            return (
+                <Grid item width={'100%'}>
+                    <Typography key={index} className={classes.label}>{field.label}</Typography>
+                    <Typography key={index}
+                                className={classes.value}>{field.value.map(value => value.name) + '\n'}</Typography>
+                </Grid>
+            )
+        }
+    })
+
+    const fieldsRight = detail.item.map((field, index) => {
+        if (field.label === 'Предметная область ИИ' && field.value.length !== 0) {
+            return (
+                <Grid item width={'100%'}>
+                    <Typography key={index} className={classes.label}>{field.label}</Typography>
+                    <Typography key={index}
+                                className={classes.value}>{field.value.map(value => value.name).join(', ')}</Typography>
+                </Grid>
+            )
+        }
+        if (field.type === 'entity_reference_revision') {
+            field.value.map(value => {
+                return (
+                    <Grid item width={'100%'}>
+                        <Typography key={index} className={classes.label}>{field.label}</Typography>
+                        <Typography key={index}
+                                    className={classes.value}>{value.para_org.value.map(value => value.name)}</Typography>
+                    </Grid>
+                )
+
+
+            })
+        }
+    })
+
+    const fieldsDescription = detail.item.map((field, index) => {
+        if (field.label === 'Описание продукта' && field.value.length !== 0) {
+            return (
+                <Accordion defaultExpanded={true}>
+                    <AccordionSummary expandIcon={'>'}>
+                        <div id="home-carousel">
+                            <div className='carousel__Head'>
+                                <div className='carousel__Head__text'>
+                                    {'описание'.toUpperCase()}
+                                </div>
+                            </div>
+                        </div>
+                    </AccordionSummary>
+                    <AccordionDetails>
+                        <Typography key={index} className={classes.desc}>{field.value.map(value => value)}</Typography>
+                    </AccordionDetails>
+                </Accordion>
+            )
+
+        }
+    })
+
+    const fieldSubject = detail.item.map((field, index) => {
+        if (field.label === 'Предмет продукта' && field.value.length !== 0) {
+            return (
+                <Grid item width={'100%'}>
+                    <Typography key={index} className={classes.label}>{field.label}</Typography>
+                    <Typography key={index} className={classes.value + ' ' + 'max-lines-1'}
+                                textOverflow={'ellipsis'}>{field.value.map(value => value)}</Typography>
+                </Grid>
+            )
+
+        }
+    })
+
+    const fieldRussian = detail.item.map((field, index) => {
+        if (field.label === 'Российская продукция' && field.value.length !== 0) {
+            return (
+                <Grid item width={'100%'}>
+                    <Typography key={index} className={classes.label}>{field.label}</Typography>
+                    <Typography key={index} className={classes.value + ' ' + 'max-lines-1'}
+                                textOverflow={'ellipsis'}>{field.value.map(value => value)}</Typography>
+                </Grid>
+            )
+
+        }
+    })
+
+    const fieldProject = detail.item.map((field, index) => {
+        if (field.label === 'Проект' && field.value.length !== 0) {
+            return (
+                <Accordion defaultExpanded={true}>
+                    <AccordionSummary expandIcon={'>'}>
+                        <div id="home-carousel">
+                            <div className='carousel__Head'>
+                                <div className='carousel__Head__text'>
+                                    {field.label.toUpperCase()}
+                                </div>
+                            </div>
+                        </div>
+                    </AccordionSummary>
+                    <AccordionDetails>
+                        <Typography key={index} className={classes.value + ' ' + 'max-lines-1'}
+                                    textOverflow={'ellipsis'}>{field.value.map(value => value.id)}</Typography>
+                        <Typography key={index} className={classes.value + ' ' + 'max-lines-1'}
+                                    textOverflow={'ellipsis'}>{field.value.map(value => value.name === null ? '' : value.name)}</Typography>
+                    </AccordionDetails>
+                </Accordion>
+            )
+
+        }
+    })
+    const fieldProduct = detail.item.map((field, index) => {
+        if ((field.label === 'Метод ИИ' || field.label === 'Инструмент ИИ' || field.label === 'Стадия продукта') && field.value.length !== 0) {
+            return (
+                <Grid item width={'100%'}>
+                    <Typography key={index} className={classes.label}>{field.label}</Typography>
+                    <Typography key={index} className={classes.value + ' ' + 'max-lines-1'}
+                                textOverflow={'ellipsis'}>{field.value.map(value => value.name).join(', ')}</Typography>
+                </Grid>
+            )
+
+        }
+        if (field.label === 'Данные' && field.value.length !== 0) {
+            return (
+                <Grid item width={'100%'}>
+                    <Typography key={index} className={classes.label}>{field.label}</Typography>
+                    <Typography key={index} className={classes.value + ' ' + 'max-lines-1'}
+                                textOverflow={'ellipsis'}>{field.value.map(value => value)}</Typography>
+                </Grid>
+            )
+        }
+        if (field.type === 'file' && field.value.length !== 0) {
+            return (
+                <Grid item width={'100%'}>
+                    <Typography key={index} className={classes.label}>{field.label}</Typography>
+                    <Typography key={index} className={classes.value + ' ' + 'max-lines-1'}
+                                textOverflow={'ellipsis'}>{field.value.map(value => value.url).join(', ')}</Typography>
+                </Grid>
+            )
+        }
+    })
+
+    const fieldLevel = detail.item.map((field, index) => {
+        if ((field.label === 'Уровень готовности технологии' || field.label === 'Уровень готовности производства' || field.label === 'Уровень рыночной готовности' || field.label === 'Уровень готовности интеграции') && field.value.length !== 0) {
+            return (
+
+                <Grid item width={'100%'}>
+                    <Typography key={index} className={classes.label}>{field.label}</Typography>
+                    <Typography key={index} className={classes.value + ' ' + 'max-lines-1'}
+                                textOverflow={'ellipsis'}>{field.value.map(value => value.name). join(', ')}</Typography>
+                </Grid>
+        )
+
+        }
+    })
+
+    const fieldSourceEntity = detail.item.map((field, index) => {
+        if ((field.label === 'Способ использования' || field.label === 'Сопутствующие цифровые технологии' || field.label === 'Патент') && field.value.length !== 0) {
+            return (
+
+                <Grid item width={'100%'}>
+                    <Typography key={index} className={classes.label}>{field.label}</Typography>
+                    <Typography key={index} className={classes.value + ' ' + 'max-lines-1'}
+                                textOverflow={'ellipsis'}>{field.value.map(value => value.name)}</Typography>
+                </Grid>
+            )
+
+        }
+    })
+    const fieldSource = detail.item.map((field, index) => {
+        if ((field.label === 'Вычислительные ресурсы' || field.label === 'Телекоммуникационные ресурсы') && field.value.length !== 0) {
+            return (
+
+                <Grid item width={'100%'}>
+                    <Typography key={index} className={classes.label}>{field.label}</Typography>
+                    <Typography key={index} className={classes.value + ' ' + 'max-lines-1'}
+                                textOverflow={'ellipsis'}>{field.value.map(value => value)}</Typography>
+                </Grid>
+            )
+
+        }
+    })
+
+
+
 
     return <>
 
@@ -64,194 +239,62 @@ const ProductPage: FC = () => {
                     <Header/>
                     <Breadcrumb/>
                     <Container>
-                        <Typography
-                            className={classes.title}>{detail.item.filter(x => x.id === 'title')[0].value[0] as string}</Typography>
-                        {detail.item.filter(x => x.id === 'product_type')[0].value.length === 0 ?
-                            <Typography style={{
-                                fontWeight: 400,
-                                fontSize: "16px",
-                                lineHeight: "25px",
-                                textAlign: "justify",
-                                color: "#4A4646",
-                            }}>{" "}
-                            </Typography> :
-                            <Typography style={{
-                                fontWeight: 400,
-                                fontSize: "16px",
-                                lineHeight: "25px",
-                                textAlign: "justify",
-                                color: "#4A4646",
-                            }}><p style={{
-                                fontWeight: 400,
-                                fontSize: "14px",
-                                lineHeight: "25px",
-                                textTransform: "uppercase",
-                                color: "#5F52FA",
-                            }}>{detail.item.filter(x => x.id === 'product_type')[0].label as string}</p> {(detail.item.filter(x => x.id === 'product_type')[0].value[0] as DictionaryItemProps).name}
-                            </Typography>}
-                        <div className={classes.textcols}>
-                            <div className={classes.textcolsLeft}>
-                                {detail.item.filter(x => x.id === 'application_area')[0].value.length === 0 ?
-                                    <Typography style={{
-                                        fontWeight: 400,
-                                        fontSize: "16px",
-                                        lineHeight: "25px",
-                                        textAlign: "justify",
-                                        color: "#4A4646",
-                                    }}><p style={{
-                                        fontWeight: 400,
-                                        fontSize: "14px",
-                                        lineHeight: "25px",
-                                        textTransform: "uppercase",
-                                        color: "#5F52FA",
-                                    }}>{detail.item.filter(x => x.id === 'application_area')[0].label as string}</p>
-                                        <hr className={classes.line}/>
-                                        {" "}
-                                    </Typography> :
-                                    <Typography style={{
-                                        fontWeight: 400,
-                                        fontSize: "16px",
-                                        lineHeight: "25px",
-                                        textAlign: "justify",
-                                        color: "#4A4646",
-                                    }}><p style={{
-                                        fontWeight: 400,
-                                        fontSize: "14px",
-                                        lineHeight: "25px",
-                                        textTransform: "uppercase",
-                                        color: "#5F52FA",
-                                    }}>{detail.item.filter(x => x.id === 'application_area')[0].label as string}</p> {(detail.item.filter(x => x.id === 'application_area')[0].value as DictionaryItemProps[]).map(value => value.name as string).join('\n')}
-                                    </Typography>}
-                            </div>
-                            <div className={classes.textcolsRight}>
-                                {detail.item.filter(x => x.id === 'domain_ai')[0].value.length === 0 ?
-                                    <Typography style={{
-                                        fontWeight: 400,
-                                        fontSize: "16px",
-                                        lineHeight: "25px",
-                                        textAlign: "justify",
-                                        color: "#4A4646",
-                                    }}><p style={{
-                                        fontWeight: 400,
-                                        fontSize: "14px",
-                                        lineHeight: "25px",
-                                        textTransform: "uppercase",
-                                        color: "#5F52FA",
-                                    }}>{detail.item.filter(x => x.id === 'domain_ai')[0].label as string}</p>
-                                        <hr className={classes.line}/>
-                                        {" "}
-                                    </Typography> :
-                                    <Typography style={{
-                                        fontWeight: 400,
-                                        fontSize: "16px",
-                                        lineHeight: "25px",
-                                        textAlign: "justify",
-                                        color: "#4A4646",
-                                    }}><p style={{
-                                        fontWeight: 400,
-                                        fontSize: "14px",
-                                        lineHeight: "25px",
-                                        textTransform: "uppercase",
-                                        color: "#5F52FA",
-                                    }}>{detail.item.filter(x => x.id === 'domain_ai')[0].label as string}</p> {(detail.item.filter(x => x.id === 'domain_ai')[0].value as DictionaryItemProps[]).map(value => value.name as string).join('\n')}
-                                    </Typography>}
-                            </div>
-                        </div>
+                        {fieldsTitles}
+                        <Grid container>
+                            <Grid item width={'50%'}>
+                                {fieldsLeft}
+                            </Grid>
+                            <Grid item width={'50%'}>
+                                {fieldsRight}
+                            </Grid>
+                        </Grid>
+                        {fieldsDescription}
+                        {fieldSubject}
+                        {fieldRussian}
+                        {fieldProject}
                         <Accordion defaultExpanded={true}>
                             <AccordionSummary expandIcon={'>'}>
                                 <div id="home-carousel">
                                     <div className='carousel__Head'>
                                         <div className='carousel__Head__text'>
-                                            {'описание'.toUpperCase()}
+                                            {'о продукте'.toUpperCase()}
                                         </div>
                                     </div>
                                 </div>
                             </AccordionSummary>
                             <AccordionDetails>
-                                {detail.item.filter(x => x.id === 'description')[0].value.length === 0 ?
-                                    <Typography style={{
-                                        fontWeight: 400,
-                                        fontSize: "14px",
-                                        lineHeight: "25px",
-                                        textAlign: "justify",
-                                        color: "#4A4646",
-                                        wordWrap: "break-word",
-                                    }}>{" "}</Typography> :
-                                    <Typography style={{
-                                        fontWeight: 400,
-                                        fontSize: "14px",
-                                        lineHeight: "25px",
-                                        textAlign: "justify",
-                                        color: "#4A4646",
-                                        wordWrap: "break-word",
-                                    }}>{detail.item.filter(x => x.id === 'description')[0].value[0] as string}</Typography>}
-
+                                {fieldProduct}
                             </AccordionDetails>
                         </Accordion>
-                        {detail.item.filter(x => x.id === 'subject')[0].value.length === 0 ?
-                            <Grid className={'max-lines-1'}>
-                                <p className={classes.text} style={{display: "inline"}}>
-                                    {detail.item.filter(x => x.id === 'subject')[0].label as string}&nbsp;&nbsp;&nbsp;&nbsp;
-                                </p>
-                                <p style={{
-                                    display: "inline",
-                                    fontWeight: 400,
-                                    fontSize: "14px",
-                                    lineHeight: "25px",
-                                    textAlign: "justify",
-                                    color: "#4A4646",
-                                }}>
-                                    {" "}&nbsp;&nbsp;&nbsp;&nbsp;
-                                </p>
-                            </Grid> :
-                            <Grid className={'max-lines-2'}>
-                                <p className={classes.text} style={{display: "inline"}}>
-                                    {detail.item.filter(x => x.id === 'subject')[0].label as string}&nbsp;&nbsp;&nbsp;&nbsp;
-                                </p>
-                                <p style={{
-                                    display: "inline",
-                                    fontWeight: 400,
-                                    fontSize: "14px",
-                                    lineHeight: "25px",
-                                    textAlign: "justify",
-                                    color: "#4A4646",
-                                }}>
-                                    {detail.item.filter(x => x.id === 'subject')[0].value[0] as string}&nbsp;&nbsp;&nbsp;&nbsp;
-                                </p>
-                            </Grid>
-                        }
-                        {detail.item.filter(x => x.id === 'product_russian')[0].value.length === 0 ?
-                            <Grid className={'max-lines-1'}>
-                                <p className={classes.text} style={{display: "inline"}}>
-                                    {detail.item.filter(x => x.id === 'product_russian')[0].label as string}&nbsp;&nbsp;&nbsp;&nbsp;
-                                </p>
-                                <p style={{
-                                    display: "inline",
-                                    fontWeight: 400,
-                                    fontSize: "14px",
-                                    lineHeight: "25px",
-                                    textAlign: "justify",
-                                    color: "#4A4646",
-                                }}>
-                                    {" "}&nbsp;&nbsp;&nbsp;&nbsp;
-                                </p>
-                            </Grid> :
-                            <Grid className={'max-lines-2'}>
-                                <p className={classes.text} style={{display: "inline"}}>
-                                    {detail.item.filter(x => x.id === 'product_russian')[0].label as string}&nbsp;&nbsp;&nbsp;&nbsp;
-                                </p>
-                                <p style={{
-                                    display: "inline",
-                                    fontWeight: 400,
-                                    fontSize: "14px",
-                                    lineHeight: "25px",
-                                    textAlign: "justify",
-                                    color: "#4A4646",
-                                }}>
-                                    {detail.item.filter(x => x.id === 'product_russian')[0].value[0] as string}&nbsp;&nbsp;&nbsp;&nbsp;
-                                </p>
-                            </Grid>
-                        }
+                        <Accordion defaultExpanded={true}>
+                            <AccordionSummary expandIcon={'>'}>
+                                <div id="home-carousel">
+                                    <div className='carousel__Head'>
+                                        <div className='carousel__Head__text'>
+                                            {'уровни'.toUpperCase()}
+                                        </div>
+                                    </div>
+                                </div>
+                            </AccordionSummary>
+                            <AccordionDetails>
+                                {fieldLevel}
+                            </AccordionDetails>
+                        </Accordion>
+                        <Accordion defaultExpanded={true}>
+                            <AccordionSummary expandIcon={'>'}>
+                                <div id="home-carousel">
+                                    <div className='carousel__Head'>
+                                        <div className='carousel__Head__text'>
+                                            {'ресурсы'.toUpperCase()}
+                                        </div>
+                                    </div>
+                                </div>
+                            </AccordionSummary>
+                            <AccordionDetails>
+                                {fieldSourceEntity}
+                                {fieldSource}
+                            </AccordionDetails>
+                        </Accordion>
                     </Container>
                     <Footer/>
                 </>

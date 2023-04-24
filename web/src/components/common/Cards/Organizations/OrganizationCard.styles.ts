@@ -1,16 +1,6 @@
 import { makeStyles } from 'tss-react/mui'
 
 export const useOrganizationCardStyle = makeStyles()((theme) => ({
-    textcols:{
-        overflow: "hidden"
-    },
-    textcolsLeft:{
-        float: "left",
-        width: "51%",
-    },
-    textcolsRight:{
-        marginLeft: "53%",
-    },
     title:{
         fontWeight: 600,
         fontSize: "20px",
@@ -22,26 +12,22 @@ export const useOrganizationCardStyle = makeStyles()((theme) => ({
     line:{
         border: "1px solid #D9D9D9"
     },
-    website:{
-        fontWeight: 400,
-        fontSize: "14px",
-        lineHeight: "25px",
-        textDecorationLine: "underline",
+    desc:{
+        color: "#4A4646"
+    },
+    label:{
+        textTransform: "uppercase",
         color: "#5F52FA"
-
     },
-    status:{
-        fontWeight: 400,
-        fontSize: "14px",
-        lineHeight: "30px",
-        color: "#4A4646"
+    labelEntity:{
+        display: "inline",
+        textTransform: "uppercase",
+        color: "#5F52FA"
     },
-    competence:{
-        fontWeight: 400,
-        fontSize: "14px",
-        lineHeight: "30px",
-        color: "#4A4646"
-    },
+    value:{
+        display: "inline",
+        color: "#4A4646",
+    }
 }));
 
 export default useOrganizationCardStyle;
