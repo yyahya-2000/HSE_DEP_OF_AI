@@ -14,7 +14,7 @@ class SearchService{
     public projects: EntityListProps = []
     public ResearchCenters: EntityListProps = []
     public UseCase: EntityListProps = []
-    public SearchList: EntityListProps = []
+    public paging = defaultPaging
     constructor() {
         makeAutoObservable(this)
     }

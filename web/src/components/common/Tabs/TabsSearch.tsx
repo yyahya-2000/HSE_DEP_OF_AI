@@ -4,7 +4,7 @@ import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import {FC} from "react";
-import {TabsProps} from "./Tabs.types";
+import {TabsProps, TabsSearchProps} from "./Tabs.types";
 import {observer} from "mobx-react-lite";
 
 interface TabPanelProps {
@@ -77,4 +77,4 @@ const TabIOSearch: FC<TabsSearchProps> = ({listOrganizations, listProjects, list
     );
 }
 
-export default observer(TabIO);
+export default observer(TabIOSearch);
