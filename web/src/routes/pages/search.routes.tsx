@@ -5,5 +5,7 @@ export const searchRoutes = {
     path: routers.searchByKey,
     children: [
         { path: '', element: <SearchPage/> },
+        { path: ':key', element: <SearchPage/> },
+
     ]
 }

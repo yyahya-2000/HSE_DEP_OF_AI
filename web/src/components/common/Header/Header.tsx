@@ -46,7 +46,7 @@ const DefaultHeader: FC<HeaderProps> = ({ withText = false }) => {
   const handleClick = () => {
     if (isOpenSearch) {
       if (searchValue.length) {
-        navigate(`${routers.searchByKey}?key=${searchValue}`);
+        navigate(`${routers.searchByKey}/${searchValue}`);
       }
     }
     setIsOpenSearch(!isOpenSearch);

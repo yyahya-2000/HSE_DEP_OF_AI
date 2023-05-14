@@ -2,11 +2,7 @@ import {FC, useEffect} from "react";
 import {observer} from "mobx-react-lite";
 import {useLanguage} from "../../context/Translation";
 import {searchService} from "../../services/search";
-import {organizationService} from "../../services/organizations";
-import {projectService} from "../../services/projects";
-import {productService} from "../../services/product";
-import {researchCenterService} from "../../services/researchCenter";
-import {scrollTopPage} from "../../utils";
+import {getUrlAdress, scrollTopPage} from "../../utils";
 import Spinner from "../common/Spinner/Spinner";
 import Header from "../common/Header/Header";
 import Carousel from "../common/Carousel/Carousel";
@@ -19,32 +15,40 @@ import {ProductCard} from "../common/Cards/Products";
 import {ProjectCard} from "../common/Cards/Projects";
 import {ResearchCenterCard} from "../common/Cards/ResearchCenters";
 import Container from "../common/Container/Container";
+import Footer from "../common/Footer/Footer";
 
 const SearchPage: FC = () => {
     const {language} = useLanguage();
     const {organizations, products, projects, ResearchCenters, UseCase, loading, paging} = searchService
+    const url = getUrlAdress(window.location.pathname);
+    const key = url[url.length - 1].name
 
     useEffect(() => {
-        organizationService.fetchPagingOrganizations(0, language)
-        projectService.fetchPagingProjects(0, language)
-        productService.fetchPagingProducts(0, language)
-        researchCenterService.fetchPagingResearchCenters(0, language)
-    }, [language]);
+        searchService.fetchSearchPaging(key, 0, language)
+    }, [key, language]);
 
-    const handlePageChangeOrganization = (page: number) => {
-        organizationService.fetchPagingOrganizations(page, language);
-        scrollTopPage();
-    };
-    const handlePageChangeProduct = (page: number) => {
-        productService.fetchPagingProducts(page, language)
-        scrollTopPage();
-    };
-    const handlePageChangeProject = (page: number) => {
-        projectService.fetchPagingProjects(page, language)
-        scrollTopPage();
-    };
-    const handlePageChangeResearchCenter = (page: number) => {
-        researchCenterService.fetchPagingResearchCenters(page, language)
+    useEffect(() => {
+        searchService.fetchSearchTotalOrganization(key, language)
+    }, [key, language]);
+
+    useEffect(() => {
+        searchService.fetchSearchTotalProject(key, language)
+    }, [key, language]);
+
+    useEffect(() => {
+        searchService.fetchSearchTotalProduct(key, language)
+    }, [key, language]);
+
+    useEffect(() => {
+        searchService.fetchSearchTotalResearchCenter(key, language)
+    }, [key, language]);
+
+    useEffect(() => {
+        searchService.fetchSearchTotalUseCase(key, language)
+    }, [key, language]);
+
+    const handlePageChange = (page: number) => {
+        searchService.fetchSearchPaging(key, page, language)
         scrollTopPage();
     };
 
@@ -56,6 +60,7 @@ const SearchPage: FC = () => {
                 <Carousel/>
                 <Breadcrumb/>
                 <Container>
+                    <Paging paging={paging} onChange={handlePageChange}/>
                     <TabIOSearch
                         listOrganizations={<Box>
                             <Box>
@@ -72,7 +77,8 @@ const SearchPage: FC = () => {
                                         <></>
                                     )}
                                 </Grid>
-                                {/*<Paging paging={paging} onChange={handlePageChangeOrganization}/>*/}
+
+
                             </Box>
                         </Box>}
                         listProducts={<Box>
@@ -90,7 +96,6 @@ const SearchPage: FC = () => {
                                         <></>
                                     )}
                                 </Grid>
-                                {/*<Paging paging={paging} onChange={handlePageChangeProduct} />*/}
                             </Box>
                         </Box>}
                         listProjects={<Box>
@@ -108,7 +113,6 @@ const SearchPage: FC = () => {
                                         <></>
                                     )}
                                 </Grid>
-                                {/*<Paging paging={paging} onChange={handlePageChangeProject} />*/}
                             </Box>
                         </Box>}
                         listResearchCenter={<Box>
@@ -126,17 +130,16 @@ const SearchPage: FC = () => {
                                         <></>
                                     )}
                                 </Grid>
-                                {/*<Paging paging={paging} onChange={handlePageChangeResearchCenter} />*/}
                             </Box>
                         </Box>}
                         listUseCases={<Box>
                             <Box>
                                 <Grid container spacing={2}>
                                 </Grid>
-                                {/*<Paging paging={paging} onChange={handlePageChangeProjectUseCases} />*/}
                             </Box>
                         </Box>}/>
                 </Container>
+                <Footer/>
 
             </>
 
