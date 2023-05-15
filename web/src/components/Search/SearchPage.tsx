@@ -1,4 +1,4 @@
-import {FC, useEffect} from "react";
+import {FC, useEffect, useState} from "react";
 import {observer} from "mobx-react-lite";
 import {useLanguage} from "../../context/Translation";
 import {searchService} from "../../services/search";
@@ -16,12 +16,24 @@ import {ProjectCard} from "../common/Cards/Projects";
 import {ResearchCenterCard} from "../common/Cards/ResearchCenters";
 import Container from "../common/Container/Container";
 import Footer from "../common/Footer/Footer";
+import {useLocation} from "react-router-dom";
 
 const SearchPage: FC = () => {
+    const location = useLocation();
+    const [sportKeyLocation, setSportKeyLocation] = useState(location.pathname);
     const {language} = useLanguage();
     const {organizations, products, projects, ResearchCenters, UseCase, loading, paging} = searchService
-    const url = getUrlAdress(window.location.pathname);
-    const key = url[url.length - 1].name
+    let searchParams = new URLSearchParams(window.location.search);
+    let key = searchParams.get('key')
+
+    useEffect(() => {
+        setSportKeyLocation(location.pathname)
+    }, [location.pathname]);
+
+    useEffect(() => {
+        searchParams = new URLSearchParams(window.location.search);
+        key = searchParams.get('key')
+    }, [sportKeyLocation])
 
     useEffect(() => {
         searchService.fetchSearchPaging(key, 0, language)
