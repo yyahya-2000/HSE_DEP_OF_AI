@@ -5,6 +5,11 @@ export const routers = {
   products: "/products",
   usecases: "/use-case",
   researchCenter: "/research-centers",
-  searchByKey: "/search-by-key",
+  searchByKey: "/search",
+  termsMaterials: "/terms-materials",
+  privacyPolicy: "/privacy-policy",
+  siteMap: "/site-map",
+  faq: "/faq",
+  openData: "/open-data"
   
 };
