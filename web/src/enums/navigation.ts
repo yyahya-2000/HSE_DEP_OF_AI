@@ -28,25 +28,25 @@ export const navigation: Navigation[] = [
   }
 ];
 
-// export const footers: Navigation[] = [
-//   {
-//     title: "terms-materials",
-//     link: routers.termsMaterials,
-//   },
-//   {
-//     title: "privacy-policy",
-//     link: routers.privacyPolicy,
-//   },
-//   {
-//     title: "site-map",
-//     link: routers.siteMap,
-//   },
-//   {
-//     title: "faq",
-//     link: routers.faq,
-//   },
-//   {
-//     title: "open-data",
-//     link: routers.openData,
-//   },
-// ];
+export const footers: Navigation[] = [
+  {
+    title: "Term Materials",
+    link: routers.termsMaterials,
+  },
+  {
+    title: "Privacy Policy",
+    link: routers.privacyPolicy,
+  },
+  {
+    title: "Site Map",
+    link: routers.siteMap,
+  },
+  {
+    title: "F.A.Q",
+    link: routers.faq,
+  },
+  {
+    title: "Open Data",
+    link: routers.openData,
+  },
+];
