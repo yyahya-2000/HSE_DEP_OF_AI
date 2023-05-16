@@ -1393,6 +1393,7 @@ TALISMAN_CONFIG = {
 # }
 RLS_FORM_QUERY_REL_FIELDS: Optional[Dict[str, List[List[Any]]]] = None
 
+RLS_BASE_RELATED_FIELD_FILTERS: Dict[str, BaseFilter] = {}
 #
 # Flask session cookie options
 #
