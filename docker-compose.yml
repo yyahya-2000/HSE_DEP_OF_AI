@@ -1,7 +1,7 @@
 version: '3.4'
 services:
   nginx:
-    container_name: ai_hse_nginx
+    container_name: ai_hse_nginx${CONTAINERS_SUFFIX}
     build:
       context: .
       dockerfile: ./nginx/Dockerfile
@@ -28,7 +28,7 @@ services:
       - ./nginx/logs:/var/log/nginx
       - ./storage/public:/var/www/html/sites/default/files
   php:
-    container_name: ai_hse_php
+    container_name: ai_hse_php${CONTAINERS_SUFFIX}
     build:
       context: .
       dockerfile: ./php/Dockerfile
@@ -39,6 +39,7 @@ services:
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       DRUPAL_TRUSTED_HOST: ${DRUPAL_TRUSTED_HOST}
+      CONTAINERS_SUFFIX: ${CONTAINERS_SUFFIX}
     logging:
       driver: syslog
       options:
@@ -52,7 +53,7 @@ services:
       - ./storage/public:/var/www/html/sites/default/files:rw
       - ./storage/private:/private:rw
   db:
-    container_name: ai_hse_db
+    container_name: ai_hse_db${CONTAINERS_SUFFIX}
     image: postgres:14-alpine
     networks:
       - backend
@@ -65,18 +66,18 @@ services:
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
       - POSTGRES_DB=${POSTGRES_DB}
       - POSTGRES_SUPERSET_DB=${POSTGRES_SUPERSET_DB}
-    ports:
-      - "5432:5432"
+    #ports:
+      #- "5432:5432"
     restart: unless-stopped
     volumes:
       - ./storage/pgdata:/var/lib/postgresql/data
   superset:
-    container_name: ai_hse_superset
+    container_name: ai_hse_superset${CONTAINERS_SUFFIX}
     build:
       context: ./superset
       dockerfile: ./Dockerfile
     ports:
-      - "8088:8088"
+      - "${SUPERSET_PORT}:8088"
     logging:
       driver: syslog
       options:
