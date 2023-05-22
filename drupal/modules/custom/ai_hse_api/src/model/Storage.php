@@ -5,6 +5,7 @@ namespace Drupal\ai_hse_api\model;
 use Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException;
 use Drupal\Component\Plugin\Exception\PluginNotFoundException;
 use Drupal\Core\Entity\Query\QueryInterface;
+use Drupal\user\Entity\User;
 
 class Storage
 {
@@ -160,7 +161,6 @@ class Storage
 
         $ids = $query
             ->condition('status', 1)
-            //->sort($sort['field'], $sort['type'])
             ->range($page * $items_per_page, $items_per_page)
             ->execute();
 
@@ -173,5 +173,22 @@ class Storage
             'data' => $storage->loadMultiple($ids),
             'total' => intval($total)
         );
+    }
+
+
+    static function getAdminsEMails(): array
+    {
+        $ids = \Drupal::entityQuery('user')
+          ->condition('status', 1)
+          ->condition('roles', 'administrator')
+          ->execute();
+        $users = User::loadMultiple($ids);
+        $emails = [];
+        foreach($users as $user) {
+          if($email = $user->get('mail')->getString()) {
+            $emails[] = $email;
+          }
+        }
+        return $emails;
     }
 }
