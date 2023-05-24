@@ -39,8 +39,6 @@ const OrganizationsPage: FC = () => {
                                 filterParams={organizationService.getFilterValues()}/>
                     }
                     list={
-
-
                         <TabIO
                             list={
                                 <Box>
@@ -61,7 +59,22 @@ const OrganizationsPage: FC = () => {
                                         <Paging paging={paging} onChange={handlePageChange}/>
                                     </Box>
                                 </Box>
-                            } name={"Организации"}/>
+                            }
+                            organizationsBI={
+                                <iframe
+                                    width="600"
+                                    height="400"
+                                    seamless
+                                    frameBorder="0"
+                                    scrolling="no"
+                                    src="https://aiportalbilive.infostrategic.com/superset/explore/p/Bg0pDjwyWOY/?standalone=1&height=400"
+
+                                >
+
+                                </iframe>
+                        }
+
+                            name={"Организации"}/>
 
                     }
                 />
