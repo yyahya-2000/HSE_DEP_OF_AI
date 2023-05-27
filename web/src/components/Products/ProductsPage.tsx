@@ -60,7 +60,23 @@ const ProductsPage: FC = () => {
                                         <Paging paging={paging} onChange={handlePageChange} />
                                     </Box>
                                 </Box>
-                            } name={"Продукты"}/>
+                            }
+                            organizationsBI={
+                                <Grid container>
+                                    <Grid item width={'100%'} style={{textAlign: "center"}}>
+                                        <iframe
+                                            width="600"
+                                            height="600"
+                                            seamless
+                                            frameBorder="0"
+                                            scrolling="no"
+                                            src="https://aiportalbi.infostrategic.com/superset/explore/p/Lbn27QKv7ZX/?standalone=1&height=600"
+                                        >
+                                        </iframe>
+                                    </Grid>
+                                </Grid>
+                            }
+                            name={"Продукты"}/>
 
                         }
                     />
