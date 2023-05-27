@@ -61,17 +61,41 @@ const OrganizationsPage: FC = () => {
                                 </Box>
                             }
                             organizationsBI={
-                                <iframe
-                                    width="600"
-                                    height="400"
-                                    seamless
-                                    frameBorder="0"
-                                    scrolling="no"
-                                    src="https://aiportalbilive.infostrategic.com/superset/explore/p/Bg0pDjwyWOY/?standalone=1&height=400"
-
-                                >
-
-                                </iframe>
+                            <Grid container>
+                                <Grid item width={'100%'} style={{textAlign: "center"}}>
+                                    <iframe
+                                        width="600"
+                                        height="600"
+                                        seamless
+                                        frameBorder="0"
+                                        scrolling="no"
+                                        src="https://aiportalbi.infostrategic.com/superset/explore/p/bL32WXLonEK/?standalone=1&height=400"
+                                    >
+                                    </iframe>
+                                </Grid>
+                                <Grid item width={'100%'} style={{textAlign: "center"}}>
+                                    <iframe
+                                        width="600"
+                                        height="600"
+                                        seamless
+                                        frameBorder="0"
+                                        scrolling="no"
+                                        src="https://aiportalbi.infostrategic.com/superset/explore/p/ReQVJqDvMwn/?standalone=1&height=400"
+                                    >
+                                    </iframe>
+                                </Grid>
+                                <Grid item width={'100%'} style={{textAlign: "center"}}>
+                                    <iframe
+                                        width="600"
+                                        height="600"
+                                        seamless
+                                        frameBorder="0"
+                                        scrolling="no"
+                                        src="https://aiportalbi.infostrategic.com/superset/explore/p/RDq2dE9owpN/?standalone=1&height=400"
+                                    >
+                                    </iframe>
+                                </Grid>
+                            </Grid>
                         }
 
                             name={"Организации"}/>
