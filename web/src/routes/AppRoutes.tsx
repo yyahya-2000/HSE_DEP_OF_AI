@@ -8,7 +8,8 @@ import {
   standRoutes,
   researchCenterRoutes,
   usecasesRoutes,
-  searchRoutes
+  searchRoutes,
+  feedbackRoutes
 } from './pages'
 
 const AppRoutes: FC = () => {
@@ -20,7 +21,8 @@ const AppRoutes: FC = () => {
     standRoutes,
     researchCenterRoutes,
     usecasesRoutes,
-    searchRoutes
+    searchRoutes,
+    feedbackRoutes
   ])
   return routes
 }
