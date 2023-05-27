@@ -10,6 +10,6 @@ export const routers = {
   privacyPolicy: "/privacy-policy",
   siteMap: "/site-map",
   faq: "/faq",
-  openData: "/open-data"
+  feedback: "/feedback"
   
 };
