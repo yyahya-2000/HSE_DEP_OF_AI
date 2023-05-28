@@ -8,5 +8,6 @@ export type TabsSearchProps = {
 
 export type TabsProps = {
     list?: React.ReactNode
+    organizationsBI?: React.ReactNode
     name?: string
 }

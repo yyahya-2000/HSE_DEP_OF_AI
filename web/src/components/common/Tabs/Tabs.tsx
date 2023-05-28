@@ -40,7 +40,7 @@ function a11yProps(index: number) {
     };
 }
 
-const TabIO: FC<TabsProps> = ({list, name}) => {
+const TabIO: FC<TabsProps> = ({list, organizationsBI, name}) => {
     const [value, setValue] = React.useState(0);
 
     const handleChange = (event: React.SyntheticEvent, newValue: number) => {
@@ -59,7 +59,7 @@ const TabIO: FC<TabsProps> = ({list, name}) => {
                 {list}
             </TabPanel>
             <TabPanel value={value} index={1}>
-                Item Two
+                {organizationsBI}
             </TabPanel>
         </Box>
     );

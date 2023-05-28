@@ -46,7 +46,7 @@ export const footers: Navigation[] = [
     link: routers.faq,
   },
   {
-    title: "Open Data",
-    link: routers.openData,
+    title: "Feedback",
+    link: routers.feedback,
   },
 ];

@@ -564,6 +564,52 @@ class APIController extends ControllerBase
     return new JsonResponse($res);
   }
 
+  public function feedback(Request $request): JsonResponse
+  {
+    $name = $request->get('name');
+    $email = $request->get('email');
+    $subject = $request->get('subject');
+    $message = $request->get('message');
+
+    try {
+      $mailManager = \Drupal::service('plugin.manager.mail');
+      $module = 'ai_hse_api';
+      $key = 'feedback';
+      $params = array(
+        'from' => \Drupal::config('system.site')->get('mail'),
+        'name' => $name,
+        'email' => $email,
+        'subject' => $subject,
+        'message' => $message
+      );
+      $langcode = \Drupal::currentUser()->getPreferredLangcode();
+
+      foreach (Storage::getAdminsEMails() as $to) {
+        $result = $mailManager->mail($module, $key, $to, $langcode, $params, NULL, true);
+        if ($result !== true) {
+          break;
+        }
+      }
+
+      if ($result['result'] !== true) {
+        $status = APIController::RES_STATUS_ERROR;
+        $data = t('There was a problem sending your message and it was not sent.');
+      } else {
+        $status = APIController::RES_STATUS_OK;
+        $data = 'Your message has been sent.';
+      }
+    } catch (Exception $e) {
+      $data = "";
+      $status = APIController::RES_STATUS_ERROR;
+    }
+
+    return new JsonResponse([
+      'status' => $status,
+      'data' => $data,
+    ]);
+
+  }
+
   private function setFilterParamsForSearchByBundle(string $bundle, string $text): void
   {
     $fieldsContent = \Drupal::service('entity_display.repository')

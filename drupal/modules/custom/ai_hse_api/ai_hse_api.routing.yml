@@ -322,3 +322,12 @@ ai_hse_api.api.search:
     _title: ''
   requirements:
     _access: 'TRUE'
+
+ai_hse_api.api.feedback:
+  path: '/api/feedback'
+  methods: [GET]
+  defaults:
+    _controller: '\Drupal\ai_hse_api\controller\APIController::feedback'
+    _title: ''
+  requirements:
+    _access: 'TRUE'

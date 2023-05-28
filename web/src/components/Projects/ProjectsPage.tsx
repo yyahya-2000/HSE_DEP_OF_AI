@@ -59,7 +59,21 @@ const ProjectsPage: FC = () => {
                                         <Paging paging={paging} onChange={handlePageChange} />
                                     </Box>
                                 </Box>
-                            } name={"Проекты"}/>
+                            }
+                            organizationsBI={
+                                <Grid item width={'100%'} style={{textAlign: "center"}}>
+                                    <iframe
+                                        width="600"
+                                        height="600"
+                                        seamless
+                                        frameBorder="0"
+                                        scrolling="no"
+                                        src="https://aiportalbi.infostrategic.com/superset/explore/p/mb1V3pY2Zrw/?standalone=1&height=600"
+                                    >
+                                    </iframe>
+                                </Grid>
+                            }
+                            name={"Проекты"}/>
 
                         }
                     />

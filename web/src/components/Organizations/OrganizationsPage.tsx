@@ -39,8 +39,6 @@ const OrganizationsPage: FC = () => {
                                 filterParams={organizationService.getFilterValues()}/>
                     }
                     list={
-
-
                         <TabIO
                             list={
                                 <Box>
@@ -61,7 +59,46 @@ const OrganizationsPage: FC = () => {
                                         <Paging paging={paging} onChange={handlePageChange}/>
                                     </Box>
                                 </Box>
-                            } name={"Организации"}/>
+                            }
+                            organizationsBI={
+                            <Grid container>
+                                <Grid item width={'100%'} style={{textAlign: "center"}}>
+                                    <iframe
+                                        width="600"
+                                        height="600"
+                                        seamless
+                                        frameBorder="0"
+                                        scrolling="no"
+                                        src="https://aiportalbi.infostrategic.com/superset/explore/p/bL32WXLonEK/?standalone=1&height=400"
+                                    >
+                                    </iframe>
+                                </Grid>
+                                <Grid item width={'100%'} style={{textAlign: "center"}}>
+                                    <iframe
+                                        width="600"
+                                        height="600"
+                                        seamless
+                                        frameBorder="0"
+                                        scrolling="no"
+                                        src="https://aiportalbi.infostrategic.com/superset/explore/p/ReQVJqDvMwn/?standalone=1&height=400"
+                                    >
+                                    </iframe>
+                                </Grid>
+                                <Grid item width={'100%'} style={{textAlign: "center"}}>
+                                    <iframe
+                                        width="600"
+                                        height="600"
+                                        seamless
+                                        frameBorder="0"
+                                        scrolling="no"
+                                        src="https://aiportalbi.infostrategic.com/superset/explore/p/RDq2dE9owpN/?standalone=1&height=400"
+                                    >
+                                    </iframe>
+                                </Grid>
+                            </Grid>
+                        }
+
+                            name={"Организации"}/>
 
                     }
                 />

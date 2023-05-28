@@ -61,7 +61,45 @@ const ResearchCentersPage: FC = () => {
                                         <Paging paging={paging} onChange={handlePageChange} />
                                     </Box>
                                 </Box>
-                            } name={"Исследовательские центры"}/>
+                            }
+                            organizationsBI={
+                                <Grid container>
+                                    <Grid item width={'100%'} style={{textAlign: "center"}}>
+                                        <iframe
+                                            width="600"
+                                            height="600"
+                                            seamless
+                                            frameBorder="0"
+                                            scrolling="no"
+                                            src="https://aiportalbi.infostrategic.com/superset/explore/p/dNRoxyWvzQG/?standalone=1&height=600"
+                                        >
+                                        </iframe>
+                                    </Grid>
+                                    <Grid item width={'100%'} style={{textAlign: "center"}}>
+                                        <iframe
+                                            width="600"
+                                            height="600"
+                                            seamless
+                                            frameBorder="0"
+                                            scrolling="no"
+                                            src="https://aiportalbi.infostrategic.com/superset/explore/p/dX420D92NK9/?standalone=1&height=600"
+                                        >
+                                        </iframe>
+                                    </Grid>
+                                    <Grid item width={'100%'} style={{textAlign: "center"}}>
+                                        <iframe
+                                            width="600"
+                                            height="600"
+                                            seamless
+                                            frameBorder="0"
+                                            scrolling="no"
+                                            src="https://aiportalbi.infostrategic.com/superset/explore/p/Wa62MpLVXGN/?standalone=1&height=600"
+                                        >
+                                        </iframe>
+                                    </Grid>
+                                </Grid>
+                            }
+                            name={"Исследовательские центры"}/>
 
                         }
                     />

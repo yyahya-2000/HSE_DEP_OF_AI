@@ -13,3 +13,31 @@ function ai_hse_api_node_delete($node) {
     $response->send();
     return;
 }
+
+/**
+ * Implements hook_mail().
+ */
+function ai_hse_api_mail($key, &$message, $params) {
+    $options = array(
+      'langcode' => $message['langcode'],
+    );
+
+     switch ($key) {
+         case 'feedback':
+             $name = htmlspecialchars($params['name']);
+             $email = htmlspecialchars($params['email']);
+             $subject = htmlspecialchars($params['subject']);
+             $msg = htmlspecialchars($params['message']);
+
+             $message['from'] = $params['from'];
+             $message['subject'] = "AI-RADAR ОБРАТНАЯ СВЯЗЬ";
+             $message['headers']['Content-Type'] = 'text/html; charset=UTF-8; format=flowed';
+             $message['body'][] = '<table>';
+             $message['body'][] = '<tr><td>'.t('Отправитель: ').'</td><td>'.$name.'</td></tr>';
+             $message['body'][] = '<tr><td>'.t('Электронная почта: ').'</td><td>'.$email.'</td></tr>';
+             $message['body'][] = '<tr><td>'.t('Тема: ').'</td><td>'.$subject.'</td></tr>';
+             $message['body'][] = '<tr><td>'.t('Сообщение: ').'</td><td>'.$msg.'</td></tr>';
+             $message['body'][] = '</table>';
+             break;
+     }
+}
