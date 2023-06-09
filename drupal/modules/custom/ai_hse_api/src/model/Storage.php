@@ -162,6 +162,7 @@ class Storage
         $ids = $query
             ->condition('status', 1)
             ->range($page * $items_per_page, $items_per_page)
+            ->sort('changed', 'DESC')
             ->execute();
 
         $total = $queryTotal
